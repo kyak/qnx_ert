@@ -39,7 +39,24 @@
   %----------------------------------------%
   % Configure RTW code generation settings %
   %----------------------------------------%
-  
+  rtwoptions(1).prompt         = 'QNX Target Options';
+  rtwoptions(1).type           = 'Category';
+  rtwoptions(1).enable         = 'on';  
+  rtwoptions(1).default        = 1;   % number of items under this category
+                                      % excluding this one.
+  rtwoptions(1).popupstrings  = '';
+  rtwoptions(1).tlcvariable   = '';
+  rtwoptions(1).tooltip       = '';
+  rtwoptions(1).callback      = '';
+  rtwoptions(1).makevariable  = '';
+
+  rtwoptions(2).prompt         = 'Download to QNX Target Board';
+  rtwoptions(2).type           = 'Checkbox';
+  rtwoptions(2).default        = 'on';
+  rtwoptions(2).tlcvariable    = '';
+  rtwoptions(2).makevariable   = 'QNX_DOWNLOAD';
+  rtwoptions(2).tooltip        = ['Download binary to QNX Target Board'];
+  rtwoptions(2).callback       = '';   
   rtwgensettings.BuildDirSuffix = '_qnx_rtw';
   rtwgensettings.DerivedFrom = 'ert.tlc';
   rtwgensettings.Version = '1';

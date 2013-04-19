@@ -134,6 +134,7 @@ MODELREF_SFCN_SUFFIX       = |>MODELREF_SFCN_SUFFIX<|
 
 #-------------------------------------------------------------------------------------
 QNX_MW_ROOT                = |>QNX_MW_ROOT<|
+QNX_DOWNLOAD               = |>QNX_DOWNLOAD<|
 
 #-- In the case when directory name contains space ---
 ifneq ($(MATLAB_ROOT),$(ALT_MATLAB_ROOT))
