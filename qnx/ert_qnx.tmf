@@ -316,7 +316,7 @@ endif
 #--------------------------- Tool Specifications -------------------------------
 
 
-include $(QNX_MW_ROOT)/src/qnxtools.mak
+include $(QNX_MW_ROOT)/qnx/qnxtools.mak
 
 
 
@@ -480,7 +480,7 @@ endif
 %.o : $(MATLAB_ROOT)/rtw/c/src/ext_mode/custom/%.C
 	$(CC) -c -o $@ $(CFLAGS) $<
 
-%.o : $(QNX_MW_ROOT)/src/%.c
+%.o : $(QNX_MW_ROOT)/qnx/%.c
 	$(CC) -c -o $(@F)  $(CFLAGS) $<
 
 %.o : $(QNX_MW_ROOT)/ext_mode/target/%.c
