@@ -32,7 +32,7 @@ function qnx_callback_handler(hDlg, hSrc)
   slConfigUISetVal(hDlg, hSrc.Components, 'ExtModeTransport', '0');
   slConfigUISetEnabled(hDlg, hSrc.Components, 'ExtModeTransport', 1);
   
-  slConfigUISetVal(hDlg, hSrc.Components, 'ExtModeMexArgs', '''172.16.16.1''  1 17725');
+  slConfigUISetVal(hDlg, hSrc.Components, 'ExtModeMexArgs', 'getpref(''qnx_ert'',''TargetIP'') 1 17725');
   slConfigUISetEnabled(hDlg, hSrc.Components, 'ExtModeMexArgs', 1);
   
   slConfigUISetVal(hDlg, hSrc, 'GenerateMakefile', 'on');
