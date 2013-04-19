@@ -21,7 +21,7 @@ Model {
       Name		      "Nz Pilot (g)"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.43"
+    ComputedModelVersion    "1.45"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -83,9 +83,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "peselnikmg"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Apr 18 15:47:53 2013"
-  RTWModifiedTimeStamp	  288200658
-  ModelVersionFormat	  "1.%<AutoIncrement:43>"
+  LastModifiedDate	  "Fri Apr 19 17:01:59 2013"
+  RTWModifiedTimeStamp	  288291717
+  ModelVersionFormat	  "1.%<AutoIncrement:45>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -696,7 +696,7 @@ Model {
 		  ExtModeStaticAllocSize  1000000
 		  ExtModeTesting	  off
 		  ExtModeMexFile	  "ext_comm"
-		  ExtModeMexArgs	  "'192.168.127.61'  1 17725"
+		  ExtModeMexArgs	  "getpref('qnx_ert','TargetIP') 1 17725"
 		  ExtModeIntrfLevel	  "Level1"
 		  InlinedParameterPlacement "NonHierarchical"
 		  TargetOS		  "VxWorksExample"
@@ -756,6 +756,11 @@ Model {
 		}
 		PropName		"Components"
 	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"QNX_DOWNLOAD"
+		Value			on
+	      }
 	    }
 	    PropName		    "Components"
 	  }
@@ -764,8 +769,8 @@ Model {
       }
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 -p0 -aWarnNonSaturatedBlocks=0"
-      CurrentDlgPage	      "Code Generation/Debug"
-      ConfigPrmDlgPosition     [ 288, 25, 1392, 884 ] 
+      CurrentDlgPage	      "Code Generation/Interface"
+      ConfigPrmDlgPosition     [ 477, 135, 1444, 893 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -2020,7 +2025,7 @@ Model {
       Position		      [625, 35, 650, 65]
       ZOrder		      -15
       Floating		      off
-      Location		      [1130, 191, 1454, 384]
+      Location		      [1258, 237, 1582, 430]
       Open		      on
       NumInputPorts	      "1"
       TickLabels	      "on"

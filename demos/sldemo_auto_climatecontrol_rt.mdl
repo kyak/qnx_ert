@@ -1,7 +1,7 @@
 # $Revision: 1.1.6.7 $
 Model {
   Name			  "sldemo_auto_climatecontrol_rt"
-  Version		  7.7
+  Version		  8.1
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    1
@@ -16,7 +16,7 @@ Model {
       Name		      "Out1"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.59"
+    ComputedModelVersion    "1.60"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -27,7 +27,7 @@ Model {
   "ht-hand side of the model shows the reading\nof a temperature sensor placed behind the driver's head. This is the\nt"
   "emperature that the driver should be feeling. When the model is run and\nthe climate control is active, it is this d"
   "isplay box whose value changes\nto show the change of temperature in the car.   \n\n"
-  SavedCharacterEncoding  "US-ASCII"
+  SavedCharacterEncoding  "windows-1251"
   SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -36,16 +36,56 @@ Model {
   DataTypeOverrideAppliesTo "AllNumericTypes"
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
+  FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
+  Object {
+    $PropName		    "BdWindowsInfo"
+    $ObjectID		    1
+    $ClassName		    "Simulink.BDWindowsInfo"
+    Object {
+      $PropName		      "WindowsInfo"
+      $ObjectID		      2
+      $ClassName	      "Simulink.WindowInfo"
+      IsActive		      [1]
+      Location		      [48.0, 52.0, 1360.0, 868.0]
+      Object {
+	$PropName		"ModelBrowserInfo"
+	$ObjectID		3
+	$ClassName		"Simulink.ModelBrowserInfo"
+	Visible			[0]
+	DockPosition		"Left"
+	Width			[50]
+	Height			[50]
+	Filter			[8]
+      }
+      Object {
+	$PropName		"ExplorerBarInfo"
+	$ObjectID		4
+	$ClassName		"Simulink.ExplorerBarInfo"
+	Visible			[1]
+      }
+      Object {
+	$PropName		"EditorsInfo"
+	$ObjectID		5
+	$ClassName		"Simulink.EditorInfo"
+	IsActive		[1]
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
+	Extents			[1310.0, 694.0]
+	ZoomFactor		[1.0]
+	Offset			[0.0, 0.0]
+      }
+    }
+  }
   Created		  "Fri Mar 15 12:04:57 2002"
   Creator		  "The MathWorks Inc."
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "rtheyyun"
+  LastModifiedBy	  "peselnikmg"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Mar 13 14:58:48 2012"
-  RTWModifiedTimeStamp	  248565194
-  ModelVersionFormat	  "1.%<AutoIncrement:59>"
+  LastModifiedDate	  "Fri Apr 19 17:09:10 2013"
+  RTWModifiedTimeStamp	  288292147
+  ModelVersionFormat	  "1.%<AutoIncrement:60>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  on
@@ -53,6 +93,7 @@ Model {
   WideLines		  off
   ShowLineDimensions	  off
   ShowPortDataTypes	  off
+  ShowDesignRanges	  off
   ShowLoopsOnError	  on
   IgnoreBidirectionalLines off
   ShowStorageClass	  off
@@ -77,6 +118,24 @@ Model {
   AccelTemplateMakefile	  "accel_default_tmf"
   AccelMakeCommand	  "make_rtw"
   TryForcingSFcnDF	  off
+  Object {
+    $PropName		    "DataLoggingOverride"
+    $ObjectID		    6
+    $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
+    model_		    "sldemo_auto_climatecontrol_rt"
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      "sldemo_auto_climatecontrol_rt"
+      PropName		      "logAsSpecifiedByModels_"
+    }
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      ""
+      PropName		      "logAsSpecifiedByModelsSSIDs_"
+    }
+  }
   RecordCoverage	  off
   CovPath		  "/"
   CovSaveName		  "covdata"
@@ -121,14 +180,14 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      1
-      Version		      "1.11.0"
+      $ObjectID		      7
+      Version		      "1.13.0"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  2
-	  Version		  "1.11.0"
+	  $ObjectID		  8
+	  Version		  "1.13.0"
 	  StartTime		  "0.0"
 	  StopTime		  "inf"
 	  AbsTol		  "auto"
@@ -146,6 +205,7 @@ Model {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  SolverMode		  "Auto"
+	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode3"
 	  SolverName		  "ode3"
@@ -161,8 +221,8 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  3
-	  Version		  "1.11.0"
+	  $ObjectID		  9
+	  Version		  "1.13.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -193,13 +253,14 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  4
-	  Version		  "1.11.0"
+	  $ObjectID		  10
+	  Version		  "1.13.0"
 	  BlockReduction	  on
 	  BooleanDataType	  off
 	  ConditionallyExecuteInputs on
 	  InlineParams		  on
 	  UseIntDivNetSlope	  off
+	  UseFloatMulNetSlope	  off
 	  UseSpecifiedMinMax	  off
 	  InlineInvariantSignals  off
 	  OptimizeBlockIOStorage  on
@@ -232,11 +293,11 @@ Model {
 	  BufferReusableBoundary  on
 	  SimCompilerOptimization "Off"
 	  AccelVerboseBuild	  off
-	  AccelParallelForEachSubsystem	on
+	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  5
-	  Version		  "1.11.0"
+	  $ObjectID		  11
+	  Version		  "1.13.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -285,12 +346,13 @@ Model {
 	  UnnecessaryDatatypeConvMsg "none"
 	  VectorMatrixConversionMsg "none"
 	  InvalidFcnCallConnMsg	  "error"
-	  FcnCallInpInsideContextMsg "Use local settings"
+	  FcnCallInpInsideContextMsg "UseLocalSettings"
 	  SignalLabelMismatchMsg  "none"
 	  UnconnectedInputMsg	  "warning"
 	  UnconnectedOutputMsg	  "warning"
 	  UnconnectedLineMsg	  "warning"
 	  SFcnCompatibilityMsg	  "none"
+	  FrameProcessingCompatibilityMsg "warning"
 	  UniqueDataStoreMsg	  "none"
 	  BusObjectLabelMismatch  "warning"
 	  RootOutportRequireBusObject "warning"
@@ -319,14 +381,18 @@ Model {
 	  SFInvalidInputDataAccessInChartInitDiag "warning"
 	  SFNoUnconditionalDefaultTransitionDiag "warning"
 	  SFTransitionOutsideNaturalParentDiag "warning"
+	  SFUnconditionalTransitionShadowingDiag "warning"
+	  SFUndirectedBroadcastEventsDiag "warning"
+	  SFTransitionActionBeforeConditionDiag	"warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  6
-	  Version		  "1.11.0"
+	  $ObjectID		  12
+	  Version		  "1.13.0"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
 	  ProdBitPerLong	  32
+	  ProdBitPerLongLong	  64
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
@@ -336,17 +402,20 @@ Model {
 	  ProdEndianess		  "Unspecified"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
+	  ProdLongLongMode	  off
 	  ProdHWDeviceType	  "32-bit Generic"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
 	  TargetBitPerLong	  32
+	  TargetBitPerLongLong	  64
 	  TargetBitPerFloat	  32
 	  TargetBitPerDouble	  64
 	  TargetBitPerPointer	  32
 	  TargetLargestAtomicInteger "Char"
 	  TargetLargestAtomicFloat "None"
 	  TargetShiftRightIntArith on
+	  TargetLongLongMode	  off
 	  TargetIntDivRoundTo	  "Undefined"
 	  TargetEndianess	  "Unspecified"
 	  TargetWordSize	  32
@@ -358,8 +427,8 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  7
-	  Version		  "1.11.0"
+	  $ObjectID		  13
+	  Version		  "1.13.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -373,8 +442,8 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  8
-	  Version		  "1.11.0"
+	  $ObjectID		  14
+	  Version		  "1.13.0"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -388,8 +457,8 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  9
-	  Version		  "1.11.0"
+	  $ObjectID		  15
+	  Version		  "1.13.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -400,6 +469,7 @@ Model {
 	  GenCodeOnly		  off
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
+	  PackageGeneratedCodeAndArtifacts off
 	  TemplateMakefile	  "ert_qnx.tmf"
 	  PostCodeGenCommand	  "postGenFunc(buildInfo)"
 	  Description		  "Embedded Coder"
@@ -419,6 +489,14 @@ Model {
 	  RTWUseSimCustomCode	  off
 	  IncludeHyperlinkInReport off
 	  LaunchReport		  off
+	  PortableWordSizes	  off
+	  GenerateErtSFunction	  off
+	  CreateSILPILBlock	  "None"
+	  CodeExecutionProfiling  off
+	  CodeExecutionProfileVariable "executionProfile"
+	  CodeProfilingSaveOptions "SummaryOnly"
+	  CodeProfilingInstrumentation off
+	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
 	  IncludeERTFirstTime	  on
@@ -428,8 +506,9 @@ Model {
 	  GenerateTraceReportSf	  off
 	  GenerateTraceReportEml  off
 	  GenerateCodeInfo	  off
-	  GenerateSLWebview	  off
+	  GenerateWebview	  off
 	  GenerateCodeMetricsReport off
+	  GenerateCodeReplacementReport	off
 	  RTWCompilerOptimization "Off"
 	  CheckMdlBeforeBuild	  "Off"
 	  CustomRebuildMode	  "OnUpdate"
@@ -437,8 +516,8 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      10
-	      Version		      "1.11.0"
+	      $ObjectID		      16
+	      Version		      "1.13.0"
 	      ForceParamTrailComments off
 	      GenerateComments	      on
 	      IgnoreCustomStorageClasses off
@@ -448,6 +527,7 @@ Model {
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
+	      OperatorAnnotations     off
 	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
@@ -470,21 +550,24 @@ Model {
 	      SimulinkBlockComments   on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
+	      InternalIdentifier      "Classic"
 	      InlinedPrmAccess	      "Literals"
 	      ReqsInCode	      off
 	      UseSimReservedNames     off
 	    }
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      11
-	      Version		      "1.11.0"
+	      $ObjectID		      17
+	      Version		      "1.13.0"
 	      Array {
 		Type			"Cell"
-		Dimension		6
+		Dimension		8
 		Cell			"CompOptLevelCompliant"
 		Cell			"GenerateSampleERTMain"
+		Cell			"GenerateErtSFunction"
 		Cell			"MultiInstanceERTCode"
 		Cell			"MatFileLogging"
+		Cell			"GRTInterface"
 		Cell			"IncludeMdlTerminateFcn"
 		Cell			"TargetLibSuffix"
 		PropName		"DisabledProps"
@@ -492,12 +575,9 @@ Model {
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
 	      TargetLibSuffix	      ".a"
 	      TargetPreCompLibLocation ""
-	      TargetFunctionLibrary   "ANSI_C"
+	      CodeReplacementLibrary  "ANSI_C"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
-	      FunctionExecutionProfile off
-	      CodeExecutionProfiling  off
-	      ERTCodeCoverageTool     "None"
 	      ERTMultiwordLength      256
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
@@ -507,6 +587,7 @@ Model {
 	      ModelReferenceCompliant on
 	      ParMdlRefBuildCompliant off
 	      CompOptLevelCompliant   on
+	      ConcurrentExecutionCompliant off
 	      IncludeMdlTerminateFcn  off
 	      GeneratePreprocessorConditionals "Use local settings"
 	      CombineOutputUpdateFcns on
@@ -527,10 +608,12 @@ Model {
 	      SupportVariableSizeSignals off
 	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
-	      PortableWordSizes	      off
+	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.ERTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    off
 	      AutosarCompliant	      off
+	      GRTInterface	      off
+	      GenerateAllocFcn	      off
 	      SystemTargetFile	      "ert_qnx.tlc"
 	      DialogCategory	      0
 	      Array {
@@ -538,8 +621,8 @@ Model {
 		Dimension		1
 		Simulink.ERTTargetCC {
 		  $BackupClass		  "Simulink.TargetCC"
-		  $ObjectID		  12
-		  Version		  "1.11.0"
+		  $ObjectID		  18
+		  Version		  "1.13.0"
 		  Array {
 		    Type		    "Cell"
 		    Dimension		    10
@@ -558,12 +641,9 @@ Model {
 		  TargetFcnLib		  "ansi_tfl_table_tmw.mat"
 		  TargetLibSuffix	  ".a"
 		  TargetPreCompLibLocation ""
-		  TargetFunctionLibrary	  "ANSI_C"
+		  CodeReplacementLibrary  "ANSI_C"
 		  UtilityFuncGeneration	  "Auto"
 		  ERTMultiwordTypeDef	  "System defined"
-		  FunctionExecutionProfile off
-		  CodeExecutionProfiling  off
-		  ERTCodeCoverageTool	  "None"
 		  ERTMultiwordLength	  256
 		  MultiwordLength	  2048
 		  GenerateFullHeader	  on
@@ -573,6 +653,7 @@ Model {
 		  ModelReferenceCompliant on
 		  ParMdlRefBuildCompliant off
 		  CompOptLevelCompliant	  on
+		  ConcurrentExecutionCompliant off
 		  IncludeMdlTerminateFcn  off
 		  GeneratePreprocessorConditionals "Use local settings"
 		  CombineOutputUpdateFcns on
@@ -593,13 +674,12 @@ Model {
 		  SupportVariableSizeSignals off
 		  EnableShiftOperators	  on
 		  ParenthesesLevel	  "Nominal"
-		  PortableWordSizes	  off
+		  MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.ERTCustomization"
 		  ModelStepFunctionPrototypeControlCompliant off
 		  CPPClassGenCompliant	  off
 		  AutosarCompliant	  off
-		  GenerateErtSFunction	  off
-		  CreateSILPILBlock	  "None"
-		  CodeExecutionProfileVariable "executionProfile"
+		  GRTInterface		  off
+		  GenerateAllocFcn	  off
 		  GenerateASAP2		  off
 		  ExtMode		  on
 		  ExtModeTransport	  0
@@ -607,7 +687,7 @@ Model {
 		  ExtModeStaticAllocSize  1000000
 		  ExtModeTesting	  off
 		  ExtModeMexFile	  "ext_comm"
-		  ExtModeMexArgs	  "'172.16.16.1'  1 17725"
+		  ExtModeMexArgs	  "getpref('qnx_ert','TargetIP') 1 17725"
 		  ExtModeIntrfLevel	  "Level1"
 		  InlinedParameterPlacement "NonHierarchical"
 		  TargetOS		  "VxWorksExample"
@@ -623,8 +703,7 @@ Model {
 		  ERTDataSrcFileTemplate  "ert_code_template.cgt"
 		  ERTDataHdrFileTemplate  "ert_code_template.cgt"
 		  ERTCustomFileTemplate	  "qnx_file_process.tlc"
-		  CoverageDialogOpen	  "off"
-		  ModuleNamingRule	  "Unspecified"
+		  EnableDataOwnership	  off
 		  SignalDisplayLevel	  10
 		  ParamTuneLevel	  10
 		  GlobalDataDefinition	  "Auto"
@@ -632,11 +711,11 @@ Model {
 		  GlobalDataReference	  "Auto"
 		  ERTFilePackagingFormat  "Modular"
 		  DataReferenceFile	  "global.h"
-		  GRTInterface		  off
 		  PreserveExpressionOrder off
 		  PreserveIfCondition	  off
 		  ConvertIfToSwitch	  off
 		  PreserveExternInFcnDecls on
+		  SuppressUnreachableDefaultCases off
 		  EnableUserReplacementTypes off
 		  Array {
 		    Type		    "Struct"
@@ -668,6 +747,11 @@ Model {
 		}
 		PropName		"Components"
 	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"QNX_DOWNLOAD"
+		Value			on
+	      }
 	    }
 	    PropName		    "Components"
 	  }
@@ -676,15 +760,26 @@ Model {
       }
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 "
-      CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 111, 120, 1109, 887 ] 
+      CurrentDlgPage	      "Code Generation/Interface"
+      ConfigPrmDlgPosition     [ 103, 90, 1117, 895 ] 
     }
     PropName		    "ConfigurationSets"
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    1
+    $ObjectID		    7
   }
+  Object {
+    $PropName		    "DataTransfer"
+    $ObjectID		    19
+    $ClassName		    "Simulink.GlobalDataTransfer"
+    DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
+    DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
+    DefaultTransitionBetweenContTasks "Ensure deterministic transfer (minimum delay)"
+    DefaultExtrapolationMethodBetweenContTasks "None"
+    AutoInsertRateTranBlk   [0]
+  }
+  ExplicitPartitioning	  off
   BlockDefaults {
     ForegroundColor	    "black"
     BackgroundColor	    "white"
@@ -715,6 +810,25 @@ Model {
     FontSize		    9
     FontWeight		    "normal"
     FontAngle		    "normal"
+  }
+  MaskDefaults {
+    SelfModifiable	    "off"
+    IconFrame		    "on"
+    IconOpaque		    "on"
+    RunInitForIconRedraw    "off"
+    IconRotate		    "none"
+    PortRotate		    "default"
+    IconUnits		    "autoscale"
+  }
+  MaskParameterDefaults {
+    Evaluate		    "on"
+    Tunable		    "on"
+    NeverSave		    "off"
+    Internal		    "off"
+    ReadOnly		    "off"
+    Enabled		    "on"
+    Visible		    "on"
+    ToolTip		    "on"
   }
   BlockParameterDefaults {
     Block {
@@ -760,6 +874,12 @@ Model {
       PropagateVarSize	      "Only when enabling"
       ShowOutputPort	      off
       ZeroCross		      on
+      PortDimensions	      "1"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "double"
+      Interpolate	      on
     }
     Block {
       BlockType		      Fcn
@@ -768,6 +888,7 @@ Model {
     }
     Block {
       BlockType		      From
+      GotoTag		      "A"
       IconDisplay	      "Tag"
       TagVisibility	      "local"
     }
@@ -788,7 +909,9 @@ Model {
     }
     Block {
       BlockType		      Goto
+      GotoTag		      "A"
       IconDisplay	      "Tag"
+      TagVisibility	      "local"
     }
     Block {
       BlockType		      Inport
@@ -841,6 +964,12 @@ Model {
       LUTDesignUseExistingBP  on
       LUTDesignRelError	      "0.01"
       LUTDesignAbsError	      "1e-6"
+    }
+    Block {
+      BlockType		      ManualSwitch
+      CurrentSetting	      "1"
+      varsize		      off
+      SampleTime	      "-1"
     }
     Block {
       BlockType		      Mux
@@ -915,6 +1044,7 @@ Model {
       YMax		      "5"
       SaveToWorkspace	      off
       SaveName		      "ScopeData"
+      DataFormat	      "Array"
       LimitDataPoints	      on
       MaxDataPoints	      "5000"
       Decimation	      "1"
@@ -931,6 +1061,7 @@ Model {
       SystemSampleTime	      "-1"
       RTWFcnNameOpts	      "Auto"
       RTWFileNameOpts	      "Auto"
+      FunctionInterfaceSpec   "void_void"
       RTWMemSecFuncInitTerm   "Inherit from model"
       RTWMemSecFuncExecute    "Inherit from model"
       RTWMemSecDataConstants  "Inherit from model"
@@ -940,6 +1071,7 @@ Model {
       DataTypeOverride	      "UseLocalSettings"
       DataTypeOverrideAppliesTo	"AllNumericTypes"
       MinMaxOverflowLogging   "UseLocalSettings"
+      SFBlockType	      "NONE"
       Variant		      off
       GeneratePreprocessorConditionals off
     }
@@ -981,16 +1113,17 @@ Model {
     }
     Block {
       BlockType		      UnitDelay
-      X0		      "0"
+      InitialCondition	      "0"
       InputProcessing	      "Inherited"
       SampleTime	      "1"
       StateMustResolveToSignalObject off
-      RTWStateStorageClass    "Auto"
+      CodeGenStateStorageClass "Auto"
+      HasFrameUpgradeWarning  on
     }
   }
   System {
     Name		    "sldemo_auto_climatecontrol_rt"
-    Location		    [78, 117, 1382, 801]
+    Location		    [48, 52, 1408, 920]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1004,12 +1137,13 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "98"
+    SIDHighWatermark	    "104"
     Block {
       BlockType		      Inport
       Name		      "In1"
       SID		      "97"
       Position		      [1135, 693, 1165, 707]
+      ZOrder		      -1
       IconDisplay	      "Port number"
     }
     Block {
@@ -1018,6 +1152,7 @@ Model {
       SID		      "1"
       Ports		      [4, 1, 1]
       Position		      [895, 84, 1080, 246]
+      ZOrder		      -2
       BackgroundColor	      "green"
       FontSize		      12
       TreatAsAtomicUnit	      on
@@ -1030,7 +1165,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"AC Control"
-	Location		[58, 168, 759, 660]
+	Location		[28, 56, 785, 732]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1048,6 +1183,7 @@ Model {
 	  Name			  "Engine Speed"
 	  SID			  "2"
 	  Position		  [85, 258, 115, 272]
+	  ZOrder		  -1
 	  FontName		  "Arial"
 	  FontSize		  12
 	  IconDisplay		  "Port number"
@@ -1057,6 +1193,7 @@ Model {
 	  Name			  "Comp Torque"
 	  SID			  "3"
 	  Position		  [85, 303, 115, 317]
+	  ZOrder		  -2
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Port			  "2"
@@ -1067,6 +1204,7 @@ Model {
 	  Name			  "Blower Speed proportion"
 	  SID			  "4"
 	  Position		  [85, 338, 115, 352]
+	  ZOrder		  -3
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Port			  "3"
@@ -1077,6 +1215,7 @@ Model {
 	  Name			  "Internal temp"
 	  SID			  "5"
 	  Position		  [85, 213, 115, 227]
+	  ZOrder		  -4
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Port			  "4"
@@ -1088,6 +1227,7 @@ Model {
 	  SID			  "6"
 	  Ports			  []
 	  Position		  [230, 85, 250, 105]
+	  ZOrder		  -5
 	  FontSize		  12
 	  StatesWhenEnabling	  "reset"
 	  PropagateVarSize	  "During execution"
@@ -1098,6 +1238,7 @@ Model {
 	  Name			  "Max flow rate"
 	  SID			  "7"
 	  Position		  [220, 330, 250, 360]
+	  ZOrder		  -6
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Gain			  "0.12"
@@ -1108,6 +1249,7 @@ Model {
 	  SID			  "8"
 	  Ports			  [2, 1]
 	  Position		  [175, 266, 220, 299]
+	  ZOrder		  -7
 	  ShowName		  off
 	  FontName		  "Arial"
 	  FontSize		  12
@@ -1119,6 +1261,7 @@ Model {
 	  SID			  "9"
 	  Ports			  [2, 1]
 	  Position		  [325, 276, 370, 309]
+	  ZOrder		  -8
 	  ShowName		  off
 	  FontName		  "Arial"
 	  FontSize		  12
@@ -1131,6 +1274,7 @@ Model {
 	  SID			  "10"
 	  Ports			  [2, 1]
 	  Position		  [380, 210, 400, 230]
+	  ZOrder		  -9
 	  ShowName		  off
 	  FontName		  "Arial"
 	  FontSize		  12
@@ -1142,6 +1286,7 @@ Model {
 	  Name			  "Temp/enthalpy"
 	  SID			  "11"
 	  Position		  [240, 204, 265, 236]
+	  ZOrder		  -10
 	  FontName		  "Arial"
 	  FontSize		  12
 	  InputValues		  "[220 230 240 250 260 270 280 285 290 295 300 305 310 315 320]"
@@ -1153,6 +1298,7 @@ Model {
 	  Name			  "efficiency"
 	  SID			  "12"
 	  Position		  [265, 270, 295, 300]
+	  ZOrder		  -11
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Gain			  "0.86"
@@ -1162,6 +1308,7 @@ Model {
 	  Name			  "enthalpy/Texit"
 	  SID			  "13"
 	  Position		  [445, 204, 470, 236]
+	  ZOrder		  -12
 	  FontName		  "Arial"
 	  FontSize		  12
 	  InputValues		  "[ 219.97 230.02 240.02 250.05 260.09 270.11 280.13 285.14 290.16 295.17 300.19 305.22 310.24 315.27"
@@ -1173,6 +1320,7 @@ Model {
 	  Name			  "Exit Temp (AC)"
 	  SID			  "14"
 	  Position		  [610, 213, 640, 227]
+	  ZOrder		  -13
 	  FontName		  "Arial"
 	  FontSize		  12
 	  IconDisplay		  "Port number"
@@ -1250,15 +1398,19 @@ Model {
 	  DstPort		  1
 	}
 	Annotation {
+	  SID			  "99"
 	  Position		  [77, 198]
+	  ZOrder		  -1
 	  FontName		  "Arial"
 	  FontSize		  12
 	}
 	Annotation {
+	  SID			  "100"
 	  Name			  "Heat Transfer Equation (from evaporator):\n\ny.(w.Tcomp) = m_dot.(h4-h1)\n\ny = efficiency\nm_dot = mass "
 	  "flow rate\nw = speed of the engine\nTcomp = compressor torque\nh4, h1 = enthalpy"
 	  Position		  [302, 94]
 	  HorizontalAlignment	  "left"
+	  ZOrder		  -2
 	  FontName		  "Arial"
 	  FontSize		  12
 	}
@@ -1269,38 +1421,25 @@ Model {
       Name		      "Distribution "
       SID		      "15"
       Position		      [55, 86, 80, 104]
+      ZOrder		      -3
       NamePlacement	      "alternate"
       FontSize		      12
     }
     Block {
-      BlockType		      Reference
+      BlockType		      ManualSwitch
       Name		      "Distribution \nRequest"
       SID		      "16"
-      Ports		      [2, 1]
       Position		      [150, 87, 180, 123]
+      ZOrder		      -4
       NamePlacement	      "alternate"
-      LibraryVersion	      "1.236"
       FontSize		      12
-      SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
-      SourceType	      "Manual Switch"
-      ShowPortLabels	      "FromPortIcon"
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      GeneratePreprocessorConditionals off
-      sw		      "1"
-      action		      "0"
-      varsize		      off
     }
     Block {
       BlockType		      Constant
       Name		      "Distribution1\n"
       SID		      "17"
       Position		      [55, 105, 80, 125]
+      ZOrder		      -5
       FontSize		      12
       Value		      "0"
     }
@@ -1309,6 +1448,7 @@ Model {
       Name		      "Engine Speed"
       SID		      "18"
       Position		      [815, 94, 855, 116]
+      ZOrder		      -6
       FontSize		      12
       Value		      "200"
     }
@@ -1318,6 +1458,7 @@ Model {
       SID		      "19"
       Ports		      [0, 1]
       Position		      [80, 469, 120, 511]
+      ZOrder		      -7
       BackgroundColor	      "yellow"
       FontSize		      12
       MinAlgLoopOccurrences   off
@@ -1327,26 +1468,27 @@ Model {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskType		      "variable"
-      MaskPromptString	      "Enter the external temperature"
-      MaskStyleString	      "edit"
-      MaskVariables	      "x=@1;"
-      MaskTunableValueString  "on"
-      MaskEnableString	      "on"
-      MaskVisibilityString    "on"
-      MaskToolTipString	      "on"
-      MaskInitialization      "set_param('sldemo_auto_climatecontrol/External Temperature in Celsius/External Temp','V"
-      "alue',num2str(x))\nsldemo_external_temp_limit\n"
-      MaskDisplay	      "disp(x);"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
-      MaskValueString	      "18"
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		20
+	$ClassName		"Simulink.Mask"
+	Type			"variable"
+	Initialization		"set_param('sldemo_auto_climatecontrol/External Temperature in Celsius/External Temp','Value',num2str"
+	"(x))\nsldemo_external_temp_limit\n"
+	Display			"disp(x);"
+	Object {
+	  $PropName		  "Parameters"
+	  $ObjectID		  21
+	  $ClassName		  "Simulink.MaskParameter"
+	  Type			  "edit"
+	  Name			  "x"
+	  Prompt		  "Enter the external temperature"
+	  Value			  "18"
+	}
+      }
       System {
 	Name			"External Temperature in Celsius"
-	Location		[314, 430, 658, 600]
+	Location		[284, 318, 684, 672]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1364,6 +1506,7 @@ Model {
 	  Name			  "External Temp"
 	  SID			  "20"
 	  Position		  [160, 25, 190, 55]
+	  ZOrder		  -1
 	  BlockMirror		  on
 	  Value			  "18"
 	}
@@ -1373,6 +1516,7 @@ Model {
 	  SID			  "21"
 	  Ports			  [1, 1]
 	  Position		  [90, 25, 120, 55]
+	  ZOrder		  -2
 	  BlockMirror		  on
 	  InputPortMap		  "u0"
 	  UpperLimit		  "100"
@@ -1383,6 +1527,7 @@ Model {
 	  Name			  "Out1"
 	  SID			  "22"
 	  Position		  [25, 33, 55, 47]
+	  ZOrder		  -3
 	  BlockMirror		  on
 	  IconDisplay		  "Port number"
 	}
@@ -1405,6 +1550,7 @@ Model {
       Name		      "Fan Speed rate"
       SID		      "23"
       Position		      [610, 560, 640, 590]
+      ZOrder		      -8
       FontSize		      12
       Gain		      "20"
     }
@@ -1414,6 +1560,7 @@ Model {
       SID		      "24"
       Ports		      [1]
       Position		      [1115, 304, 1145, 336]
+      ZOrder		      -9
       FontSize		      12
       Floating		      off
       Location		      [1330, 113, 1654, 352]
@@ -1423,6 +1570,7 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
+      ShowLegends	      off
       YMin		      "-40"
       YMax		      "70"
       DataFormat	      "StructureWithTime"
@@ -1434,6 +1582,7 @@ Model {
       SID		      "94"
       Ports		      [1]
       Position		      [1105, 569, 1135, 601]
+      ZOrder		      -10
       FontSize		      12
       Floating		      off
       Location		      [1298, 245, 1622, 484]
@@ -1443,6 +1592,7 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
+      ShowLegends	      off
       YMin		      "-75"
       YMax		      "75"
       SaveName		      "ScopeData2"
@@ -1454,6 +1604,7 @@ Model {
       Name		      "From"
       SID		      "25"
       Position		      [260, 566, 335, 594]
+      ZOrder		      -11
       CloseFcn		      "tagdialog Close"
       FontSize		      12
       GotoTag		      "Tout_H"
@@ -1463,6 +1614,7 @@ Model {
       Name		      "From1"
       SID		      "26"
       Position		      [260, 521, 335, 549]
+      ZOrder		      -12
       CloseFcn		      "tagdialog Close"
       FontSize		      12
       GotoTag		      "Tout_AC"
@@ -1472,18 +1624,18 @@ Model {
       Name		      "Goto"
       SID		      "27"
       Position		      [1105, 405, 1165, 435]
+      ZOrder		      -13
       FontSize		      12
       GotoTag		      "Tout_H"
-      TagVisibility	      "local"
     }
     Block {
       BlockType		      Goto
       Name		      "Goto1"
       SID		      "28"
       Position		      [1105, 150, 1165, 180]
+      ZOrder		      -14
       FontSize		      12
       GotoTag		      "Tout_AC"
-      TagVisibility	      "local"
     }
     Block {
       BlockType		      SubSystem
@@ -1491,6 +1643,7 @@ Model {
       SID		      "29"
       Ports		      [0, 1]
       Position		      [505, 504, 595, 536]
+      ZOrder		      -15
       AttributesFormatString  "No. of occupants: %<N>"
       FontSize		      12
       MinAlgLoopOccurrences   off
@@ -1500,24 +1653,25 @@ Model {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskType		      "Heat from occupants"
-      MaskPromptString	      "Number of occupants:"
-      MaskStyleString	      "edit"
-      MaskVariables	      "N=@1;"
-      MaskTunableValueString  "on"
-      MaskEnableString	      "on"
-      MaskVisibilityString    "on"
-      MaskToolTipString	      "on"
-      MaskDisplay	      "disp('Heat Sources')"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
-      MaskValueString	      "1"
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		22
+	$ClassName		"Simulink.Mask"
+	Type			"Heat from occupants"
+	Display			"disp('Heat Sources')"
+	Object {
+	  $PropName		  "Parameters"
+	  $ObjectID		  23
+	  $ClassName		  "Simulink.MaskParameter"
+	  Type			  "edit"
+	  Name			  "N"
+	  Prompt		  "Number of occupants:"
+	  Value			  "1"
+	}
+      }
       System {
 	Name			"Heat from occupants"
-	Location		[371, 543, 663, 658]
+	Location		[341, 431, 689, 730]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1535,6 +1689,7 @@ Model {
 	  Name			  "No of occupants"
 	  SID			  "30"
 	  Position		  [105, 27, 155, 63]
+	  ZOrder		  -1
 	  Gain			  "N"
 	  Port {
 	    PortNumber		    1
@@ -1548,6 +1703,7 @@ Model {
 	  Name			  "Power per\noccupant [W]"
 	  SID			  "31"
 	  Position		  [25, 30, 55, 60]
+	  ZOrder		  -2
 	  Value			  "100"
 	}
 	Block {
@@ -1555,6 +1711,7 @@ Model {
 	  Name			  "Qdot_sources"
 	  SID			  "32"
 	  Position		  [240, 38, 270, 52]
+	  ZOrder		  -3
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -1579,6 +1736,7 @@ Model {
       SID		      "33"
       Ports		      [4, 3, 1]
       Position		      [895, 292, 1080, 448]
+      ZOrder		      -16
       BackgroundColor	      "green"
       FontSize		      12
       TreatAsAtomicUnit	      on
@@ -1591,7 +1749,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Heater Control"
-	Location		[261, 162, 1107, 647]
+	Location		[231, 52, 1133, 721]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1609,6 +1767,7 @@ Model {
 	  Name			  "Req Temp change"
 	  SID			  "34"
 	  Position		  [75, 398, 105, 412]
+	  ZOrder		  -1
 	  FontName		  "Arial"
 	  FontSize		  12
 	  IconDisplay		  "Port number"
@@ -1618,6 +1777,7 @@ Model {
 	  Name			  "Blower Speed proportion"
 	  SID			  "35"
 	  Position		  [70, 193, 100, 207]
+	  ZOrder		  -2
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Port			  "2"
@@ -1628,6 +1788,7 @@ Model {
 	  Name			  "External Temp"
 	  SID			  "36"
 	  Position		  [70, 278, 100, 292]
+	  ZOrder		  -3
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Port			  "3"
@@ -1638,6 +1799,7 @@ Model {
 	  Name			  "Internal temp"
 	  SID			  "37"
 	  Position		  [70, 323, 100, 337]
+	  ZOrder		  -4
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Port			  "4"
@@ -1649,6 +1811,7 @@ Model {
 	  SID			  "38"
 	  Ports			  []
 	  Position		  [365, 40, 385, 60]
+	  ZOrder		  -5
 	  FontSize		  12
 	  StatesWhenEnabling	  "reset"
 	  PropagateVarSize	  "During execution"
@@ -1659,6 +1822,7 @@ Model {
 	  Name			  "Air Density"
 	  SID			  "39"
 	  Position		  [225, 115, 255, 145]
+	  ZOrder		  -6
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Gain			  "1.22"
@@ -1669,6 +1833,7 @@ Model {
 	  SID			  "40"
 	  Ports			  [2, 1]
 	  Position		  [160, 118, 195, 142]
+	  ZOrder		  -7
 	  FontName		  "Arial"
 	  FontSize		  12
 	  RndMeth		  "Floor"
@@ -1678,6 +1843,7 @@ Model {
 	  Name			  "Flap Effect"
 	  SID			  "41"
 	  Position		  [500, 221, 535, 259]
+	  ZOrder		  -8
 	  FontName		  "Arial"
 	  FontSize		  12
 	  InputValues		  "[0 3 5 10 50  90 100 200 ]"
@@ -1688,6 +1854,7 @@ Model {
 	  Name			  "From Rel. Temp"
 	  SID			  "42"
 	  Position		  [415, 225, 475, 255]
+	  ZOrder		  -9
 	  ShowName		  off
 	  CloseFcn		  "tagdialog Close"
 	  GotoTag		  "Rel_Flap"
@@ -1697,6 +1864,7 @@ Model {
 	  Name			  "Gain"
 	  SID			  "43"
 	  Position		  [180, 389, 220, 421]
+	  ZOrder		  -10
 	  ShowName		  off
 	  FontName		  "Arial"
 	  FontSize		  12
@@ -1707,15 +1875,16 @@ Model {
 	  Name			  "Goto Flap"
 	  SID			  "44"
 	  Position		  [180, 435, 235, 465]
+	  ZOrder		  -11
 	  ShowName		  off
 	  GotoTag		  "Rel_Flap"
-	  TagVisibility		  "local"
 	}
 	Block {
 	  BlockType		  Fcn
 	  Name			  "Heat Exchanger Equation"
 	  SID			  "45"
 	  Position		  [370, 165, 470, 195]
+	  ZOrder		  -12
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Expr			  "u[2]-(u[2]-u[3])*exp(-(pi*0.004*0.05*23.8)/(u[1]*1007))"
@@ -1725,6 +1894,7 @@ Model {
 	  Name			  "Max Fan Speed"
 	  SID			  "46"
 	  Position		  [75, 110, 105, 140]
+	  ZOrder		  -13
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Value			  "0.12"
@@ -1735,6 +1905,7 @@ Model {
 	  SID			  "47"
 	  Ports			  [3, 1]
 	  Position		  [330, 101, 335, 259]
+	  ZOrder		  -14
 	  ShowName		  off
 	  FontName		  "Arial"
 	  FontSize		  12
@@ -1747,6 +1918,7 @@ Model {
 	  SID			  "48"
 	  Ports			  [2, 1]
 	  Position		  [555, 171, 600, 204]
+	  ZOrder		  -15
 	  ShowName		  off
 	  FontName		  "Arial"
 	  FontSize		  12
@@ -1758,6 +1930,7 @@ Model {
 	  SID			  "49"
 	  Ports			  [2, 1]
 	  Position		  [215, 345, 235, 365]
+	  ZOrder		  -16
 	  ShowName		  off
 	  FontName		  "Arial"
 	  FontSize		  12
@@ -1769,6 +1942,7 @@ Model {
 	  SID			  "50"
 	  Ports			  [2, 1]
 	  Position		  [315, 275, 335, 295]
+	  ZOrder		  -17
 	  NamePlacement		  "alternate"
 	  ShowName		  off
 	  FontName		  "Arial"
@@ -1781,6 +1955,7 @@ Model {
 	  Name			  "Tcoolant "
 	  SID			  "51"
 	  Position		  [205, 165, 235, 195]
+	  ZOrder		  -18
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Value			  "350"
@@ -1790,6 +1965,7 @@ Model {
 	  Name			  "Temp/Flap Angle"
 	  SID			  "52"
 	  Position		  [365, 266, 400, 304]
+	  ZOrder		  -19
 	  FontName		  "Arial"
 	  FontSize		  12
 	  InputValues		  "[0 10 20 30 40 50 60 75 100 200]"
@@ -1800,6 +1976,7 @@ Model {
 	  Name			  "channels"
 	  SID			  "53"
 	  Position		  [290, 115, 310, 145]
+	  ZOrder		  -20
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Gain			  "1/30000"
@@ -1809,6 +1986,7 @@ Model {
 	  Name			  "Flap Angle"
 	  SID			  "54"
 	  Position		  [660, 278, 690, 292]
+	  ZOrder		  -21
 	  FontName		  "Arial"
 	  FontSize		  12
 	  IconDisplay		  "Port number"
@@ -1820,6 +1998,7 @@ Model {
 	  Name			  "Exit Temp (heater)"
 	  SID			  "55"
 	  Position		  [665, 348, 695, 362]
+	  ZOrder		  -22
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Port			  "2"
@@ -1832,6 +2011,7 @@ Model {
 	  Name			  "Tout"
 	  SID			  "56"
 	  Position		  [660, 183, 690, 197]
+	  ZOrder		  -23
 	  FontName		  "Arial"
 	  FontSize		  12
 	  Port			  "3"
@@ -1972,18 +2152,22 @@ Model {
 	  DstPort		  1
 	}
 	Annotation {
+	  SID			  "101"
 	  Name			  "Assumptions:\nTs = constant (radiator wall temperature) \nD = 0.004m (channel diameter)\nL = 0.05m (radia"
 	  "tor thickness)\nN = 30000 (No of channels)\nk = 0.026 W/mK = constant (thermal conductivity of air)\nCp = 1007 J/kg"
 	  "K = constant (specific heat of air)\nLaminar flow (hc = 3.66(k/D) = 23.8 W/m2K )"
 	  Position		  [459, 88]
 	  HorizontalAlignment	  "left"
+	  ZOrder		  -1
 	  FontName		  "Arial"
 	  FontSize		  12
 	}
 	Annotation {
+	  SID			  "102"
 	  Name			  "Heat Exchanger Equation:\nTout = Ts - (Ts-Tin)e^[(-pi.D.L.hc)/(m_dot.Cp)] "
 	  Position		  [37, 59]
 	  HorizontalAlignment	  "left"
+	  ZOrder		  -2
 	  FontSize		  12
 	}
       }
@@ -1994,6 +2178,7 @@ Model {
       SID		      "57"
       Ports		      [1, 1]
       Position		      [715, 439, 840, 601]
+      ZOrder		      -17
       FontSize		      12
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -2002,16 +2187,17 @@ Model {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskType		      "Vehicle Cabin Dynamics"
-      MaskDisplay	      "image(imread([matlabroot,'/toolbox/simulink/simdemos/automotive/html/car_int.jpg']))"
-      MaskIconFrame	      off
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		24
+	$ClassName		"Simulink.Mask"
+	Type			"Vehicle Cabin Dynamics"
+	Display			"image(imread([matlabroot,'/toolbox/simulink/simdemos/automotive/html/car_int.jpg']))"
+	IconFrame		"off"
+      }
       System {
 	Name			"Interior Dynamics"
-	Location		[296, 370, 785, 573]
+	Location		[266, 258, 811, 645]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2029,6 +2215,7 @@ Model {
 	  Name			  "Power"
 	  SID			  "58"
 	  Position		  [25, 38, 55, 52]
+	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -2037,6 +2224,7 @@ Model {
 	  SID			  "59"
 	  Ports			  [1, 1]
 	  Position		  [215, 30, 245, 60]
+	  ZOrder		  -2
 	  InitialCondition	  "291"
 	  ZeroCross		  off
 	  Port {
@@ -2051,6 +2239,7 @@ Model {
 	  Name			  "dT/dt = Pnet/(pVCp)\np = 1.22 kg/m3\nV = 2.5 m3\nCp = 1007 J/kgK"
 	  SID			  "60"
 	  Position		  [90, 26, 190, 64]
+	  ZOrder		  -3
 	  Gain			  "(1/3071)"
 	}
 	Block {
@@ -2058,6 +2247,7 @@ Model {
 	  Name			  "Tcabin "
 	  SID			  "61"
 	  Position		  [325, 38, 355, 52]
+	  ZOrder		  -4
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -2087,6 +2277,7 @@ Model {
       Name		      "Mass flow rate"
       SID		      "62"
       Position		      [595, 450, 625, 480]
+      ZOrder		      -18
       FontSize		      12
       Gain		      "0.1"
     }
@@ -2096,6 +2287,7 @@ Model {
       SID		      "63"
       Ports		      []
       Position		      [51, 25, 77, 49]
+      ZOrder		      -19
       DropShadow	      on
       ShowName		      off
       OpenFcn		      "showdemo(bdroot(gcb))"
@@ -2107,15 +2299,15 @@ Model {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskDisplay	      "disp('?')"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		25
+	$ClassName		"Simulink.Mask"
+	Display			"disp('?')"
+      }
       System {
 	Name			"More Info"
-	Location		[98, 267, 744, 691]
+	Location		[68, 155, 770, 763]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2136,39 +2328,26 @@ Model {
       SID		      "64"
       Ports		      [3, 1]
       Position		      [295, 125, 305, 185]
+      ZOrder		      -20
       ShowName		      off
       FontSize		      12
       Inputs		      "3"
       DisplayOption	      "bar"
     }
     Block {
-      BlockType		      Reference
+      BlockType		      ManualSwitch
       Name		      "Recycle\nAir On"
       SID		      "65"
-      Ports		      [2, 1]
       Position		      [150, 167, 180, 203]
-      LibraryVersion	      "1.236"
+      ZOrder		      -21
       FontSize		      12
-      SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
-      SourceType	      "Manual Switch"
-      ShowPortLabels	      "FromPortIcon"
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      GeneratePreprocessorConditionals off
-      sw		      "1"
-      action		      "0"
-      varsize		      off
     }
     Block {
       BlockType		      Constant
       Name		      "Recycling Air"
       SID		      "66"
       Position		      [55, 165, 80, 185]
+      ZOrder		      -22
       NamePlacement	      "alternate"
       FontSize		      12
     }
@@ -2177,6 +2356,7 @@ Model {
       Name		      "Recycling Air1"
       SID		      "67"
       Position		      [55, 183, 80, 207]
+      ZOrder		      -23
       FontSize		      12
       Value		      "0"
     }
@@ -2186,6 +2366,7 @@ Model {
       SID		      "68"
       Ports		      [1]
       Position		      [1115, 354, 1145, 386]
+      ZOrder		      -24
       FontSize		      12
       Floating		      off
       Location		      [1349, 544, 1673, 783]
@@ -2195,6 +2376,17 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
+      List {
+	ListType		ScopeGraphics
+	FigureColor		"[0.5 0.5 0.5]"
+	AxesColor		"[0 0 0]"
+	AxesTickColor		"[1 1 1]"
+	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
+	LineStyles		"-|-|-|-|-|-"
+	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
+	MarkerStyles		"none|none|none|none|none|none"
+      }
+      ShowLegends	      off
       YMin		      "0"
       YMax		      "400"
       SaveName		      "ScopeData1"
@@ -2207,6 +2399,7 @@ Model {
       SID		      "69"
       Ports		      [1, 1]
       Position		      [890, 503, 1025, 537]
+      ZOrder		      -25
       NamePlacement	      "alternate"
       ShowName		      off
       FontSize		      12
@@ -2217,15 +2410,15 @@ Model {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskDisplay	      "disp('Kelvin to Celsius')"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		26
+	$ClassName		"Simulink.Mask"
+	Display			"disp('Kelvin to Celsius')"
+      }
       System {
 	Name			"Subsystem"
-	Location		[56, 501, 236, 626]
+	Location		[26, 389, 262, 698]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2243,6 +2436,7 @@ Model {
 	  Name			  "In1"
 	  SID			  "70"
 	  Position		  [75, 85, 105, 100]
+	  ZOrder		  -1
 	  BlockRotation		  270
 	  IconDisplay		  "Port number"
 	}
@@ -2251,6 +2445,7 @@ Model {
 	  Name			  "Constant"
 	  SID			  "71"
 	  Position		  [25, 25, 55, 55]
+	  ZOrder		  -2
 	  Value			  "273"
 	}
 	Block {
@@ -2259,6 +2454,7 @@ Model {
 	  SID			  "72"
 	  Ports			  [2, 1]
 	  Position		  [80, 30, 100, 50]
+	  ZOrder		  -3
 	  ShowName		  off
 	  IconShape		  "round"
 	  Inputs		  "|-+"
@@ -2268,6 +2464,7 @@ Model {
 	  Name			  "Out1"
 	  SID			  "73"
 	  Position		  [125, 33, 155, 47]
+	  ZOrder		  -4
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -2296,6 +2493,7 @@ Model {
       SID		      "74"
       Ports		      [1, 1]
       Position		      [175, 475, 275, 505]
+      ZOrder		      -26
       NamePlacement	      "alternate"
       ShowName		      off
       FontSize		      12
@@ -2306,15 +2504,15 @@ Model {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskDisplay	      "disp('Celsius to Kelvin')"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		27
+	$ClassName		"Simulink.Mask"
+	Display			"disp('Celsius to Kelvin')"
+      }
       System {
 	Name			"Subsystem1"
-	Location		[631, 256, 828, 397]
+	Location		[601, 144, 854, 469]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2332,6 +2530,7 @@ Model {
 	  Name			  "In1"
 	  SID			  "75"
 	  Position		  [75, 85, 105, 100]
+	  ZOrder		  -1
 	  BlockRotation		  270
 	  IconDisplay		  "Port number"
 	}
@@ -2340,6 +2539,7 @@ Model {
 	  Name			  "Constant"
 	  SID			  "76"
 	  Position		  [25, 25, 55, 55]
+	  ZOrder		  -2
 	  Value			  "273"
 	}
 	Block {
@@ -2348,6 +2548,7 @@ Model {
 	  SID			  "77"
 	  Ports			  [2, 1]
 	  Position		  [80, 30, 100, 50]
+	  ZOrder		  -3
 	  ShowName		  off
 	  IconShape		  "round"
 	  Inputs		  "|++"
@@ -2357,6 +2558,7 @@ Model {
 	  Name			  "Out1"
 	  SID			  "78"
 	  Position		  [125, 33, 155, 47]
+	  ZOrder		  -4
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -2385,6 +2587,7 @@ Model {
       SID		      "79"
       Ports		      [3, 1]
       Position		      [680, 438, 695, 602]
+      ZOrder		      -27
       ShowName		      off
       FontSize		      12
       Inputs		      "+++"
@@ -2395,6 +2598,7 @@ Model {
       SID		      "80"
       Ports		      [2, 1]
       Position		      [505, 455, 525, 475]
+      ZOrder		      -28
       ShowName		      off
       FontSize		      12
       IconShape		      "round"
@@ -2406,6 +2610,7 @@ Model {
       SID		      "81"
       Ports		      [3, 1]
       Position		      [355, 565, 385, 595]
+      ZOrder		      -29
       ShowName		      off
       FontSize		      12
       IconShape		      "round"
@@ -2417,6 +2622,7 @@ Model {
       SID		      "82"
       Ports		      [0, 1]
       Position		      [220, 161, 250, 189]
+      ZOrder		      -30
       FontSize		      12
       PulseType		      "Time based"
       Period		      "1"
@@ -2428,6 +2634,7 @@ Model {
       SID		      "83"
       Ports		      [2, 4, 0, 1]
       Position		      [255, 213, 400, 367]
+      ZOrder		      -31
       BackgroundColor	      "lightBlue"
       FontSize		      12
       ErrorFcn		      "Stateflow.Translate.translate"
@@ -2440,19 +2647,10 @@ Model {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskType		      "Stateflow"
-      MaskDescription	      "Stateflow diagram"
-      MaskSelfModifiable      on
-      MaskDisplay	      "plot(sf('Private','sfblk','xIcon'),sf('Private','sfblk','yIcon'));text(0.5,0,sf('Private', 's"
-      "fblk', 'tIcon'),'HorizontalAl','Center','VerticalAl','Bottom');"
-      MaskIconFrame	      off
-      MaskIconOpaque	      off
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
+      SFBlockType	      "Chart"
       System {
 	Name			"Temperature Control Chart"
-	Location		[257, 457, 812, 717]
+	Location		[227, 345, 838, 789]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2465,12 +2663,13 @@ Model {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
-	SIDHighWatermark	"14"
+	SIDHighWatermark	"17"
 	Block {
 	  BlockType		  Inport
 	  Name			  "SetPTemp"
 	  SID			  "83::1"
 	  Position		  [20, 101, 40, 119]
+	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -2478,6 +2677,7 @@ Model {
 	  Name			  "IntTemp"
 	  SID			  "83::2"
 	  Position		  [20, 136, 40, 154]
+	  ZOrder		  -2
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
@@ -2487,6 +2687,7 @@ Model {
 	  SID			  "83::3"
 	  Ports			  [0, 1]
 	  Position		  [20, 171, 40, 189]
+	  ZOrder		  -3
 	  TriggerType		  "either"
 	  ShowOutputPort	  on
 	  ZeroCross		  off
@@ -2494,21 +2695,23 @@ Model {
 	Block {
 	  BlockType		  Demux
 	  Name			  " Demux "
-	  SID			  "83::12"
+	  SID			  "83::16"
 	  Ports			  [1, 1]
-	  Position		  [270, 245, 320, 285]
+	  Position		  [270, 280, 320, 320]
+	  ZOrder		  2
 	  Outputs		  "1"
 	}
 	Block {
 	  BlockType		  S-Function
 	  Name			  " SFunction "
-	  SID			  "83::11"
+	  SID			  "83::15"
 	  Tag			  "Stateflow S-Function sldemo_auto_climatecontrol_rt 1"
 	  Ports			  [3, 5]
 	  Position		  [180, 100, 230, 220]
+	  ZOrder		  1
 	  FunctionName		  "sf_sfun"
 	  PortCounts		  "[3 5]"
-	  EnableBusSupport	  on
+	  EnableBusSupport	  off
 	  Port {
 	    PortNumber		    2
 	    Name		    "ACAct"
@@ -2537,14 +2740,16 @@ Model {
 	Block {
 	  BlockType		  Terminator
 	  Name			  " Terminator "
-	  SID			  "83::14"
-	  Position		  [460, 256, 480, 274]
+	  SID			  "83::17"
+	  Position		  [460, 291, 480, 309]
+	  ZOrder		  3
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "ACAct"
 	  SID			  "83::7"
 	  Position		  [460, 101, 480, 119]
+	  ZOrder		  -7
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -2552,6 +2757,7 @@ Model {
 	  Name			  "HeaterAct"
 	  SID			  "83::8"
 	  Position		  [460, 136, 480, 154]
+	  ZOrder		  -8
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
@@ -2560,6 +2766,7 @@ Model {
 	  Name			  "RequiredTemp"
 	  SID			  "83::9"
 	  Position		  [460, 171, 480, 189]
+	  ZOrder		  -9
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	}
@@ -2568,6 +2775,7 @@ Model {
 	  Name			  "BlowerOut"
 	  SID			  "83::10"
 	  Position		  [460, 206, 480, 224]
+	  ZOrder		  -10
 	  Port			  "4"
 	  IconDisplay		  "Port number"
 	}
@@ -2588,6 +2796,7 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  " SFunction "
 	  SrcPort		  2
+	  Points		  [0, -25]
 	  DstBlock		  "ACAct"
 	  DstPort		  1
 	}
@@ -2616,16 +2825,16 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  " input events "
-	  SrcPort		  1
-	  DstBlock		  " SFunction "
-	  DstPort		  3
-	}
-	Line {
 	  SrcBlock		  " Demux "
 	  SrcPort		  1
 	  DstBlock		  " Terminator "
 	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  " input events "
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  3
 	}
 	Line {
 	  SrcBlock		  " SFunction "
@@ -2641,6 +2850,7 @@ Model {
       SID		      "84"
       Ports		      [1]
       Position		      [1050, 504, 1165, 536]
+      ZOrder		      -32
       BackgroundColor	      "yellow"
       FontSize		      12
       Decimation	      "1"
@@ -2651,6 +2861,7 @@ Model {
       Name		      "Torque Comp"
       SID		      "85"
       Position		      [815, 134, 855, 156]
+      ZOrder		      -33
       FontSize		      12
       Value		      "25"
     }
@@ -2659,6 +2870,7 @@ Model {
       Name		      "Unit Delay"
       SID		      "96"
       Position		      [1210, 688, 1245, 722]
+      ZOrder		      -34
       InputProcessing	      "Elements as channels (sample based)"
       SampleTime	      "0.2"
     }
@@ -2668,6 +2880,7 @@ Model {
       SID		      "86"
       Ports		      [0, 1]
       Position		      [125, 234, 165, 276]
+      ZOrder		      -35
       BackgroundColor	      "yellow"
       FontSize		      12
       MinAlgLoopOccurrences   off
@@ -2677,25 +2890,25 @@ Model {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskPromptString	      "Enter the Temperature you require"
-      MaskStyleString	      "edit"
-      MaskVariables	      "USet=@1;"
-      MaskTunableValueString  "on"
-      MaskEnableString	      "on"
-      MaskVisibilityString    "on"
-      MaskToolTipString	      "on"
-      MaskInitialization      "set_param('sldemo_auto_climatecontrol/User Setpoint in Celsius/User Setpoint','Value',n"
-      "um2str(USet))"
-      MaskDisplay	      "disp(num2str(USet))"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
-      MaskValueString	      "1"
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		28
+	$ClassName		"Simulink.Mask"
+	Initialization		"set_param('sldemo_auto_climatecontrol/User Setpoint in Celsius/User Setpoint','Value',num2str(USet))"
+	Display			"disp(num2str(USet))"
+	Object {
+	  $PropName		  "Parameters"
+	  $ObjectID		  29
+	  $ClassName		  "Simulink.MaskParameter"
+	  Type			  "edit"
+	  Name			  "USet"
+	  Prompt		  "Enter the Temperature you require"
+	  Value			  "1"
+	}
+      }
       System {
 	Name			"User Setpoint in Celsius"
-	Location		[375, 207, 660, 319]
+	Location		[345, 95, 686, 391]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2713,6 +2926,7 @@ Model {
 	  Name			  "Constant1"
 	  SID			  "87"
 	  Position		  [120, 55, 150, 85]
+	  ZOrder		  -1
 	  Value			  "273"
 	}
 	Block {
@@ -2721,6 +2935,7 @@ Model {
 	  SID			  "88"
 	  Ports			  [1, 1]
 	  Position		  [75, 30, 105, 60]
+	  ZOrder		  -2
 	  ShowName		  off
 	  InputPortMap		  "u0"
 	  UpperLimit		  "100"
@@ -2732,6 +2947,7 @@ Model {
 	  SID			  "89"
 	  Ports			  [2, 1]
 	  Position		  [185, 35, 205, 55]
+	  ZOrder		  -3
 	  ShowName		  off
 	  IconShape		  "round"
 	  Inputs		  "|++"
@@ -2741,12 +2957,14 @@ Model {
 	  Name			  "User Setpoint"
 	  SID			  "90"
 	  Position		  [25, 30, 55, 60]
+	  ZOrder		  -4
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
 	  SID			  "91"
 	  Position		  [230, 38, 260, 52]
+	  ZOrder		  -5
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -2781,6 +2999,7 @@ Model {
       SID		      "95"
       Ports		      [1]
       Position		      [345, 444, 375, 476]
+      ZOrder		      -36
       FontSize		      12
       Floating		      off
       Location		      [1298, 245, 1622, 484]
@@ -2790,6 +3009,7 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
+      ShowLegends	      off
       YMin		      "-75"
       YMax		      "75"
       SaveName		      "ScopeData3"
@@ -2802,6 +3022,7 @@ Model {
       SID		      "92"
       Ports		      [2, 1]
       Position		      [430, 556, 475, 589]
+      ZOrder		      -37
       FontSize		      12
       RndMeth		      "Floor"
     }
@@ -2810,12 +3031,12 @@ Model {
       Name		      "Out1"
       SID		      "98"
       Position		      [1270, 693, 1300, 707]
+      ZOrder		      -38
       IconDisplay	      "Port number"
     }
     Line {
       SrcBlock		      "Distribution "
       SrcPort		      1
-      Points		      [0, 0]
       DstBlock		      "Distribution \nRequest"
       DstPort		      1
     }
@@ -2852,20 +3073,17 @@ Model {
     Line {
       SrcBlock		      "Interior Dynamics"
       SrcPort		      1
-      Points		      [0, 0; 25, 0]
+      Points		      [25, 0]
       Branch {
-	Points			[0, -90; 0, 0]
+	Points			[0, -90]
 	Branch {
-	  Points		  [0, 0]
-	  Branch {
-	    Points		    [0, -205]
-	    DstBlock		    "AC Control"
-	    DstPort		    4
-	  }
-	  Branch {
-	    DstBlock		    "Heater Control"
-	    DstPort		    4
-	  }
+	  Points		  [0, -205]
+	  DstBlock		  "AC Control"
+	  DstPort		  4
+	}
+	Branch {
+	  DstBlock		  "Heater Control"
+	  DstPort		  4
 	}
 	Branch {
 	  Points		  [-380, 0; 0, 1]
@@ -2907,7 +3125,6 @@ Model {
     Line {
       SrcBlock		      "Heat from occupants"
       SrcPort		      1
-      Points		      [0, 0]
       DstBlock		      "Sum"
       DstPort		      2
     }
@@ -2920,7 +3137,6 @@ Model {
     Line {
       SrcBlock		      "Mass flow rate"
       SrcPort		      1
-      Points		      [0, 0]
       DstBlock		      "Sum"
       DstPort		      1
     }
@@ -2955,14 +3171,12 @@ Model {
     Line {
       SrcBlock		      "Fan Speed rate"
       SrcPort		      1
-      Points		      [0, 0]
       DstBlock		      "Sum"
       DstPort		      3
     }
     Line {
       SrcBlock		      "Sum2"
       SrcPort		      1
-      Points		      [0, 0]
       DstBlock		      "proportion fan speed"
       DstPort		      2
     }
@@ -3009,7 +3223,6 @@ Model {
     Line {
       SrcBlock		      "Heater Control"
       SrcPort		      2
-      Points		      [0, 0]
       DstBlock		      "Req Tout"
       DstPort		      1
     }
@@ -3054,7 +3267,6 @@ Model {
     Line {
       SrcBlock		      "AC Control"
       SrcPort		      1
-      Points		      [0, 0]
       DstBlock		      "Goto1"
       DstPort		      1
     }
@@ -3106,23 +3318,26 @@ Model {
       DstPort		      1
     }
     Annotation {
+      SID		      "103"
       Name		      "Simulating Automatic Climate Control Systems"
       Position		      [556, 41]
+      ZOrder		      -1
       FontSize		      12
     }
     Annotation {
+      SID		      "104"
       Name		      "Copyright 1990-2010 The MathWorks, Inc."
       Position		      [561, 641]
+      ZOrder		      -2
       FontSize		      12
     }
   }
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.5 (R2010a) dated Mar  5 2011, 00:01:50
+#    Stateflow Version 7.6 (R2013a) dated Jan 19 2013, 14:32:20
 #
 #
-
 
 Stateflow {
   machine {
@@ -3131,16 +3346,16 @@ Stateflow {
     created		    "15-Mar-2002 12:05:17"
     isLibrary		    0
     firstTarget		    68
-    sfVersion		    75014001
+    sfVersion		    76014001.0015
     sfDemoChecksum	    [2378100510 3917177545 186140495 2709364163]
   }
   chart {
     id			    2
     name		    "Temperature Control Chart"
-    windowPosition	    [123.517 83.793 730.552 425.793]
+    windowPosition	    [165 53.75 920 700]
     viewLimits		    [0 743.865 0 423.894]
     zoomFactor		    1.071
-    screen		    [1 1 1680 1050 1.611111111111111]
+    screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 9 0 0]
     viewObj		    2
     machine		    1
@@ -3149,8 +3364,8 @@ Stateflow {
     }
     ssIdHighWaterMark	    64
     decomposition	    SET_CHART
-    firstEvent		    57
-    firstData		    60
+    firstEvent		    64
+    firstData		    57
     chartFileNumber	    1
     supportVariableSizing   0
   }
@@ -3239,7 +3454,7 @@ Stateflow {
     fontSize		    10
     chart		    2
     treeNode		    [2 6 0 13]
-    firstTransition	    33
+    firstTransition	    24
     subviewer		    2
     ssIdNumber		    7
     type		    AND_STATE
@@ -3253,7 +3468,7 @@ Stateflow {
     fontSize		    10
     chart		    2
     treeNode		    [2 11 17 0]
-    firstTransition	    38
+    firstTransition	    27
     subviewer		    2
     ssIdNumber		    8
     type		    AND_STATE
@@ -3293,7 +3508,7 @@ Stateflow {
     fontSize		    10
     chart		    2
     treeNode		    [2 14 9 17]
-    firstTransition	    42
+    firstTransition	    31
     subviewer		    2
     ssIdNumber		    11
     type		    AND_STATE
@@ -3331,7 +3546,10 @@ Stateflow {
     ssIdNumber		    13
     type		    OR_STATE
     decomposition	    CLUSTER_STATE
-    outputData		    63
+    outputData		    60
+    activeStateOutput {
+      activityMode	      SELF_ACTIVITY
+    }
   }
   state {
     id			    16
@@ -3345,7 +3563,10 @@ Stateflow {
     ssIdNumber		    14
     type		    OR_STATE
     decomposition	    CLUSTER_STATE
-    outputData		    60
+    outputData		    57
+    activeStateOutput {
+      activityMode	      SELF_ACTIVITY
+    }
   }
   state {
     id			    17
@@ -3354,7 +3575,7 @@ Stateflow {
     fontSize		    10
     chart		    2
     treeNode		    [2 19 13 10]
-    firstTransition	    30
+    firstTransition	    36
     subviewer		    2
     ssIdNumber		    15
     type		    AND_STATE
@@ -3408,7 +3629,7 @@ Stateflow {
     arrowSize		    9
     chart		    2
     treeNode		    [9 3 6 23]
-    firstTransition	    49
+    firstTransition	    40
     subviewer		    2
     ssIdNumber		    19
     type		    OR_STATE
@@ -3422,20 +3643,20 @@ Stateflow {
     chart		    2
     treeNode		    [9 0 23 0]
     firstTransition	    50
-    firstJunction	    26
+    firstJunction	    49
     superState		    SUBCHART
     visible		    0
     subviewer		    2
     subviewS {
-      x1		      -15
-      y1		      -15
-      pos		      [0 0 248.353 63.963]
+      x1		      20
+      y1		      20
+      pos		      [35 35 248.353 63.963]
       fontSize		      10
     }
     ssIdNumber		    20
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
-    firstData		    54
+    firstData		    46
   }
   state {
     id			    23
@@ -3444,185 +3665,27 @@ Stateflow {
     fontSize		    10
     chart		    2
     treeNode		    [9 0 21 22]
-    firstTransition	    51
-    firstJunction	    27
+    firstTransition	    54
+    firstJunction	    51
     superState		    SUBCHART
     subviewer		    2
     subviewS {
-      x1		      -15
-      y1		      -15
-      pos		      [0 0 247.322 123.431]
+      x1		      20
+      y1		      20
+      pos		      [35 35 247.322 123.431]
       fontSize		      10
     }
     ssIdNumber		    21
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
   }
-  junction {
+  transition {
     id			    24
-    position		    [198.2263 61.5309 7]
-    chart		    2
-    linkNode		    [23 27 25]
-    visible		    0
-    subviewer		    23
-    ssIdNumber		    48
-    type		    CONNECTIVE_JUNCTION
-  }
-  junction {
-    id			    25
-    position		    [13.1369 108.5222 7]
-    chart		    2
-    linkNode		    [23 24 0]
-    visible		    0
-    subviewer		    23
-    ssIdNumber		    49
-    type		    CONNECTIVE_JUNCTION
-  }
-  junction {
-    id			    26
-    position		    [10.4508 51.5075 8]
-    arrowSize		    9
-    chart		    2
-    linkNode		    [22 0 0]
-    visible		    0
-    subviewer		    22
-    ssIdNumber		    50
-    type		    CONNECTIVE_JUNCTION
-  }
-  junction {
-    id			    27
-    position		    [13.1369 61.5309 7]
-    chart		    2
-    linkNode		    [23 0 24]
-    visible		    0
-    subviewer		    23
-    ssIdNumber		    51
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    28
-    labelString		    "E[!in(Blower_2) && in_temp_range(7,10)]"
-    labelPosition	    [24.432 171.755 179.252 12.641]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      id		      21
-      intersection	      [4 1 0 0.6561 18.574 168.5824 0 4.0463]
-    }
-    dst {
-      id		      4
-      intersection	      [4 -1 -0 0.5171 223.137 168.5824 0 -4.0463]
-    }
-    midPoint		    [120.5092 168.5814]
-    chart		    2
-    linkNode		    [21 29 34]
-    dataLimits		    [18.574 223.137 165.882 171.282]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    4
-    ssIdNumber		    22
-  }
-  transition {
-    id			    29
-    labelString		    "E[!in(Blower_1) && in_temp_range(1.5,5)]"
-    labelPosition	    [26.551 134.385 181.907 12.641]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      id		      21
-      intersection	      [4 1 0 0.8229 18.574 128.9 0 12.8703]
-    }
-    dst {
-      id		      3
-      intersection	      [4 -1 -0 0.4968 222.092 128.9 0 -12.8703]
-    }
-    midPoint		    [119.9642 128.8979]
-    chart		    2
-    linkNode		    [21 49 28]
-    dataLimits		    [18.574 222.092 126.2 131.6]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    5
-    ssIdNumber		    23
-  }
-  transition {
-    id			    30
-    labelPosition	    [406.019 155.494 6.639 12.641]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      intersection	      [0 1 0 0.2179 395.8616 155.582 0 -24.5544]
-    }
-    dst {
-      id		      18
-      intersection	      [4 -1 0 0.5522 422.8298 155.5828 0 24.5544]
-    }
-    midPoint		    [405.139 155.582]
-    chart		    2
-    linkNode		    [17 0 32]
-    dataLimits		    [395.862 422.83 152.883 158.283]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    24
-  }
-  transition {
-    id			    31
-    labelString		    "DistReq"
-    labelPosition	    [502.055 190.022 36.514 12.641]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      id		      20
-      intersection	      [3 0 1 0.4755 598.5014 166.9045 0 -30.7581]
-    }
-    dst {
-      id		      18
-      intersection	      [3 0 1 0.4921 442.0673 167.9195 0 30.075]
-    }
-    midPoint		    [517.1969 204.6379]
-    chart		    2
-    linkNode		    [17 39 0]
-    dataLimits		    [439.367 598.501 166.905 204.834]
-    subviewer		    2
-    drawStyle		    SMART
-    slide {
-      mode		      MIRROR_SLIDE
-      sticky		      BOTH_STICK
-    }
-    executionOrder	    1
-    ssIdNumber		    25
-  }
-  transition {
-    id			    32
-    labelString		    "DistReq"
-    labelPosition	    [539.492 168.383 36.514 12.641]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      id		      19
-      intersection	      [2 1 0 0.5628 536.8148 157.296 0 0.812]
-    }
-    dst {
-      id		      20
-      intersection	      [4 -1 0 0.461 578.1638 157.296 0 -0.812]
-    }
-    midPoint		    [553.5949 157.296]
-    chart		    2
-    linkNode		    [17 30 39]
-    dataLimits		    [536.815 578.164 154.596 159.996]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    26
-  }
-  transition {
-    id			    33
     labelPosition	    [263.641 21.74 6.639 12.641]
     fontSize		    10
     arrowSize		    9
     src {
-      intersection	      [0 -1 0 0.0777 282.3329 34.5799 0 -36.2235]
+      intersection	      [0 -1 0 0 282.3329 34.5799 0 -36.2235]
     }
     dst {
       id		      6
@@ -3630,61 +3693,18 @@ Stateflow {
     }
     midPoint		    [267.4445 34.5799]
     chart		    2
-    linkNode		    [9 0 36]
+    linkNode		    [9 0 25]
     dataLimits		    [244.61 282.333 31.88 37.28]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    27
   }
   transition {
-    id			    34
-    labelString		    "E[!in(Blower_3) && in_temp_range(12,15)]"
-    labelPosition	    [25.171 215.134 184.563 12.641]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      id		      21
-      intersection	      [4 1 0 0.4786 18.574 210.8117 0 -0.5495]
-    }
-    dst {
-      id		      5
-      intersection	      [4 -1 -0 0.5489 225.964 210.8117 0 0.5495]
-    }
-    midPoint		    [121.9843 210.8117]
-    chart		    2
-    linkNode		    [21 28 47]
-    dataLimits		    [18.574 225.964 208.112 213.512]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    3
-    ssIdNumber		    28
-  }
-  transition {
-    id			    35
-    labelString		    "E[absTempDiff>203 || absTempDiff<=0.5]"
-    labelPosition	    [181.203 61.707 181.243 12.641]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      id		      21
-      intersection	      [1 0 -1 0.4788 172.2042 86.763 0 -20.62]
-    }
-    dst {
-      id		      6
-      intersection	      [3 -0 1 0.6991 172.2042 51.072 0 20.62]
-    }
-    midPoint		    [172.205 72.9351]
-    chart		    2
-    linkNode		    [9 36 0]
-    dataLimits		    [169.504 174.904 51.072 86.763]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    29
-  }
-  transition {
-    id			    36
+    id			    25
     labelString		    "E[in_temp_range(.5,203)]"
     labelPosition	    [29.389 59.76 110.87 12.641]
     fontSize		    10
@@ -3699,38 +3719,44 @@ Stateflow {
     }
     midPoint		    [155.6789 64.9003]
     chart		    2
-    linkNode		    [9 33 35]
+    linkNode		    [9 24 26]
     dataLimits		    [152.974 158.374 51.072 86.763]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    30
   }
   transition {
-    id			    37
-    labelString		    "en(AirDist.Defrost)"
-    labelPosition	    [543.334 289.751 81.659 12.641]
+    id			    26
+    labelString		    "E[absTempDiff>203 || absTempDiff<=0.5]"
+    labelPosition	    [181.203 61.707 181.243 12.641]
     fontSize		    10
     arrowSize		    9
     src {
-      id		      11
-      intersection	      [3 0 1 0.2801 540.5807 284.7186 0 -39.377]
+      id		      21
+      intersection	      [1 0 -1 0.4788 172.2042 86.763 0 -20.62]
     }
     dst {
-      id		      12
-      intersection	      [1 -0 -1 0.7034 540.5807 316.5106 0 39.377]
+      id		      6
+      intersection	      [3 -0 1 0.6991 172.2042 51.072 0 20.62]
     }
-    midPoint		    [540.5889 296.5124]
+    midPoint		    [172.205 72.9351]
     chart		    2
-    linkNode		    [10 41 0]
-    dataLimits		    [537.881 543.281 284.719 316.511]
+    linkNode		    [9 25 0]
+    dataLimits		    [169.504 174.904 51.072 86.763]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
-    ssIdNumber		    31
+    ssIdNumber		    29
   }
   transition {
-    id			    38
+    id			    27
     labelPosition	    [500.184 245.056 6.639 12.641]
     fontSize		    10
     arrowSize		    9
@@ -3743,38 +3769,18 @@ Stateflow {
     }
     midPoint		    [500.2134 247.325]
     chart		    2
-    linkNode		    [10 0 40]
+    linkNode		    [10 0 28]
     dataLimits		    [497.509 502.909 241.01 262.301]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    32
   }
   transition {
-    id			    39
-    labelString		    "DistReq"
-    labelPosition	    [462.581 165.727 36.514 12.641]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      id		      18
-      intersection	      [2 1 0 0.5578 460.7068 158.0396 0 2.0992]
-    }
-    dst {
-      id		      19
-      intersection	      [4 -1 -0 0.4028 498.5688 158.0396 0 -2.0992]
-    }
-    midPoint		    [475.6678 158.0406]
-    chart		    2
-    linkNode		    [17 32 31]
-    dataLimits		    [460.707 498.569 155.34 160.74]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    33
-  }
-  transition {
-    id			    40
+    id			    28
     labelString		    "RecycReq"
     labelPosition	    [390.135 293.734 47.137 12.641]
     fontSize		    10
@@ -3789,15 +3795,18 @@ Stateflow {
     }
     midPoint		    [440.5323 296.5123]
     chart		    2
-    linkNode		    [10 38 41]
+    linkNode		    [10 27 29]
     dataLimits		    [437.84 443.24 284.719 316.511]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    2
     ssIdNumber		    34
   }
   transition {
-    id			    41
+    id			    29
     labelString		    "RecycReq"
     labelPosition	    [454.633 293.975 47.137 12.641]
     fontSize		    10
@@ -3812,15 +3821,44 @@ Stateflow {
     }
     midPoint		    [450.2823 304.7166]
     chart		    2
-    linkNode		    [10 40 37]
+    linkNode		    [10 28 30]
     dataLimits		    [447.576 452.976 284.719 316.511]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    35
   }
   transition {
-    id			    42
+    id			    30
+    labelString		    "en(AirDist.Defrost)"
+    labelPosition	    [543.334 289.751 81.659 12.641]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      id		      11
+      intersection	      [3 0 1 0.2801 540.5807 284.7186 0 -39.377]
+    }
+    dst {
+      id		      12
+      intersection	      [1 -0 -1 0.7034 540.5807 316.5106 0 39.377]
+    }
+    midPoint		    [540.5889 296.5124]
+    chart		    2
+    linkNode		    [10 29 0]
+    dataLimits		    [537.881 543.281 284.719 316.511]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    31
+  }
+  transition {
+    id			    31
     labelString		    "E[SetPTemp-IntTemp>=-0.5]"
     labelPosition	    [585.043 29.134 126.804 12.641]
     fontSize		    10
@@ -3835,61 +3873,18 @@ Stateflow {
     }
     midPoint		    [634.1524 50.4426]
     chart		    2
-    linkNode		    [13 0 45]
+    linkNode		    [13 0 32]
     dataLimits		    [599.274 662.18 47.742 53.142]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    36
   }
   transition {
-    id			    43
-    labelString		    "E[SetPTemp-IntTemp<-0.5]"
-    labelPosition	    [590.684 76.142 120.829 12.641]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      id		      14
-      intersection	      [2 1 0 0.8085 599.274 67.045 0 13.4571]
-    }
-    dst {
-      id		      16
-      intersection	      [4 -1 -0 0.2003 662.18 67.045 0 -13.4571]
-    }
-    midPoint		    [627.3009 67.0463]
-    chart		    2
-    linkNode		    [13 44 46]
-    dataLimits		    [599.274 662.18 64.345 69.745]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    37
-  }
-  transition {
-    id			    44
-    labelString		    "E[SetPTemp-IntTemp>0.5]"
-    labelPosition	    [433.328 77.117 117.509 12.641]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      id		      14
-      intersection	      [4 -1 0 0.2705 522.103 64.6933 0 -6.6146]
-    }
-    dst {
-      id		      15
-      intersection	      [2 1 -0 0.7426 448.941 64.6933 0 6.6146]
-    }
-    midPoint		    [488.7245 64.6926]
-    chart		    2
-    linkNode		    [13 45 43]
-    dataLimits		    [448.941 522.103 61.993 67.393]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    2
-    ssIdNumber		    38
-  }
-  transition {
-    id			    45
+    id			    32
     labelString		    "E[SetPTemp-IntTemp<=0.5]"
     labelPosition	    [432.559 29.087 123.484 12.641]
     fontSize		    10
@@ -3904,20 +3899,75 @@ Stateflow {
     }
     midPoint		    [482.3188 52.6926]
     chart		    2
-    linkNode		    [13 42 44]
+    linkNode		    [13 31 33]
     dataLimits		    [448.941 522.103 49.992 55.392]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    39
   }
   transition {
-    id			    46
+    id			    33
+    labelString		    "E[SetPTemp-IntTemp>0.5]"
+    labelPosition	    [433.328 77.117 117.509 12.641]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      id		      14
+      intersection	      [4 -1 0 0.2705 522.103 64.6933 0 -6.6146]
+    }
+    dst {
+      id		      15
+      intersection	      [2 1 -0 0.7426 448.941 64.6933 0 6.6146]
+    }
+    midPoint		    [488.7245 64.6926]
+    chart		    2
+    linkNode		    [13 32 34]
+    dataLimits		    [448.941 522.103 61.993 67.393]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    38
+  }
+  transition {
+    id			    34
+    labelString		    "E[SetPTemp-IntTemp<-0.5]"
+    labelPosition	    [590.684 76.142 120.829 12.641]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      id		      14
+      intersection	      [2 1 0 0.8085 599.274 67.045 0 13.4571]
+    }
+    dst {
+      id		      16
+      intersection	      [4 -1 -0 0.2003 662.18 67.045 0 -13.4571]
+    }
+    midPoint		    [627.3009 67.0463]
+    chart		    2
+    linkNode		    [13 33 35]
+    dataLimits		    [599.274 662.18 64.345 69.745]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    37
+  }
+  transition {
+    id			    35
     labelPosition	    [550.928 78.024 6.639 12.641]
     fontSize		    10
     arrowSize		    9
     src {
-      intersection	      [0 0 -1 0.7354 557.8999 93.7186 0 0]
+      intersection	      [0 0 -1 0 557.8999 93.7186 0 0]
     }
     dst {
       id		      14
@@ -3925,15 +3975,222 @@ Stateflow {
     }
     midPoint		    [557.8999 87.5674]
     chart		    2
-    linkNode		    [13 43 0]
+    linkNode		    [13 34 0]
     dataLimits		    [555.203 560.603 72.741 93.719]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    40
   }
   transition {
-    id			    47
+    id			    36
+    labelPosition	    [406.019 155.494 6.639 12.641]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      intersection	      [0 1 0 0 395.8616 155.582 0 -24.5544]
+    }
+    dst {
+      id		      18
+      intersection	      [4 -1 0 0.5522 422.8298 155.5828 0 24.5544]
+    }
+    midPoint		    [405.139 155.582]
+    chart		    2
+    linkNode		    [17 0 37]
+    dataLimits		    [395.862 422.83 152.883 158.283]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    24
+  }
+  transition {
+    id			    37
+    labelString		    "DistReq"
+    labelPosition	    [539.492 168.383 36.514 12.641]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      id		      19
+      intersection	      [2 1 0 0.5628 536.8148 157.296 0 0.812]
+    }
+    dst {
+      id		      20
+      intersection	      [4 -1 0 0.461 578.1638 157.296 0 -0.812]
+    }
+    midPoint		    [553.5949 157.296]
+    chart		    2
+    linkNode		    [17 36 38]
+    dataLimits		    [536.815 578.164 154.596 159.996]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    26
+  }
+  transition {
+    id			    38
+    labelString		    "DistReq"
+    labelPosition	    [462.581 165.727 36.514 12.641]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      id		      18
+      intersection	      [2 1 0 0.5578 460.7068 158.0396 0 2.0992]
+    }
+    dst {
+      id		      19
+      intersection	      [4 -1 -0 0.4028 498.5688 158.0396 0 -2.0992]
+    }
+    midPoint		    [475.6678 158.0406]
+    chart		    2
+    linkNode		    [17 37 39]
+    dataLimits		    [460.707 498.569 155.34 160.74]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    33
+  }
+  transition {
+    id			    39
+    labelString		    "DistReq"
+    labelPosition	    [502.055 190.022 36.514 12.641]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      id		      20
+      intersection	      [3 0 1 0.4755 598.5014 166.9045 0 -30.7581]
+    }
+    dst {
+      id		      18
+      intersection	      [3 0 1 0.4921 442.0673 167.9195 0 30.075]
+    }
+    midPoint		    [517.1969 204.6379]
+    chart		    2
+    linkNode		    [17 38 0]
+    dataLimits		    [439.367 598.501 166.905 204.834]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    25
+  }
+  transition {
+    id			    40
+    labelPosition	    [258.525 101.643 6.639 12.641]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      intersection	      [0 0 1 0 264.8215 93.8618 0 -9.5021]
+    }
+    dst {
+      id		      3
+      intersection	      [1 0 -1 0.4027 264.8227 113.7175 0 9.5021]
+    }
+    midPoint		    [264.8215 99.428]
+    chart		    2
+    linkNode		    [21 0 41]
+    dataLimits		    [262.123 267.523 93.862 113.718]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    43
+  }
+  transition {
+    id			    41
+    labelString		    "E[!in(Blower_1) && in_temp_range(1.5,5)]"
+    labelPosition	    [26.551 134.385 181.907 12.641]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      id		      21
+      intersection	      [4 1 0 0.8229 18.574 128.9 0 12.8703]
+    }
+    dst {
+      id		      3
+      intersection	      [4 -1 -0 0.4968 222.092 128.9 0 -12.8703]
+    }
+    midPoint		    [119.9642 128.8979]
+    chart		    2
+    linkNode		    [21 40 42]
+    dataLimits		    [18.574 222.092 126.2 131.6]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    5
+    ssIdNumber		    23
+  }
+  transition {
+    id			    42
+    labelString		    "E[!in(Blower_2) && in_temp_range(7,10)]"
+    labelPosition	    [24.432 171.755 179.252 12.641]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      id		      21
+      intersection	      [4 1 0 0.6561 18.574 168.5824 0 4.0463]
+    }
+    dst {
+      id		      4
+      intersection	      [4 -1 -0 0.5171 223.137 168.5824 0 -4.0463]
+    }
+    midPoint		    [120.5092 168.5814]
+    chart		    2
+    linkNode		    [21 41 43]
+    dataLimits		    [18.574 223.137 165.882 171.282]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    4
+    ssIdNumber		    22
+  }
+  transition {
+    id			    43
+    labelString		    "E[!in(Blower_3) && in_temp_range(12,15)]"
+    labelPosition	    [25.171 215.134 184.563 12.641]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      id		      21
+      intersection	      [4 1 0 0.4786 18.574 210.8117 0 -0.5495]
+    }
+    dst {
+      id		      5
+      intersection	      [4 -1 -0 0.5489 225.964 210.8117 0 0.5495]
+    }
+    midPoint		    [121.9843 210.8117]
+    chart		    2
+    linkNode		    [21 42 44]
+    dataLimits		    [18.574 225.964 208.112 213.512]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    3
+    ssIdNumber		    28
+  }
+  transition {
+    id			    44
     labelString		    "E[!in(Blower_4) && in_temp_range(17,20)]"
     labelPosition	    [24.314 259.89 184.563 12.641]
     fontSize		    10
@@ -3948,15 +4205,18 @@ Stateflow {
     }
     midPoint		    [124.1868 254.9003]
     chart		    2
-    linkNode		    [21 34 48]
+    linkNode		    [21 43 45]
     dataLimits		    [18.574 230.185 252.201 257.601]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    2
     ssIdNumber		    41
   }
   transition {
-    id			    48
+    id			    45
     labelString		    "E[!in(Blower_5) && in_temp_range(22,200)]"
     labelPosition	    [24.35 298.271 189.874 12.641]
     fontSize		    10
@@ -3971,130 +4231,21 @@ Stateflow {
     }
     midPoint		    [123.5876 295.666]
     chart		    2
-    linkNode		    [21 47 0]
+    linkNode		    [21 44 0]
     dataLimits		    [18.574 229.037 292.967 298.367]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    42
   }
-  transition {
-    id			    49
-    labelPosition	    [258.525 101.643 6.639 12.641]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      intersection	      [0 0 1 0.77 264.8215 93.8618 0 -9.5021]
-    }
-    dst {
-      id		      3
-      intersection	      [1 0 -1 0.4027 264.8227 113.7175 0 9.5021]
-    }
-    midPoint		    [264.8215 99.428]
-    chart		    2
-    linkNode		    [21 0 29]
-    dataLimits		    [262.123 267.523 93.862 113.718]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    43
-  }
-  transition {
-    id			    50
-    labelString		    "{b = (absTempDiff>minTemp) &&  ...\n        (absTempDiff<maxTemp);}"
-    labelPosition	    [16.732 25.888 159.999 23.952]
-    fontSize		    10
-    arrowSize		    9
-    src {
-      intersection	      [0 0 1 0.7859 10.4508 19.4254 0 196.1145]
-    }
-    dst {
-      id		      26
-      intersection	      [0 0 -1 -1 10.4508 43.5075 0 -61.3169]
-    }
-    midPoint		    [10.4508 27.1967]
-    chart		    2
-    linkNode		    [22 0 0]
-    visible		    0
-    dataLimits		    [7.751 13.151 19.425 43.508]
-    subviewer		    22
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    44
-  }
-  transition {
-    id			    51
-    labelString		    "{RequiredTemp = SetPTemp-IntTemp;}"
-    labelPosition	    [17.637 19.828 171.285 12.641]
-    fontSize		    10
-    src {
-      intersection	      [0 0 1 0 13.1369 20.4285 0 0]
-    }
-    dst {
-      id		      27
-      intersection	      [7 0 -1 -1 13.1369 54.5309 0 0]
-    }
-    midPoint		    [13.1369 33.9604]
-    chart		    2
-    linkNode		    [23 0 52]
-    visible		    0
-    dataLimits		    [10.737 15.537 20.429 54.531]
-    subviewer		    23
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    45
-  }
-  transition {
-    id			    52
-    labelString		    "[RequiredTemp<0.0]\n{absTempDiff = -RequiredTemp;}"
-    labelPosition	    [26.293 47.616 145.393 23.952]
-    fontSize		    10
-    src {
-      id		      27
-      intersection	      [2 1 0 -1 20.1369 61.5309 0 0]
-    }
-    dst {
-      id		      24
-      intersection	      [6 -1 0 -1 191.2263 61.5309 0 0]
-    }
-    midPoint		    [105.1403 61.5309]
-    chart		    2
-    linkNode		    [23 51 53]
-    visible		    0
-    dataLimits		    [20.137 191.226 59.131 63.931]
-    subviewer		    23
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    46
-  }
-  transition {
-    id			    53
-    labelString		    "{absTempDiff = RequiredTemp;}"
-    labelPosition	    [22.255 85.516 142.073 12.641]
-    fontSize		    10
-    src {
-      id		      27
-      intersection	      [4 0 1 -1 13.1369 68.5309 0 0]
-    }
-    dst {
-      id		      25
-      intersection	      [0 0 -1 -1 13.1369 101.5222 0 0]
-    }
-    midPoint		    [13.1369 81.4831]
-    chart		    2
-    linkNode		    [23 52 0]
-    visible		    0
-    dataLimits		    [10.737 15.537 68.531 101.522]
-    subviewer		    23
-    drawStyle		    SMART
-    executionOrder	    2
-    ssIdNumber		    47
-  }
   data {
-    id			    54
+    id			    46
     ssIdNumber		    59
     name		    "minTemp"
-    linkNode		    [22 0 55]
+    linkNode		    [22 0 47]
     scope		    FUNCTION_INPUT_DATA
     machine		    1
     props {
@@ -4105,10 +4256,10 @@ Stateflow {
     dataType		    "double"
   }
   data {
-    id			    55
+    id			    47
     ssIdNumber		    60
     name		    "b"
-    linkNode		    [22 54 56]
+    linkNode		    [22 46 48]
     scope		    FUNCTION_OUTPUT_DATA
     machine		    1
     props {
@@ -4119,10 +4270,10 @@ Stateflow {
     dataType		    "boolean"
   }
   data {
-    id			    56
+    id			    48
     ssIdNumber		    61
     name		    "maxTemp"
-    linkNode		    [22 55 0]
+    linkNode		    [22 47 0]
     scope		    FUNCTION_INPUT_DATA
     machine		    1
     props {
@@ -4132,38 +4283,155 @@ Stateflow {
     }
     dataType		    "double"
   }
-  event {
-    id			    57
-    ssIdNumber		    62
-    name		    "DistReq"
-    linkNode		    [2 0 58]
-    scope		    INPUT_EVENT
-    trigger		    EITHER_EDGE_EVENT
-    machine		    1
+  junction {
+    id			    49
+    position		    [45.4508 86.5075 8]
+    arrowSize		    9
+    chart		    2
+    linkNode		    [22 0 0]
+    visible		    0
+    subviewer		    22
+    ssIdNumber		    50
+    type		    CONNECTIVE_JUNCTION
   }
-  event {
-    id			    58
-    ssIdNumber		    63
-    name		    "RecycReq"
-    linkNode		    [2 57 59]
-    scope		    INPUT_EVENT
-    trigger		    EITHER_EDGE_EVENT
-    machine		    1
+  transition {
+    id			    50
+    labelString		    "{b = (absTempDiff>minTemp) &&  ...\n        (absTempDiff<maxTemp);}"
+    labelPosition	    [51.732 60.888 159.999 23.952]
+    fontSize		    10
+    arrowSize		    9
+    src {
+      intersection	      [0 0 1 0 45.4508 54.4254 0 196.1145]
+    }
+    dst {
+      id		      49
+      intersection	      [1 0 -1 0 45.4508 78.5075 0 -61.3169]
+    }
+    midPoint		    [45.4508 62.1967]
+    chart		    2
+    linkNode		    [22 0 0]
+    visible		    0
+    dataLimits		    [42.751 48.151 54.425 78.508]
+    subviewer		    22
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    44
   }
-  event {
-    id			    59
-    ssIdNumber		    64
-    name		    "E"
-    linkNode		    [2 58 0]
-    scope		    INPUT_EVENT
-    trigger		    EITHER_EDGE_EVENT
-    machine		    1
+  junction {
+    id			    51
+    position		    [48.1369 96.5309 7]
+    chart		    2
+    linkNode		    [23 0 52]
+    visible		    0
+    subviewer		    23
+    ssIdNumber		    51
+    type		    CONNECTIVE_JUNCTION
+  }
+  junction {
+    id			    52
+    position		    [233.2263 96.5309 7]
+    chart		    2
+    linkNode		    [23 51 53]
+    visible		    0
+    subviewer		    23
+    ssIdNumber		    48
+    type		    CONNECTIVE_JUNCTION
+  }
+  junction {
+    id			    53
+    position		    [48.1369 143.5222 7]
+    chart		    2
+    linkNode		    [23 52 0]
+    visible		    0
+    subviewer		    23
+    ssIdNumber		    49
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    54
+    labelString		    "{RequiredTemp = SetPTemp-IntTemp;}"
+    labelPosition	    [52.637 54.828 171.285 12.641]
+    fontSize		    10
+    src {
+      intersection	      [0 0 1 0 48.1369 55.4285 0 0]
+    }
+    dst {
+      id		      51
+      intersection	      [1 0 -1 0 48.1369 89.5309 0 0]
+    }
+    midPoint		    [48.1369 68.9604]
+    chart		    2
+    linkNode		    [23 0 55]
+    visible		    0
+    dataLimits		    [45.737 50.537 55.429 89.531]
+    subviewer		    23
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    45
+  }
+  transition {
+    id			    55
+    labelString		    "[RequiredTemp<0.0]\n{absTempDiff = -RequiredTemp;}"
+    labelPosition	    [61.293 82.616 145.393 23.952]
+    fontSize		    10
+    src {
+      id		      51
+      intersection	      [2 1 0 0 55.1369 96.5309 0 0]
+    }
+    dst {
+      id		      52
+      intersection	      [4 -1 0 0 226.2263 96.5309 0 0]
+    }
+    midPoint		    [140.1403 96.5309]
+    chart		    2
+    linkNode		    [23 54 56]
+    visible		    0
+    dataLimits		    [55.137 226.226 94.131 98.931]
+    subviewer		    23
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    46
+  }
+  transition {
+    id			    56
+    labelString		    "{absTempDiff = RequiredTemp;}"
+    labelPosition	    [57.255 120.516 142.073 12.641]
+    fontSize		    10
+    src {
+      id		      51
+      intersection	      [3 0 1 0 48.1369 103.5309 0 0]
+    }
+    dst {
+      id		      53
+      intersection	      [1 0 -1 0 48.1369 136.5222 0 0]
+    }
+    midPoint		    [48.1369 116.4831]
+    chart		    2
+    linkNode		    [23 55 0]
+    visible		    0
+    dataLimits		    [45.737 50.537 103.531 136.522]
+    subviewer		    23
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    47
   }
   data {
-    id			    60
+    id			    57
     ssIdNumber		    52
     name		    "ACAct"
-    linkNode		    [2 0 61]
+    linkNode		    [2 0 58]
     scope		    OUTPUT_DATA
     outputState		    16
     machine		    1
@@ -4177,10 +4445,10 @@ Stateflow {
     debug		    [1]
   }
   data {
-    id			    61
+    id			    58
     ssIdNumber		    53
     name		    "SetPTemp"
-    linkNode		    [2 60 62]
+    linkNode		    [2 57 59]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -4191,10 +4459,10 @@ Stateflow {
     dataType		    "double"
   }
   data {
-    id			    62
+    id			    59
     ssIdNumber		    54
     name		    "IntTemp"
-    linkNode		    [2 61 63]
+    linkNode		    [2 58 60]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -4205,10 +4473,10 @@ Stateflow {
     dataType		    "double"
   }
   data {
-    id			    63
+    id			    60
     ssIdNumber		    55
     name		    "HeaterAct"
-    linkNode		    [2 62 64]
+    linkNode		    [2 59 61]
     scope		    OUTPUT_DATA
     outputState		    15
     machine		    1
@@ -4222,10 +4490,10 @@ Stateflow {
     debug		    [1]
   }
   data {
-    id			    64
+    id			    61
     ssIdNumber		    56
     name		    "RequiredTemp"
-    linkNode		    [2 63 65]
+    linkNode		    [2 60 62]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -4237,10 +4505,10 @@ Stateflow {
     dataType		    "double"
   }
   data {
-    id			    65
+    id			    62
     ssIdNumber		    57
     name		    "BlowerOut"
-    linkNode		    [2 64 66]
+    linkNode		    [2 61 63]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -4252,10 +4520,10 @@ Stateflow {
     dataType		    "double"
   }
   data {
-    id			    66
+    id			    63
     ssIdNumber		    58
     name		    "absTempDiff"
-    linkNode		    [2 65 0]
+    linkNode		    [2 62 0]
     scope		    LOCAL_DATA
     machine		    1
     props {
@@ -4264,6 +4532,33 @@ Stateflow {
       }
     }
     dataType		    "double"
+  }
+  event {
+    id			    64
+    ssIdNumber		    62
+    name		    "DistReq"
+    linkNode		    [2 0 65]
+    scope		    INPUT_EVENT
+    trigger		    EITHER_EDGE_EVENT
+    machine		    1
+  }
+  event {
+    id			    65
+    ssIdNumber		    63
+    name		    "RecycReq"
+    linkNode		    [2 64 66]
+    scope		    INPUT_EVENT
+    trigger		    EITHER_EDGE_EVENT
+    machine		    1
+  }
+  event {
+    id			    66
+    ssIdNumber		    64
+    name		    "E"
+    linkNode		    [2 65 0]
+    scope		    INPUT_EVENT
+    trigger		    EITHER_EDGE_EVENT
+    machine		    1
   }
   instance {
     id			    67

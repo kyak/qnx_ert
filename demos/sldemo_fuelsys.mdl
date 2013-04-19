@@ -1,12 +1,12 @@
 Model {
   Name			  "sldemo_fuelsys"
-  Version		  7.7
+  Version		  8.1
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.533"
+    ComputedModelVersion    "1.534"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -21,7 +21,7 @@ Model {
   "  This state regulates the oxygen to\nfuel mixture ratio.  If a failure is detected, then the oxygen to fuel ratio i"
   "s increased.  If multiple failures\nare detected, then the fuel system is disabled until there are no longer multipl"
   "e failures in the system.  \n"
-  SavedCharacterEncoding  "US-ASCII"
+  SavedCharacterEncoding  "windows-1251"
   PostLoadFcn		  "sldemo_fuelsys_data(bdroot,'initialize_data','orig','float');"
   SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
@@ -31,18 +31,58 @@ Model {
   DataTypeOverrideAppliesTo "AllNumericTypes"
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
+  FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
   CloseFcn		  "rtwprivate ssgencode ModelCloseRequest sldemo_fuelsy\nclear EngSensors u8En* s16En* sldemo_fuelsys_outp"
   "ut"
+  Object {
+    $PropName		    "BdWindowsInfo"
+    $ObjectID		    1
+    $ClassName		    "Simulink.BDWindowsInfo"
+    Object {
+      $PropName		      "WindowsInfo"
+      $ObjectID		      2
+      $ClassName	      "Simulink.WindowInfo"
+      IsActive		      [1]
+      Location		      [119.0, 52.0, 1109.0, 646.0]
+      Object {
+	$PropName		"ModelBrowserInfo"
+	$ObjectID		3
+	$ClassName		"Simulink.ModelBrowserInfo"
+	Visible			[0]
+	DockPosition		"Left"
+	Width			[50]
+	Height			[50]
+	Filter			[8]
+      }
+      Object {
+	$PropName		"ExplorerBarInfo"
+	$ObjectID		4
+	$ClassName		"Simulink.ExplorerBarInfo"
+	Visible			[1]
+      }
+      Object {
+	$PropName		"EditorsInfo"
+	$ObjectID		5
+	$ClassName		"Simulink.EditorInfo"
+	IsActive		[1]
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
+	Extents			[1059.0, 472.0]
+	ZoomFactor		[1.0]
+	Offset			[-3.0, -3.5]
+      }
+    }
+  }
   Created		  "Tue Jun 02 16:11:43 1998"
   Creator		  "The MathWorks Inc."
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "rtheyyun"
+  LastModifiedBy	  "peselnikmg"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Nov 29 10:37:01 2011"
-  RTWModifiedTimeStamp	  244463797
-  ModelVersionFormat	  "1.%<AutoIncrement:533>"
+  LastModifiedDate	  "Fri Apr 19 17:09:28 2013"
+  RTWModifiedTimeStamp	  288292165
+  ModelVersionFormat	  "1.%<AutoIncrement:534>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  off
@@ -50,6 +90,7 @@ Model {
   WideLines		  on
   ShowLineDimensions	  off
   ShowPortDataTypes	  on
+  ShowDesignRanges	  off
   ShowLoopsOnError	  on
   IgnoreBidirectionalLines off
   ShowStorageClass	  off
@@ -74,6 +115,24 @@ Model {
   AccelTemplateMakefile	  "accel_default_tmf"
   AccelMakeCommand	  "make_rtw"
   TryForcingSFcnDF	  off
+  Object {
+    $PropName		    "DataLoggingOverride"
+    $ObjectID		    6
+    $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
+    model_		    "sldemo_fuelsys"
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      "sldemo_fuelsys"
+      PropName		      "logAsSpecifiedByModels_"
+    }
+    Array {
+      Type		      "Cell"
+      Dimension		      1
+      Cell		      ""
+      PropName		      "logAsSpecifiedByModelsSSIDs_"
+    }
+  }
   RecordCoverage	  off
   CovPath		  "/fuel_rate_control/control_logic"
   CovSaveName		  "covdata"
@@ -116,15 +175,15 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      1
-      Version		      "1.11.0"
+      $ObjectID		      7
+      Version		      "1.13.0"
       Description	      "* Simulation Target Description\nDefault S-Function target.\n"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  2
-	  Version		  "1.11.0"
+	  $ObjectID		  8
+	  Version		  "1.13.0"
 	  StartTime		  "0.0"
 	  StopTime		  "inf"
 	  AbsTol		  "1e-6"
@@ -142,6 +201,7 @@ Model {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-5"
 	  SolverMode		  "SingleTasking"
+	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode3"
 	  SolverName		  "ode3"
@@ -157,8 +217,8 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  3
-	  Version		  "1.11.0"
+	  $ObjectID		  9
+	  Version		  "1.13.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -189,13 +249,14 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  4
-	  Version		  "1.11.0"
+	  $ObjectID		  10
+	  Version		  "1.13.0"
 	  BlockReduction	  on
 	  BooleanDataType	  on
 	  ConditionallyExecuteInputs on
 	  InlineParams		  on
 	  UseIntDivNetSlope	  on
+	  UseFloatMulNetSlope	  off
 	  UseSpecifiedMinMax	  off
 	  InlineInvariantSignals  on
 	  OptimizeBlockIOStorage  on
@@ -228,11 +289,11 @@ Model {
 	  BufferReusableBoundary  on
 	  SimCompilerOptimization "Off"
 	  AccelVerboseBuild	  off
-	  AccelParallelForEachSubsystem	on
+	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  5
-	  Version		  "1.11.0"
+	  $ObjectID		  11
+	  Version		  "1.13.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -281,12 +342,13 @@ Model {
 	  UnnecessaryDatatypeConvMsg "none"
 	  VectorMatrixConversionMsg "none"
 	  InvalidFcnCallConnMsg	  "error"
-	  FcnCallInpInsideContextMsg "Use local settings"
+	  FcnCallInpInsideContextMsg "UseLocalSettings"
 	  SignalLabelMismatchMsg  "none"
 	  UnconnectedInputMsg	  "warning"
 	  UnconnectedOutputMsg	  "warning"
 	  UnconnectedLineMsg	  "warning"
 	  SFcnCompatibilityMsg	  "none"
+	  FrameProcessingCompatibilityMsg "warning"
 	  UniqueDataStoreMsg	  "error"
 	  BusObjectLabelMismatch  "error"
 	  RootOutportRequireBusObject "warning"
@@ -315,14 +377,18 @@ Model {
 	  SFInvalidInputDataAccessInChartInitDiag "warning"
 	  SFNoUnconditionalDefaultTransitionDiag "warning"
 	  SFTransitionOutsideNaturalParentDiag "warning"
+	  SFUnconditionalTransitionShadowingDiag "warning"
+	  SFUndirectedBroadcastEventsDiag "warning"
+	  SFTransitionActionBeforeConditionDiag	"warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  6
-	  Version		  "1.11.0"
+	  $ObjectID		  12
+	  Version		  "1.13.0"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
 	  ProdBitPerLong	  32
+	  ProdBitPerLongLong	  64
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
@@ -332,17 +398,20 @@ Model {
 	  ProdEndianess		  "LittleEndian"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
+	  ProdLongLongMode	  off
 	  ProdHWDeviceType	  "Specified"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
 	  TargetBitPerLong	  32
+	  TargetBitPerLongLong	  64
 	  TargetBitPerFloat	  32
 	  TargetBitPerDouble	  64
 	  TargetBitPerPointer	  32
 	  TargetLargestAtomicInteger "Char"
 	  TargetLargestAtomicFloat "None"
 	  TargetShiftRightIntArith on
+	  TargetLongLongMode	  off
 	  TargetIntDivRoundTo	  "Undefined"
 	  TargetEndianess	  "Unspecified"
 	  TargetWordSize	  32
@@ -354,8 +423,8 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  7
-	  Version		  "1.11.0"
+	  $ObjectID		  13
+	  Version		  "1.13.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -369,8 +438,8 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  8
-	  Version		  "1.11.0"
+	  $ObjectID		  14
+	  Version		  "1.13.0"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -384,8 +453,8 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  9
-	  Version		  "1.11.0"
+	  $ObjectID		  15
+	  Version		  "1.13.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -396,6 +465,7 @@ Model {
 	  GenCodeOnly		  off
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
+	  PackageGeneratedCodeAndArtifacts off
 	  TemplateMakefile	  "ert_qnx.tmf"
 	  PostCodeGenCommand	  "postGenFunc(buildInfo)"
 	  Description		  "Embedded Coder"
@@ -415,6 +485,14 @@ Model {
 	  RTWUseSimCustomCode	  off
 	  IncludeHyperlinkInReport on
 	  LaunchReport		  on
+	  PortableWordSizes	  off
+	  GenerateErtSFunction	  off
+	  CreateSILPILBlock	  "None"
+	  CodeExecutionProfiling  off
+	  CodeExecutionProfileVariable "executionProfile"
+	  CodeProfilingSaveOptions "SummaryOnly"
+	  CodeProfilingInstrumentation off
+	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
 	  IncludeERTFirstTime	  off
@@ -424,8 +502,9 @@ Model {
 	  GenerateTraceReportSf	  on
 	  GenerateTraceReportEml  on
 	  GenerateCodeInfo	  off
-	  GenerateSLWebview	  off
+	  GenerateWebview	  off
 	  GenerateCodeMetricsReport off
+	  GenerateCodeReplacementReport	off
 	  RTWCompilerOptimization "Off"
 	  CheckMdlBeforeBuild	  "Off"
 	  CustomRebuildMode	  "OnUpdate"
@@ -433,8 +512,8 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      10
-	      Version		      "1.11.0"
+	      $ObjectID		      16
+	      Version		      "1.13.0"
 	      ForceParamTrailComments on
 	      GenerateComments	      on
 	      IgnoreCustomStorageClasses off
@@ -444,6 +523,7 @@ Model {
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
+	      OperatorAnnotations     off
 	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     on
 	      SFDataObjDesc	      on
@@ -466,21 +546,24 @@ Model {
 	      SimulinkBlockComments   on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
+	      InternalIdentifier      "Classic"
 	      InlinedPrmAccess	      "Literals"
 	      ReqsInCode	      on
 	      UseSimReservedNames     off
 	    }
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      11
-	      Version		      "1.11.0"
+	      $ObjectID		      17
+	      Version		      "1.13.0"
 	      Array {
 		Type			"Cell"
-		Dimension		6
+		Dimension		8
 		Cell			"CompOptLevelCompliant"
 		Cell			"GenerateSampleERTMain"
+		Cell			"GenerateErtSFunction"
 		Cell			"MultiInstanceERTCode"
 		Cell			"MatFileLogging"
+		Cell			"GRTInterface"
 		Cell			"IncludeMdlTerminateFcn"
 		Cell			"TargetLibSuffix"
 		PropName		"DisabledProps"
@@ -488,12 +571,9 @@ Model {
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
 	      TargetLibSuffix	      ".a"
 	      TargetPreCompLibLocation ""
-	      TargetFunctionLibrary   "ANSI_C"
+	      CodeReplacementLibrary  "ANSI_C"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
-	      FunctionExecutionProfile off
-	      CodeExecutionProfiling  off
-	      ERTCodeCoverageTool     "None"
 	      ERTMultiwordLength      256
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
@@ -503,6 +583,7 @@ Model {
 	      ModelReferenceCompliant on
 	      ParMdlRefBuildCompliant off
 	      CompOptLevelCompliant   on
+	      ConcurrentExecutionCompliant off
 	      IncludeMdlTerminateFcn  off
 	      GeneratePreprocessorConditionals "Use local settings"
 	      CombineOutputUpdateFcns on
@@ -523,10 +604,12 @@ Model {
 	      SupportVariableSizeSignals off
 	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
-	      PortableWordSizes	      off
+	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.ERTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    off
 	      AutosarCompliant	      off
+	      GRTInterface	      off
+	      GenerateAllocFcn	      off
 	      SystemTargetFile	      "ert_qnx.tlc"
 	      DialogCategory	      0
 	      Array {
@@ -534,8 +617,8 @@ Model {
 		Dimension		1
 		Simulink.ERTTargetCC {
 		  $BackupClass		  "Simulink.TargetCC"
-		  $ObjectID		  12
-		  Version		  "1.11.0"
+		  $ObjectID		  18
+		  Version		  "1.13.0"
 		  Array {
 		    Type		    "Cell"
 		    Dimension		    10
@@ -554,12 +637,9 @@ Model {
 		  TargetFcnLib		  "ansi_tfl_table_tmw.mat"
 		  TargetLibSuffix	  ".a"
 		  TargetPreCompLibLocation ""
-		  TargetFunctionLibrary	  "ANSI_C"
+		  CodeReplacementLibrary  "ANSI_C"
 		  UtilityFuncGeneration	  "Auto"
 		  ERTMultiwordTypeDef	  "System defined"
-		  FunctionExecutionProfile off
-		  CodeExecutionProfiling  off
-		  ERTCodeCoverageTool	  "None"
 		  ERTMultiwordLength	  256
 		  MultiwordLength	  2048
 		  GenerateFullHeader	  on
@@ -569,6 +649,7 @@ Model {
 		  ModelReferenceCompliant on
 		  ParMdlRefBuildCompliant off
 		  CompOptLevelCompliant	  on
+		  ConcurrentExecutionCompliant off
 		  IncludeMdlTerminateFcn  off
 		  GeneratePreprocessorConditionals "Use local settings"
 		  CombineOutputUpdateFcns on
@@ -589,13 +670,12 @@ Model {
 		  SupportVariableSizeSignals off
 		  EnableShiftOperators	  on
 		  ParenthesesLevel	  "Nominal"
-		  PortableWordSizes	  off
+		  MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.ERTCustomization"
 		  ModelStepFunctionPrototypeControlCompliant off
 		  CPPClassGenCompliant	  off
 		  AutosarCompliant	  off
-		  GenerateErtSFunction	  off
-		  CreateSILPILBlock	  "None"
-		  CodeExecutionProfileVariable "executionProfile"
+		  GRTInterface		  off
+		  GenerateAllocFcn	  off
 		  GenerateASAP2		  off
 		  ExtMode		  on
 		  ExtModeTransport	  0
@@ -603,7 +683,7 @@ Model {
 		  ExtModeStaticAllocSize  1000000
 		  ExtModeTesting	  off
 		  ExtModeMexFile	  "ext_comm"
-		  ExtModeMexArgs	  "'172.16.16.1'  1 17725"
+		  ExtModeMexArgs	  "getpref('qnx_ert','TargetIP') 1 17725"
 		  ExtModeIntrfLevel	  "Level1"
 		  InlinedParameterPlacement "NonHierarchical"
 		  TargetOS		  "VxWorksExample"
@@ -619,8 +699,7 @@ Model {
 		  ERTDataSrcFileTemplate  "ert_code_template.cgt"
 		  ERTDataHdrFileTemplate  "ert_code_template.cgt"
 		  ERTCustomFileTemplate	  "qnx_file_process.tlc"
-		  CoverageDialogOpen	  "off"
-		  ModuleNamingRule	  "Unspecified"
+		  EnableDataOwnership	  off
 		  SignalDisplayLevel	  10
 		  ParamTuneLevel	  10
 		  GlobalDataDefinition	  "Auto"
@@ -628,11 +707,11 @@ Model {
 		  GlobalDataReference	  "Auto"
 		  ERTFilePackagingFormat  "Modular"
 		  DataReferenceFile	  "global.h"
-		  GRTInterface		  off
 		  PreserveExpressionOrder off
 		  PreserveIfCondition	  off
 		  ConvertIfToSwitch	  off
 		  PreserveExternInFcnDecls on
+		  SuppressUnreachableDefaultCases off
 		  EnableUserReplacementTypes off
 		  Array {
 		    Type		    "Struct"
@@ -664,6 +743,11 @@ Model {
 		}
 		PropName		"Components"
 	      }
+	      CustomProperty {
+		DataType		"slbool"
+		Name			"QNX_DOWNLOAD"
+		Value			on
+	      }
 	    }
 	    PropName		    "Components"
 	  }
@@ -672,14 +756,25 @@ Model {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Code Generation/Interface"
-      ConfigPrmDlgPosition     [ 102, 116, 1158, 903 ] 
+      ConfigPrmDlgPosition     [ 94, 86, 1166, 911 ] 
     }
     PropName		    "ConfigurationSets"
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    1
+    $ObjectID		    7
   }
+  Object {
+    $PropName		    "DataTransfer"
+    $ObjectID		    19
+    $ClassName		    "Simulink.GlobalDataTransfer"
+    DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
+    DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
+    DefaultTransitionBetweenContTasks "Ensure deterministic transfer (minimum delay)"
+    DefaultExtrapolationMethodBetweenContTasks "None"
+    AutoInsertRateTranBlk   [0]
+  }
+  ExplicitPartitioning	  off
   WSMdlFileData		  "DataTag0"
   BlockDefaults {
     ForegroundColor	    "black"
@@ -712,6 +807,25 @@ Model {
     FontWeight		    "normal"
     FontAngle		    "normal"
   }
+  MaskDefaults {
+    SelfModifiable	    "off"
+    IconFrame		    "on"
+    IconOpaque		    "on"
+    RunInitForIconRedraw    "off"
+    IconRotate		    "none"
+    PortRotate		    "default"
+    IconUnits		    "autoscale"
+  }
+  MaskParameterDefaults {
+    Evaluate		    "on"
+    Tunable		    "on"
+    NeverSave		    "off"
+    Internal		    "off"
+    ReadOnly		    "off"
+    Enabled		    "on"
+    Visible		    "on"
+    ToolTip		    "on"
+  }
   BlockParameterDefaults {
     Block {
       BlockType		      ActionPort
@@ -728,6 +842,7 @@ Model {
     }
     Block {
       BlockType		      BusSelector
+      OutputSignals	      "signal1,signal2,signal3"
       OutputAsBus	      off
     }
     Block {
@@ -762,10 +877,16 @@ Model {
     }
     Block {
       BlockType		      DiscreteFilter
+      NumeratorSource	      "Dialog"
       Numerator		      "[1]"
+      DenominatorSource	      "Dialog"
       Denominator	      "[1 0.5]"
-      InputProcessing	      "Elements as channels (sample based)"
+      InitialStatesSource     "Dialog"
       InitialStates	      "0"
+      InputProcessing	      "Elements as channels (sample based)"
+      ExternalReset	      "None"
+      InitialDenominatorStates "0"
+      FilterStructure	      "Direct form II"
       SampleTime	      "-1"
       a0EqualsOne	      off
       NumCoefMin	      "[]"
@@ -775,6 +896,7 @@ Model {
       OutMin		      "[]"
       OutMax		      "[]"
       StateDataTypeStr	      "Inherit: Same as input"
+      MultiplicandDataTypeStr "Inherit: Same as input"
       NumCoefDataTypeStr      "Inherit: Inherit via internal rule"
       DenCoefDataTypeStr      "Inherit: Inherit via internal rule"
       NumProductDataTypeStr   "Inherit: Inherit via internal rule"
@@ -814,6 +936,7 @@ Model {
     }
     Block {
       BlockType		      From
+      GotoTag		      "A"
       IconDisplay	      "Tag"
       TagVisibility	      "local"
     }
@@ -834,7 +957,9 @@ Model {
     }
     Block {
       BlockType		      Goto
+      GotoTag		      "A"
       IconDisplay	      "Tag"
+      TagVisibility	      "local"
     }
     Block {
       BlockType		      Inport
@@ -1023,12 +1148,20 @@ Model {
       RndMeth		      "Floor"
       SaturateOnIntegerOverflow	off
       FractionDataTypeStr     "Inherit: Inherit via internal rule"
+      SupportTunableTableSize off
+      MaximumIndicesForEachDimension "[]"
       LUTDesignTableMode      "Redesign Table"
       LUTDesignDataSource     "Block Dialog"
       LUTDesignFunctionName   "sqrt(x)"
       LUTDesignUseExistingBP  on
       LUTDesignRelError	      "0.01"
       LUTDesignAbsError	      "1e-6"
+    }
+    Block {
+      BlockType		      ManualSwitch
+      CurrentSetting	      "1"
+      varsize		      off
+      SampleTime	      "-1"
     }
     Block {
       BlockType		      Merge
@@ -1058,6 +1191,7 @@ Model {
       DataPortIndices	      "{1,2,3}"
       DataPortForDefault      "Last data port"
       DiagnosticForDefault    "Error"
+      zeroidx		      off
       InputSameDT	      on
       OutMin		      "[]"
       OutMax		      "[]"
@@ -1163,6 +1297,7 @@ Model {
       YMax		      "5"
       SaveToWorkspace	      off
       SaveName		      "ScopeData"
+      DataFormat	      "Array"
       LimitDataPoints	      on
       MaxDataPoints	      "5000"
       Decimation	      "1"
@@ -1184,6 +1319,7 @@ Model {
       SystemSampleTime	      "-1"
       RTWFcnNameOpts	      "Auto"
       RTWFileNameOpts	      "Auto"
+      FunctionInterfaceSpec   "void_void"
       RTWMemSecFuncInitTerm   "Inherit from model"
       RTWMemSecFuncExecute    "Inherit from model"
       RTWMemSecDataConstants  "Inherit from model"
@@ -1193,6 +1329,7 @@ Model {
       DataTypeOverride	      "UseLocalSettings"
       DataTypeOverrideAppliesTo	"AllNumericTypes"
       MinMaxOverflowLogging   "UseLocalSettings"
+      SFBlockType	      "NONE"
       Variant		      off
       GeneratePreprocessorConditionals off
     }
@@ -1257,7 +1394,7 @@ Model {
   }
   System {
     Name		    "sldemo_fuelsys"
-    Location		    [149, 132, 1202, 594]
+    Location		    [119, 52, 1228, 698]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1271,12 +1408,13 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "192"
+    SIDHighWatermark	    "211"
     Block {
       BlockType		      Constant
       Name		      "Constant2"
       SID		      "1"
       Position		      [210, 175, 230, 195]
+      ZOrder		      -1
       BlockRotation	      270
       NamePlacement	      "alternate"
       ShowName		      off
@@ -1287,6 +1425,7 @@ Model {
       Name		      "Constant3"
       SID		      "2"
       Position		      [210, 235, 230, 255]
+      ZOrder		      -2
       BlockRotation	      270
       NamePlacement	      "alternate"
       ShowName		      off
@@ -1297,6 +1436,7 @@ Model {
       Name		      "Constant4"
       SID		      "3"
       Position		      [210, 120, 230, 140]
+      ZOrder		      -3
       BlockRotation	      270
       NamePlacement	      "alternate"
       ShowName		      off
@@ -1307,32 +1447,18 @@ Model {
       Name		      "Constant5"
       SID		      "4"
       Position		      [210, 300, 230, 320]
+      ZOrder		      -4
       BlockRotation	      270
       NamePlacement	      "alternate"
       ShowName		      off
       Value		      "0"
     }
     Block {
-      BlockType		      Reference
+      BlockType		      ManualSwitch
       Name		      "EGO Sensor"
       SID		      "5"
-      Ports		      [2, 1]
       Position		      [250, 198, 290, 242]
-      LibraryVersion	      "1.236"
-      SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
-      SourceType	      "Manual Switch"
-      ShowPortLabels	      "FromPortIcon"
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      GeneratePreprocessorConditionals off
-      sw		      "1"
-      action		      "0"
-      varsize		      off
+      ZOrder		      -5
       Port {
 	PortNumber		1
 	Name			"ego"
@@ -1341,26 +1467,11 @@ Model {
       }
     }
     Block {
-      BlockType		      Reference
+      BlockType		      ManualSwitch
       Name		      "Engine\nSpeed\nSelector"
       SID		      "6"
-      Ports		      [2, 1]
       Position		      [85, 163, 130, 207]
-      LibraryVersion	      "1.236"
-      SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
-      SourceType	      "Manual Switch"
-      ShowPortLabels	      "FromPortIcon"
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      GeneratePreprocessorConditionals off
-      sw		      "1"
-      action		      "0"
-      varsize		      off
+      ZOrder		      -6
     }
     Block {
       BlockType		      SubSystem
@@ -1368,6 +1479,7 @@ Model {
       SID		      "7"
       Ports		      [3, 3]
       Position		      [710, 65, 805, 215]
+      ZOrder		      -7
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -1383,7 +1495,7 @@ Model {
       }
       System {
 	Name			"Engine Gas Dynamics"
-	Location		[32, 254, 620, 450]
+	Location		[16, 142, 660, 522]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1401,6 +1513,7 @@ Model {
 	  Name			  "engine speed"
 	  SID			  "8"
 	  Position		  [25, 63, 55, 77]
+	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -1408,6 +1521,7 @@ Model {
 	  Name			  "throttle angle"
 	  SID			  "9"
 	  Position		  [25, 98, 55, 112]
+	  ZOrder		  -2
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
@@ -1416,6 +1530,7 @@ Model {
 	  Name			  "fuel"
 	  SID			  "10"
 	  Position		  [25, 33, 55, 47]
+	  ZOrder		  -3
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	}
@@ -1425,6 +1540,7 @@ Model {
 	  SID			  "11"
 	  Ports			  [2, 2]
 	  Position		  [330, 25, 450, 85]
+	  ZOrder		  -4
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
 	  RTWSystemCode		  "Auto"
@@ -1434,7 +1550,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Mixing & Combustion"
-	    Location		    [175, 492, 820, 671]
+	    Location		    [145, 380, 846, 743]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1452,6 +1568,7 @@ Model {
 	      Name		      "fuel rate"
 	      SID		      "12"
 	      Position		      [30, 73, 60, 87]
+	      ZOrder		      -1
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -1459,6 +1576,7 @@ Model {
 	      Name		      "air flow"
 	      SID		      "13"
 	      Position		      [30, 38, 60, 52]
+	      ZOrder		      -2
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
@@ -1467,6 +1585,7 @@ Model {
 	      Name		      "Constant4"
 	      SID		      "14"
 	      Position		      [72, 125, 98, 145]
+	      ZOrder		      -3
 	      BlockRotation	      270
 	      NamePlacement	      "alternate"
 	      ShowName		      off
@@ -1478,6 +1597,7 @@ Model {
 	      SID		      "15"
 	      Ports		      [1, 1]
 	      Position		      [390, 56, 490, 84]
+	      ZOrder		      -4
 	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
@@ -1488,19 +1608,10 @@ Model {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
-	      MaskType		      "Stateflow"
-	      MaskDescription	      "Embedded MATLAB block"
-	      MaskSelfModifiable      on
-	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
-	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'fcn']);"
-	      MaskIconFrame	      on
-	      MaskIconOpaque	      off
-	      MaskIconRotate	      "none"
-	      MaskPortRotate	      "default"
-	      MaskIconUnits	      "normalized"
+	      SFBlockType	      "MATLAB Function"
 	      System {
 		Name			"EGO Sensor"
-		Location		[257, 457, 812, 717]
+		Location		[227, 345, 838, 789]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -1513,29 +1624,32 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"17"
+		SIDHighWatermark	"20"
 		Block {
 		  BlockType		  Inport
 		  Name			  "u"
 		  SID			  "15::1"
 		  Position		  [20, 101, 40, 119]
+		  ZOrder		  -1
 		  IconDisplay		  "Port number"
 		}
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "15::15"
+		  SID			  "15::19"
 		  Ports			  [1, 1]
-		  Position		  [270, 160, 320, 200]
+		  Position		  [270, 230, 320, 270]
+		  ZOrder		  2
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "15::14"
+		  SID			  "15::18"
 		  Tag			  "Stateflow S-Function sldemo_fuelsys 5"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
+		  ZOrder		  1
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[1 2]"
 		  EnableBusSupport	  off
@@ -1549,14 +1663,16 @@ Model {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "15::17"
-		  Position		  [460, 171, 480, 189]
+		  SID			  "15::20"
+		  Position		  [460, 241, 480, 259]
+		  ZOrder		  3
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "y"
 		  SID			  "15::5"
 		  Position		  [460, 101, 480, 119]
+		  ZOrder		  -5
 		  IconDisplay		  "Port number"
 		}
 		Line {
@@ -1593,6 +1709,7 @@ Model {
 	      SID		      "16"
 	      Ports		      [2, 1]
 	      Position		      [100, 72, 130, 103]
+	      ZOrder		      -5
 	      ShowName		      off
 	      Function		      "max"
 	      Inputs		      "2"
@@ -1603,6 +1720,7 @@ Model {
 	      SID		      "17"
 	      Ports		      [2, 1]
 	      Position		      [175, 22, 210, 113]
+	      ZOrder		      -6
 	      ShowName		      off
 	      Inputs		      "*/"
 	    }
@@ -1612,18 +1730,10 @@ Model {
 	      SID		      "18"
 	      Ports		      [1, 1]
 	      Position		      [250, 52, 310, 88]
-	      LibraryVersion	      "1.41"
+	      ZOrder		      -7
+	      LibraryVersion	      "1.44"
 	      SourceBlock	      "simulink_extras/Additional\nLinear/Transfer Fcn\n(with initial outputs)"
 	      SourceType	      "Transfer Function with Initial Outputs"
-	      ShowPortLabels	      "FromPortIcon"
-	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
-	      GeneratePreprocessorConditionals off
 	      N			      "3"
 	      D			      "[1 3]"
 	      Y0		      "1/14.6"
@@ -1634,6 +1744,7 @@ Model {
 	      Name		      "o2_out"
 	      SID		      "19"
 	      Position		      [565, 63, 595, 77]
+	      ZOrder		      -8
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -1641,6 +1752,7 @@ Model {
 	      Name		      "air/fuel ratio"
 	      SID		      "20"
 	      Position		      [565, 103, 595, 117]
+	      ZOrder		      -9
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
@@ -1702,6 +1814,7 @@ Model {
 	  SID			  "21"
 	  Ports			  [2, 2]
 	  Position		  [100, 51, 280, 124]
+	  ZOrder		  -5
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
 	  RTWSystemCode		  "Auto"
@@ -1711,7 +1824,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "Throttle & Manifold"
-	    Location		    [32, 254, 612, 607]
+	    Location		    [16, 142, 652, 679]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1729,6 +1842,7 @@ Model {
 	      Name		      "Engine Speed, N"
 	      SID		      "22"
 	      Position		      [120, 222, 150, 238]
+	      ZOrder		      -1
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -1736,6 +1850,7 @@ Model {
 	      Name		      "Throttle Ang."
 	      SID		      "23"
 	      Position		      [25, 52, 55, 68]
+	      ZOrder		      -2
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
@@ -1744,6 +1859,7 @@ Model {
 	      Name		      "Atmospheric\nPressure, Pa\n(bar)"
 	      SID		      "24"
 	      Position		      [100, 110, 120, 130]
+	      ZOrder		      -3
 	      Value		      "1.0"
 	    }
 	    Block {
@@ -1752,6 +1868,7 @@ Model {
 	      SID		      "25"
 	      Ports		      [2, 2]
 	      Position		      [215, 178, 450, 247]
+	      ZOrder		      -4
 	      MinAlgLoopOccurrences   off
 	      PropExecContextOutsideSubsystem off
 	      RTWSystemCode	      "Auto"
@@ -1761,7 +1878,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Intake Manifold"
-		Location		[52, 472, 747, 741]
+		Location		[22, 360, 773, 813]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -1779,6 +1896,7 @@ Model {
 		  Name			  "mdot Input \n(g/s)"
 		  SID			  "26"
 		  Position		  [40, 63, 70, 77]
+		  ZOrder		  -1
 		  IconDisplay		  "Port number"
 		}
 		Block {
@@ -1786,6 +1904,7 @@ Model {
 		  Name			  "N (rad/sec)"
 		  SID			  "27"
 		  Position		  [245, 148, 275, 162]
+		  ZOrder		  -2
 		  Port			  "2"
 		  IconDisplay		  "Port number"
 		}
@@ -1795,6 +1914,7 @@ Model {
 		  SID			  "28"
 		  Ports			  [2, 1]
 		  Position		  [445, 100, 535, 140]
+		  ZOrder		  -3
 		  ShowName		  off
 		  ErrorFcn		  "Stateflow.Translate.translate"
 		  PermitHierarchicalResolution "ExplicitOnly"
@@ -1806,19 +1926,10 @@ Model {
 		  Opaque		  off
 		  RequestExecContextInheritance	off
 		  MaskHideContents	  off
-		  MaskType		  "Stateflow"
-		  MaskDescription	  "Embedded MATLAB block"
-		  MaskSelfModifiable	  on
-		  MaskDisplay		  "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('private"
-		  "/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'pumping']);"
-		  MaskIconFrame		  on
-		  MaskIconOpaque	  off
-		  MaskIconRotate	  "none"
-		  MaskPortRotate	  "default"
-		  MaskIconUnits		  "normalized"
+		  SFBlockType		  "MATLAB Function"
 		  System {
 		    Name		    "MATLAB Function"
-		    Location		    [257, 457, 812, 717]
+		    Location		    [227, 345, 838, 789]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -1831,12 +1942,13 @@ Model {
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
 		    ZoomFactor		    "100"
-		    SIDHighWatermark	    "18"
+		    SIDHighWatermark	    "21"
 		    Block {
 		    BlockType		    Inport
 		    Name		    "u1"
 		    SID			    "28::1"
 		    Position		    [20, 101, 40, 119]
+		    ZOrder		    -1
 		    IconDisplay		    "Port number"
 		    }
 		    Block {
@@ -1844,24 +1956,27 @@ Model {
 		    Name		    "u2"
 		    SID			    "28::2"
 		    Position		    [20, 136, 40, 154]
+		    ZOrder		    -2
 		    Port		    "2"
 		    IconDisplay		    "Port number"
 		    }
 		    Block {
 		    BlockType		    Demux
 		    Name		    " Demux "
-		    SID			    "28::16"
+		    SID			    "28::20"
 		    Ports		    [1, 1]
-		    Position		    [270, 160, 320, 200]
+		    Position		    [270, 230, 320, 270]
+		    ZOrder		    2
 		    Outputs		    "1"
 		    }
 		    Block {
 		    BlockType		    S-Function
 		    Name		    " SFunction "
-		    SID			    "28::15"
+		    SID			    "28::19"
 		    Tag			    "Stateflow S-Function sldemo_fuelsys 4"
 		    Ports		    [2, 2]
 		    Position		    [180, 100, 230, 160]
+		    ZOrder		    1
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[2 2]"
 		    EnableBusSupport	    off
@@ -1875,19 +1990,22 @@ Model {
 		    Block {
 		    BlockType		    Terminator
 		    Name		    " Terminator "
-		    SID			    "28::18"
-		    Position		    [460, 171, 480, 189]
+		    SID			    "28::21"
+		    Position		    [460, 241, 480, 259]
+		    ZOrder		    3
 		    }
 		    Block {
 		    BlockType		    Outport
 		    Name		    "y"
 		    SID			    "28::6"
 		    Position		    [460, 101, 480, 119]
+		    ZOrder		    -6
 		    IconDisplay		    "Port number"
 		    }
 		    Line {
 		    SrcBlock		    "u1"
 		    SrcPort		    1
+		    Points		    [120, 0]
 		    DstBlock		    " SFunction "
 		    DstPort		    1
 		    }
@@ -1924,6 +2042,7 @@ Model {
 		  Name			  "RT/Vm"
 		  SID			  "29"
 		  Position		  [185, 70, 280, 110]
+		  ZOrder		  -4
 		  Gain			  "0.41328"
 		}
 		Block {
@@ -1932,6 +2051,7 @@ Model {
 		  SID			  "30"
 		  Ports			  [2, 1]
 		  Position		  [125, 49, 140, 131]
+		  ZOrder		  -5
 		  ShowName		  off
 		  Inputs		  "+-"
 		}
@@ -1941,6 +2061,7 @@ Model {
 		  SID			  "31"
 		  Ports			  [1, 1]
 		  Position		  [320, 61, 350, 119]
+		  ZOrder		  -6
 		  InitialCondition	  ".589"
 		}
 		Block {
@@ -1948,6 +2069,7 @@ Model {
 		  Name			  "mdot to\nCylinder\n (g/s)"
 		  SID			  "32"
 		  Position		  [620, 113, 650, 127]
+		  ZOrder		  -7
 		  IconDisplay		  "Port number"
 		}
 		Block {
@@ -1955,6 +2077,7 @@ Model {
 		  Name			  "Manifold Pressure,\nPm (bar)"
 		  SID			  "33"
 		  Position		  [620, 18, 650, 32]
+		  ZOrder		  -8
 		  Port			  "2"
 		  IconDisplay		  "Port number"
 		}
@@ -2013,8 +2136,10 @@ Model {
 		  }
 		}
 		Annotation {
+		  SID			  "193"
 		  Name			  "Intake Manifold Vacuum"
 		  Position		  [332, 243]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  FontSize		  16
 		  FontWeight		  "bold"
@@ -2027,6 +2152,7 @@ Model {
 	      SID		      "34"
 	      Ports		      [1, 1]
 	      Position		      [115, 48, 135, 72]
+	      ZOrder		      -5
 	      InputPortMap	      "u0"
 	      UpperLimit	      "inf"
 	      LowerLimit	      "0"
@@ -2037,6 +2163,7 @@ Model {
 	      SID		      "35"
 	      Ports		      [3, 1]
 	      Position		      [180, 48, 485, 132]
+	      ZOrder		      -6
 	      MinAlgLoopOccurrences   off
 	      PropExecContextOutsideSubsystem off
 	      RTWSystemCode	      "Auto"
@@ -2046,7 +2173,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Throttle"
-		Location		[32, 254, 717, 688]
+		Location		[16, 142, 757, 760]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -2064,6 +2191,7 @@ Model {
 		  Name			  "Throttle Angle,\ntheta (deg)"
 		  SID			  "36"
 		  Position		  [60, 73, 90, 87]
+		  ZOrder		  -1
 		  IconDisplay		  "Port number"
 		}
 		Block {
@@ -2071,6 +2199,7 @@ Model {
 		  Name			  "Manifold Pressure,\nPm (bar)"
 		  SID			  "37"
 		  Position		  [60, 133, 90, 147]
+		  ZOrder		  -2
 		  Port			  "2"
 		  IconDisplay		  "Port number"
 		}
@@ -2079,6 +2208,7 @@ Model {
 		  Name			  "Atmospheric Pressure,\nPa (bar) "
 		  SID			  "38"
 		  Position		  [60, 203, 90, 217]
+		  ZOrder		  -3
 		  Port			  "3"
 		  IconDisplay		  "Port number"
 		}
@@ -2088,8 +2218,8 @@ Model {
 		  SID			  "39"
 		  Ports			  [2, 1]
 		  Position		  [240, 120, 265, 235]
+		  ZOrder		  -4
 		  ShowName		  off
-		  Function		  "min"
 		  Inputs		  "2"
 		  Port {
 		    PortNumber		    1
@@ -2104,6 +2234,7 @@ Model {
 		  SID			  "40"
 		  Ports			  [3, 1]
 		  Position		  [555, 22, 575, 378]
+		  ZOrder		  -5
 		  ShowName		  off
 		  Inputs		  "3"
 		}
@@ -2113,6 +2244,7 @@ Model {
 		  SID			  "41"
 		  Ports			  [2, 1]
 		  Position		  [180, 132, 210, 163]
+		  ZOrder		  -6
 		  ShowName		  off
 		  Inputs		  "*/"
 		}
@@ -2122,6 +2254,7 @@ Model {
 		  SID			  "42"
 		  Ports			  [2, 1]
 		  Position		  [180, 187, 210, 218]
+		  ZOrder		  -7
 		  ShowName		  off
 		  Inputs		  "/*"
 		}
@@ -2130,6 +2263,7 @@ Model {
 		  Name			  "Sonic Flow "
 		  SID			  "43"
 		  Position		  [345, 235, 365, 255]
+		  ZOrder		  -8
 		  Value			  "1.0"
 		}
 		Block {
@@ -2138,6 +2272,7 @@ Model {
 		  SID			  "44"
 		  Ports			  [2, 1]
 		  Position		  [180, 302, 210, 333]
+		  ZOrder		  -9
 		  ShowName		  off
 		  Inputs		  "+-"
 		}
@@ -2146,6 +2281,7 @@ Model {
 		  Name			  "direction"
 		  SID			  "45"
 		  Position		  [300, 304, 335, 336]
+		  ZOrder		  -10
 		}
 		Block {
 		  BlockType		  SubSystem
@@ -2153,6 +2289,7 @@ Model {
 		  SID			  "46"
 		  Ports			  [1, 1]
 		  Position		  [300, 67, 380, 93]
+		  ZOrder		  -11
 		  ErrorFcn		  "Stateflow.Translate.translate"
 		  PermitHierarchicalResolution "ExplicitOnly"
 		  TreatAsAtomicUnit	  on
@@ -2163,19 +2300,10 @@ Model {
 		  Opaque		  off
 		  RequestExecContextInheritance	off
 		  MaskHideContents	  off
-		  MaskType		  "Stateflow"
-		  MaskDescription	  "Embedded MATLAB block"
-		  MaskSelfModifiable	  on
-		  MaskDisplay		  "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('private"
-		  "/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'f']);"
-		  MaskIconFrame		  on
-		  MaskIconOpaque	  off
-		  MaskIconRotate	  "none"
-		  MaskPortRotate	  "default"
-		  MaskIconUnits		  "normalized"
+		  SFBlockType		  "MATLAB Function"
 		  System {
 		    Name		    "f(theta)"
-		    Location		    [257, 457, 812, 717]
+		    Location		    [227, 345, 838, 789]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -2188,29 +2316,32 @@ Model {
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
 		    ZoomFactor		    "100"
-		    SIDHighWatermark	    "17"
+		    SIDHighWatermark	    "20"
 		    Block {
 		    BlockType		    Inport
 		    Name		    "u"
 		    SID			    "46::1"
 		    Position		    [20, 101, 40, 119]
+		    ZOrder		    -1
 		    IconDisplay		    "Port number"
 		    }
 		    Block {
 		    BlockType		    Demux
 		    Name		    " Demux "
-		    SID			    "46::15"
+		    SID			    "46::19"
 		    Ports		    [1, 1]
-		    Position		    [270, 160, 320, 200]
+		    Position		    [270, 230, 320, 270]
+		    ZOrder		    2
 		    Outputs		    "1"
 		    }
 		    Block {
 		    BlockType		    S-Function
 		    Name		    " SFunction "
-		    SID			    "46::14"
+		    SID			    "46::18"
 		    Tag			    "Stateflow S-Function sldemo_fuelsys 2"
 		    Ports		    [1, 2]
 		    Position		    [180, 100, 230, 160]
+		    ZOrder		    1
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
 		    EnableBusSupport	    off
@@ -2224,14 +2355,16 @@ Model {
 		    Block {
 		    BlockType		    Terminator
 		    Name		    " Terminator "
-		    SID			    "46::17"
-		    Position		    [460, 171, 480, 189]
+		    SID			    "46::20"
+		    Position		    [460, 241, 480, 259]
+		    ZOrder		    3
 		    }
 		    Block {
 		    BlockType		    Outport
 		    Name		    "y"
 		    SID			    "46::5"
 		    Position		    [460, 101, 480, 119]
+		    ZOrder		    -5
 		    IconDisplay		    "Port number"
 		    }
 		    Line {
@@ -2268,6 +2401,7 @@ Model {
 		  SID			  "47"
 		  Ports			  [1, 1]
 		  Position		  [345, 142, 425, 168]
+		  ZOrder		  -12
 		  ErrorFcn		  "Stateflow.Translate.translate"
 		  PermitHierarchicalResolution "ExplicitOnly"
 		  TreatAsAtomicUnit	  on
@@ -2278,19 +2412,10 @@ Model {
 		  Opaque		  off
 		  RequestExecContextInheritance	off
 		  MaskHideContents	  off
-		  MaskType		  "Stateflow"
-		  MaskDescription	  "Embedded MATLAB block"
-		  MaskSelfModifiable	  on
-		  MaskDisplay		  "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('private"
-		  "/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'g']);"
-		  MaskIconFrame		  on
-		  MaskIconOpaque	  off
-		  MaskIconRotate	  "none"
-		  MaskPortRotate	  "default"
-		  MaskIconUnits		  "normalized"
+		  SFBlockType		  "MATLAB Function"
 		  System {
 		    Name		    "g(pratio)"
-		    Location		    [257, 457, 812, 717]
+		    Location		    [227, 345, 838, 789]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -2303,29 +2428,32 @@ Model {
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
 		    ZoomFactor		    "100"
-		    SIDHighWatermark	    "17"
+		    SIDHighWatermark	    "20"
 		    Block {
 		    BlockType		    Inport
 		    Name		    "u"
 		    SID			    "47::1"
 		    Position		    [20, 101, 40, 119]
+		    ZOrder		    -1
 		    IconDisplay		    "Port number"
 		    }
 		    Block {
 		    BlockType		    Demux
 		    Name		    " Demux "
-		    SID			    "47::15"
+		    SID			    "47::19"
 		    Ports		    [1, 1]
-		    Position		    [270, 160, 320, 200]
+		    Position		    [270, 230, 320, 270]
+		    ZOrder		    2
 		    Outputs		    "1"
 		    }
 		    Block {
 		    BlockType		    S-Function
 		    Name		    " SFunction "
-		    SID			    "47::14"
+		    SID			    "47::18"
 		    Tag			    "Stateflow S-Function sldemo_fuelsys 3"
 		    Ports		    [1, 2]
 		    Position		    [180, 100, 230, 160]
+		    ZOrder		    1
 		    FunctionName	    "sf_sfun"
 		    PortCounts		    "[1 2]"
 		    EnableBusSupport	    off
@@ -2339,14 +2467,16 @@ Model {
 		    Block {
 		    BlockType		    Terminator
 		    Name		    " Terminator "
-		    SID			    "47::17"
-		    Position		    [460, 171, 480, 189]
+		    SID			    "47::20"
+		    Position		    [460, 241, 480, 259]
+		    ZOrder		    3
 		    }
 		    Block {
 		    BlockType		    Outport
 		    Name		    "y"
 		    SID			    "47::5"
 		    Position		    [460, 101, 480, 119]
+		    ZOrder		    -5
 		    IconDisplay		    "Port number"
 		    }
 		    Line {
@@ -2382,6 +2512,7 @@ Model {
 		  Name			  "threshold = 0.5"
 		  SID			  "48"
 		  Position		  [470, 131, 495, 269]
+		  ZOrder		  -13
 		  Threshold		  "0.5"
 		}
 		Block {
@@ -2389,6 +2520,7 @@ Model {
 		  Name			  "Throttle \nFlow, mdot\n (g/s)"
 		  SID			  "49"
 		  Position		  [615, 193, 645, 207]
+		  ZOrder		  -14
 		  IconDisplay		  "Port number"
 		}
 		Line {
@@ -2512,8 +2644,10 @@ Model {
 		  DstPort		  1
 		}
 		Annotation {
+		  SID			  "194"
 		  Name			  "Throttle Flow vs. Valve Angle and Pressure"
 		  Position		  [321, 387]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  FontSize		  16
 		  FontWeight		  "bold"
@@ -2525,6 +2659,7 @@ Model {
 	      Name		      "Mass Airflow Rate"
 	      SID		      "50"
 	      Position		      [505, 187, 535, 203]
+	      ZOrder		      -7
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -2532,6 +2667,7 @@ Model {
 	      Name		      "MAP (bar)"
 	      SID		      "51"
 	      Position		      [510, 222, 540, 238]
+	      ZOrder		      -8
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
@@ -2587,8 +2723,10 @@ Model {
 	      }
 	    }
 	    Annotation {
+	      SID		      "195"
 	      Name		      "Air-Fuel Intake Dynamics"
 	      Position		      [282, 313]
+	      ZOrder		      -1
 	      FontName		      "Arial"
 	      FontSize		      16
 	      FontWeight	      "bold"
@@ -2600,6 +2738,7 @@ Model {
 	  Name			  "o2_out"
 	  SID			  "52"
 	  Position		  [505, 33, 535, 47]
+	  ZOrder		  -6
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -2607,6 +2746,7 @@ Model {
 	  Name			  "MAP"
 	  SID			  "53"
 	  Position		  [505, 98, 535, 112]
+	  ZOrder		  -7
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
@@ -2615,6 +2755,7 @@ Model {
 	  Name			  "air/fuel ratio"
 	  SID			  "54"
 	  Position		  [505, 63, 535, 77]
+	  ZOrder		  -8
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	}
@@ -2667,29 +2808,15 @@ Model {
       Name		      "High \nSpeed"
       SID		      "55"
       Position		      [15, 188, 45, 202]
+      ZOrder		      -8
       Value		      "700"
     }
     Block {
-      BlockType		      Reference
+      BlockType		      ManualSwitch
       Name		      "MAP Sensor"
       SID		      "56"
-      Ports		      [2, 1]
       Position		      [250, 259, 290, 301]
-      LibraryVersion	      "1.236"
-      SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
-      SourceType	      "Manual Switch"
-      ShowPortLabels	      "FromPortIcon"
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      GeneratePreprocessorConditionals off
-      sw		      "1"
-      action		      "0"
-      varsize		      off
+      ZOrder		      -9
       Port {
 	PortNumber		1
 	Name			"map"
@@ -2702,6 +2829,7 @@ Model {
       Name		      "Nominal\nSpeed"
       SID		      "57"
       Position		      [15, 168, 45, 182]
+      ZOrder		      -10
       NamePlacement	      "alternate"
       Value		      "300"
     }
@@ -2711,6 +2839,7 @@ Model {
       SID		      "58"
       Ports		      [2]
       Position		      [742, 290, 773, 320]
+      ZOrder		      -11
       BlockRotation	      270
       BlockMirror	      on
       NamePlacement	      "alternate"
@@ -2725,6 +2854,7 @@ Model {
 	axes1			"%<SignalLabel>"
 	axes2			"%<SignalLabel>"
       }
+      ShowLegends	      off
       TimeRange		      "8"
       YMin		      "0.75~11"
       YMax		      "2.25~16"
@@ -2733,26 +2863,11 @@ Model {
       SampleTime	      "0"
     }
     Block {
-      BlockType		      Reference
+      BlockType		      ManualSwitch
       Name		      "Speed Sensor"
       SID		      "59"
-      Ports		      [2, 1]
       Position		      [250, 139, 290, 181]
-      LibraryVersion	      "1.236"
-      SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
-      SourceType	      "Manual Switch"
-      ShowPortLabels	      "FromPortIcon"
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      GeneratePreprocessorConditionals off
-      sw		      "1"
-      action		      "0"
-      varsize		      off
+      ZOrder		      -12
       Port {
 	PortNumber		1
 	Name			"speed"
@@ -2766,42 +2881,19 @@ Model {
       SID		      "60"
       Ports		      [0, 1]
       Position		      [155, 75, 185, 105]
-      LibraryVersion	      "1.236"
+      ZOrder		      -13
+      LibraryVersion	      "1.274"
       SourceBlock	      "simulink/Sources/Repeating\nSequence"
       SourceType	      "Repeating table"
-      ShowPortLabels	      "FromPortIcon"
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      GeneratePreprocessorConditionals off
       rep_seq_t		      "[0 2 4]"
       rep_seq_y		      "[10 20 10]"
     }
     Block {
-      BlockType		      Reference
+      BlockType		      ManualSwitch
       Name		      "Throttle Sensor"
       SID		      "61"
-      Ports		      [2, 1]
       Position		      [250, 80, 290, 120]
-      LibraryVersion	      "1.236"
-      SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
-      SourceType	      "Manual Switch"
-      ShowPortLabels	      "FromPortIcon"
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      GeneratePreprocessorConditionals off
-      sw		      "1"
-      action		      "0"
-      varsize		      off
+      ZOrder		      -14
       Port {
 	PortNumber		1
 	Name			"throttle"
@@ -2815,6 +2907,7 @@ Model {
       SID		      "62"
       Ports		      [4, 1]
       Position		      [355, 67, 400, 313]
+      ZOrder		      -15
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -2822,15 +2915,15 @@ Model {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskDisplay	      "fprintf('Convert')"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		20
+	$ClassName		"Simulink.Mask"
+	Display			"fprintf('Convert')"
+      }
       System {
 	Name			"To Controller"
-	Location		[91, 188, 713, 489]
+	Location		[61, 76, 739, 561]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2848,6 +2941,7 @@ Model {
 	  Name			  "throttle"
 	  SID			  "63"
 	  Position		  [45, 38, 75, 52]
+	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -2855,6 +2949,7 @@ Model {
 	  Name			  "speed"
 	  SID			  "64"
 	  Position		  [45, 98, 75, 112]
+	  ZOrder		  -2
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
@@ -2863,6 +2958,7 @@ Model {
 	  Name			  "ego"
 	  SID			  "65"
 	  Position		  [45, 158, 75, 172]
+	  ZOrder		  -3
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	}
@@ -2871,6 +2967,7 @@ Model {
 	  Name			  "map"
 	  SID			  "66"
 	  Position		  [45, 218, 75, 232]
+	  ZOrder		  -4
 	  Port			  "4"
 	  IconDisplay		  "Port number"
 	}
@@ -2880,6 +2977,7 @@ Model {
 	  SID			  "67"
 	  Ports			  [4, 1]
 	  Position		  [270, 13, 275, 257]
+	  ZOrder		  -5
 	  ShowName		  off
 	  DisplayOption		  "bar"
 	  OutDataTypeStr	  "Bus: EngSensors"
@@ -2890,6 +2988,7 @@ Model {
 	  Name			  "DTC1"
 	  SID			  "68"
 	  Position		  [145, 33, 185, 57]
+	  ZOrder		  -6
 	  ShowName		  off
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
@@ -2906,6 +3005,7 @@ Model {
 	  Name			  "DTC2"
 	  SID			  "69"
 	  Position		  [145, 93, 185, 117]
+	  ZOrder		  -7
 	  ShowName		  off
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
@@ -2922,6 +3022,7 @@ Model {
 	  Name			  "DTC3"
 	  SID			  "70"
 	  Position		  [145, 153, 185, 177]
+	  ZOrder		  -8
 	  ShowName		  off
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
@@ -2938,6 +3039,7 @@ Model {
 	  Name			  "DTC4"
 	  SID			  "71"
 	  Position		  [145, 213, 185, 237]
+	  ZOrder		  -9
 	  ShowName		  off
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
@@ -2954,6 +3056,7 @@ Model {
 	  Name			  "Rate Transition"
 	  SID			  "72"
 	  Position		  [370, 114, 410, 156]
+	  ZOrder		  -10
 	  ShowName		  off
 	  OutPortSampleTime	  "0.01"
 	}
@@ -2963,20 +3066,12 @@ Model {
 	  SID			  "73"
 	  Ports			  []
 	  Position		  [452, 35, 492, 74]
-	  LibraryVersion	  "1.236"
+	  ZOrder		  -11
+	  LibraryVersion	  "1.274"
 	  UserDataPersistent	  on
 	  UserData		  "DataTag1"
 	  SourceBlock		  "simulink/Model-Wide\nUtilities/DocBlock"
 	  SourceType		  "DocBlock"
-	  ShowPortLabels	  "FromPortIcon"
-	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData off
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
-	  GeneratePreprocessorConditionals off
 	  DocumentType		  "Text"
 	}
 	Block {
@@ -2984,6 +3079,7 @@ Model {
 	  Name			  "sensors"
 	  SID			  "74"
 	  Position		  [495, 128, 525, 142]
+	  ZOrder		  -12
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -3055,10 +3151,12 @@ Model {
 	  DstPort		  1
 	}
 	Annotation {
+	  SID			  "196"
 	  Name			  "This system:\n- Packs individual sensors into a EngSensors bus signal\n- Permits bus elements data types "
 	  "to change\n- Converts signals from continuous to discrete time"
 	  Position		  [294, 224]
 	  HorizontalAlignment	  "left"
+	  ZOrder		  -1
 	  FontName		  "Arial"
 	}
       }
@@ -3069,6 +3167,7 @@ Model {
       SID		      "75"
       Ports		      [1, 1]
       Position		      [615, 165, 655, 215]
+      ZOrder		      -16
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -3076,12 +3175,12 @@ Model {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskDisplay	      "fprintf('Convert')"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		21
+	$ClassName		"Simulink.Mask"
+	Display			"fprintf('Convert')"
+      }
       Port {
 	PortNumber		1
 	Name			"fuel"
@@ -3090,7 +3189,7 @@ Model {
       }
       System {
 	Name			"To Plant"
-	Location		[399, 211, 795, 382]
+	Location		[369, 99, 821, 454]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -3108,6 +3207,7 @@ Model {
 	  Name			  "In1"
 	  SID			  "76"
 	  Position		  [25, 43, 55, 57]
+	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
@@ -3115,6 +3215,7 @@ Model {
 	  Name			  "DTC5"
 	  SID			  "77"
 	  Position		  [130, 38, 170, 62]
+	  ZOrder		  -2
 	  ShowName		  off
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
@@ -3124,6 +3225,7 @@ Model {
 	  Name			  "Rate Transition1"
 	  SID			  "78"
 	  Position		  [235, 29, 275, 71]
+	  ZOrder		  -3
 	  ShowName		  off
 	  Integrity		  off
 	  X0			  "1.6"
@@ -3134,6 +3236,7 @@ Model {
 	  Name			  "Out1"
 	  SID			  "79"
 	  Position		  [340, 43, 370, 57]
+	  ZOrder		  -4
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -3155,10 +3258,12 @@ Model {
 	  DstPort		  1
 	}
 	Annotation {
+	  SID			  "197"
 	  Name			  "This system:\n- Permits upstream signal data type to change\n- Converts signals from discrete to continuo"
 	  "us time"
 	  Position		  [49, 129]
 	  HorizontalAlignment	  "left"
+	  ZOrder		  -1
 	  FontName		  "Arial"
 	}
       }
@@ -3170,6 +3275,7 @@ Model {
       Tag		      "FuelRateControl"
       Ports		      [1, 1]
       Position		      [475, 130, 555, 250]
+      ZOrder		      -17
       FontName		      "Arial"
       TreatAsAtomicUnit	      on
       MinAlgLoopOccurrences   off
@@ -3181,7 +3287,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"fuel_rate_control"
-	Location		[70, 221, 924, 514]
+	Location		[40, 109, 950, 586]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -3199,6 +3305,7 @@ Model {
 	  Name			  "sensors"
 	  SID			  "81"
 	  Position		  [15, 188, 45, 202]
+	  ZOrder		  -1
 	  FontName		  "Arial"
 	  IconDisplay		  "Port number"
 	  OutMin		  "0"
@@ -3211,6 +3318,7 @@ Model {
 	  SID			  "82"
 	  Ports			  [3, 2]
 	  Position		  [405, 64, 525, 196]
+	  ZOrder		  -2
 	  FontName		  "Arial"
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -3221,7 +3329,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "airflow_calc"
-	    Location		    [49, 171, 961, 673]
+	    Location		    [19, 59, 987, 745]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -3239,6 +3347,7 @@ Model {
 	      Name		      "sensors"
 	      SID		      "83"
 	      Position		      [20, 193, 50, 207]
+	      ZOrder		      -1
 	      FontName		      "Arial"
 	      IconDisplay	      "Port number"
 	    }
@@ -3247,6 +3356,7 @@ Model {
 	      Name		      "O2_normal"
 	      SID		      "84"
 	      Position		      [20, 403, 50, 417]
+	      ZOrder		      -2
 	      FontName		      "Arial"
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -3256,6 +3366,7 @@ Model {
 	      Name		      "fuel_mode"
 	      SID		      "85"
 	      Position		      [20, 433, 50, 447]
+	      ZOrder		      -3
 	      FontName		      "Arial"
 	      Port		      "3"
 	      IconDisplay	      "Port number"
@@ -3266,6 +3377,7 @@ Model {
 	      SID		      "86"
 	      Ports		      [1, 4]
 	      Position		      [125, 43, 130, 352]
+	      ZOrder		      -4
 	      ShowName		      off
 	      FontName		      "Arial"
 	      OutputSignals	      "throttle,speed,map,ego"
@@ -3299,6 +3411,7 @@ Model {
 	      Name		      "Constant"
 	      SID		      "87"
 	      Position		      [335, 300, 365, 320]
+	      ZOrder		      -5
 	      BlockRotation	      270
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
@@ -3312,6 +3425,7 @@ Model {
 	      Name		      "Constant2"
 	      SID		      "89"
 	      Position		      [602, 415, 618, 435]
+	      ZOrder		      -6
 	      BlockRotation	      270
 	      ShowName		      off
 	      FontName		      "Arial"
@@ -3323,6 +3437,7 @@ Model {
 	      Name		      "Data Type \nConversion"
 	      SID		      "90"
 	      Position		      [310, 355, 350, 375]
+	      ZOrder		      -7
 	      ShowName		      off
 	      FontName		      "Arial"
 	      OutDataTypeStr	      "s16En7"
@@ -3335,11 +3450,9 @@ Model {
 	      SID		      "91"
 	      Ports		      [1, 1]
 	      Position		      [725, 352, 765, 388]
+	      ZOrder		      -8
 	      ShowName		      off
 	      FontName		      "Arial"
-	      IntegratorMethod	      "Integration: Forward Euler"
-	      ExternalReset	      "none"
-	      InitialConditionSource  "internal"
 	      InitialConditionMode    "State only (most efficient)"
 	      SampleTime	      "-1"
 	      OutDataTypeStr	      "s16En15"
@@ -3353,20 +3466,12 @@ Model {
 	      SID		      "191"
 	      Ports		      [0, 1]
 	      Position		      [70, 453, 190, 477]
+	      ZOrder		      -9
 	      ShowName		      off
-	      LibraryVersion	      "1.236"
+	      LibraryVersion	      "1.274"
 	      FontName		      "Arial"
 	      SourceBlock	      "simulink/Sources/Enumerated\nConstant"
 	      SourceType	      "Enumerated Constant"
-	      ShowPortLabels	      "FromPortIcon"
-	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
-	      GeneratePreprocessorConditionals off
 	      OutDataTypeStr	      "Enum: sld_FuelModes"
 	      Value		      "sld_FuelModes.LOW"
 	      SampleTime	      ".01"
@@ -3377,6 +3482,7 @@ Model {
 	      SID		      "92"
 	      Ports		      [2, 1]
 	      Position		      [422, 413, 459, 447]
+	      ZOrder		      -10
 	      ShowName		      off
 	      FontName		      "Arial"
 	      IconShape		      "distinctive"
@@ -3394,6 +3500,7 @@ Model {
 	      Name		      "Oxygen Sensor\nSwitching Threshold"
 	      SID		      "93"
 	      Position		      [150, 335, 175, 355]
+	      ZOrder		      -11
 	      FontName		      "Arial"
 	      Value		      "0.5"
 	      OutDataTypeStr	      "s16En7"
@@ -3404,6 +3511,7 @@ Model {
 	      SID		      "94"
 	      Ports		      [2, 1]
 	      Position		      [505, 113, 525, 197]
+	      ZOrder		      -12
 	      ShowName		      off
 	      FontName		      "Arial"
 	      InputSameDT	      off
@@ -3417,6 +3525,7 @@ Model {
 	      SID		      "95"
 	      Ports		      [2, 1]
 	      Position		      [535, 331, 575, 364]
+	      ZOrder		      -13
 	      ShowName		      off
 	      FontName		      "Arial"
 	      InputSameDT	      off
@@ -3436,6 +3545,7 @@ Model {
 	      SID		      "96"
 	      Ports		      [2, 1]
 	      Position		      [595, 125, 615, 240]
+	      ZOrder		      -14
 	      ShowName		      off
 	      FontName		      "Arial"
 	      InputSameDT	      off
@@ -3449,6 +3559,7 @@ Model {
 	      SID		      "97"
 	      Ports		      [2, 1]
 	      Position		      [285, 145, 355, 200]
+	      ZOrder		      -15
 	      FontName		      "Arial"
 	      BreakpointsForDimension1 "SpeedVect"
 	      BreakpointsForDimension2 "PressVect"
@@ -3466,6 +3577,7 @@ Model {
 	      SID		      "98"
 	      Ports		      [2, 1]
 	      Position		      [435, 255, 505, 310]
+	      ZOrder		      -16
 	      FontName		      "Arial"
 	      BreakpointsForDimension1 "RampRateKiX"
 	      BreakpointsForDimension2 "RampRateKiY"
@@ -3483,6 +3595,7 @@ Model {
 	      SID		      "99"
 	      Ports		      [2, 1]
 	      Position		      [270, 429, 300, 476]
+	      ZOrder		      -17
 	      ShowName		      off
 	      FontName		      "Arial"
 	      Operator		      "=="
@@ -3500,6 +3613,7 @@ Model {
 	      SID		      "100"
 	      Ports		      [2, 1]
 	      Position		      [240, 294, 265, 361]
+	      ZOrder		      -18
 	      ShowName		      off
 	      FontName		      "Arial"
 	      Operator		      "<="
@@ -3512,6 +3626,7 @@ Model {
 	      SID		      "101"
 	      Ports		      [2, 1]
 	      Position		      [685, 33, 705, 237]
+	      ZOrder		      -19
 	      ShowName		      off
 	      FontName		      "Arial"
 	      Inputs		      "2"
@@ -3526,6 +3641,7 @@ Model {
 	      SID		      "102"
 	      Ports		      [2, 1]
 	      Position		      [410, 336, 425, 374]
+	      ZOrder		      -20
 	      ShowName		      off
 	      FontName		      "Arial"
 	      Inputs		      "-+"
@@ -3544,8 +3660,11 @@ Model {
 	      BlockType		      DiscreteFilter
 	      Name		      "Throttle Transient"
 	      SID		      "103"
+	      Ports		      [1, 1]
 	      Position		      [355, 67, 415, 103]
+	      ZOrder		      -21
 	      FontName		      "Arial"
+	      InputPortMap	      "u0"
 	      Numerator		      "[.01 -.01]"
 	      Denominator	      "[1 -.8]"
 	      a0EqualsOne	      on
@@ -3557,6 +3676,7 @@ Model {
 	      Name		      "hold\nintegrator"
 	      SID		      "104"
 	      Position		      [640, 339, 665, 401]
+	      ZOrder		      -22
 	      ShowName		      off
 	      FontName		      "Arial"
 	      Criteria		      "u2 ~= 0"
@@ -3571,6 +3691,7 @@ Model {
 	      Name		      "est_airflow"
 	      SID		      "105"
 	      Position		      [835, 128, 865, 142]
+	      ZOrder		      -23
 	      FontName		      "Arial"
 	      IconDisplay	      "Port number"
 	    }
@@ -3579,6 +3700,7 @@ Model {
 	      Name		      "fb_correction"
 	      SID		      "106"
 	      Position		      [835, 363, 865, 377]
+	      ZOrder		      -24
 	      FontName		      "Arial"
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -3805,22 +3927,28 @@ Model {
 	      DstPort		      1
 	    }
 	    Annotation {
+	      SID		      "198"
 	      Name		      "Intake Airflow Estimation and Closed-Loop Correction"
 	      Position		      [398, 23]
+	      ZOrder		      -1
 	      FontName		      "Arial"
 	      FontSize		      18
 	      FontWeight	      "bold"
 	    }
 	    Annotation {
+	      SID		      "199"
 	      Name		      "Feedback Control"
 	      Position		      [694, 451]
+	      ZOrder		      -2
 	      FontName		      "Arial"
 	      FontSize		      14
 	      FontWeight	      "bold"
 	    }
 	    Annotation {
+	      SID		      "200"
 	      Name		      "Feedforward Control"
 	      Position		      [697, 251]
+	      ZOrder		      -3
 	      FontName		      "Arial"
 	      FontSize		      14
 	      FontWeight	      "bold"
@@ -3834,6 +3962,7 @@ Model {
 	  Description		  "Stateflow diagram to determine control system operating mode"
 	  Ports			  [1, 3]
 	  Position		  [130, 140, 270, 250]
+	  ZOrder		  -3
 	  FontName		  "Arial"
 	  ErrorFcn		  "Stateflow.Translate.translate"
 	  PermitHierarchicalResolution "ExplicitOnly"
@@ -3845,19 +3974,10 @@ Model {
 	  Opaque		  off
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
-	  MaskType		  "Stateflow"
-	  MaskDescription	  "Stateflow diagram"
-	  MaskSelfModifiable	  on
-	  MaskDisplay		  "plot(sf('Private','sfblk','xIcon'),sf('Private','sfblk','yIcon'));text(0.5,0,sf('Private', 'sfblk',"
-	  " 'tIcon'),'HorizontalAl','Center','VerticalAl','Bottom');"
-	  MaskIconFrame		  off
-	  MaskIconOpaque	  off
-	  MaskIconRotate	  "none"
-	  MaskPortRotate	  "default"
-	  MaskIconUnits		  "autoscale"
+	  SFBlockType		  "Chart"
 	  System {
 	    Name		    "control_logic"
-	    Location		    [253, 221, 867, 588]
+	    Location		    [223, 109, 893, 660]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -3870,29 +3990,32 @@ Model {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "39"
+	    SIDHighWatermark	    "44"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "es_i"
 	      SID		      "107::1"
 	      Position		      [20, 101, 40, 119]
+	      ZOrder		      -1
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Demux
 	      Name		      " Demux "
-	      SID		      "107::37"
+	      SID		      "107::44"
 	      Ports		      [1, 3]
-	      Position		      [270, 325, 320, 405]
+	      Position		      [270, 570, 320, 650]
+	      ZOrder		      2
 	      Outputs		      "3"
 	    }
 	    Block {
 	      BlockType		      S-Function
 	      Name		      " SFunction "
-	      SID		      "107::36"
+	      SID		      "107::43"
 	      Tag		      "Stateflow S-Function sldemo_fuelsys 1"
 	      Ports		      [4, 10]
-	      Position		      [180, 104, 230, 326]
+	      Position		      [180, 100, 230, 320]
+	      ZOrder		      1
 	      FunctionName	      "sf_sfun"
 	      Parameters	      "hys,max_ego,max_press,max_speed,max_throt,min_press,min_throt,zero_thresh"
 	      PortCounts	      "[4 10]"
@@ -3921,7 +4044,8 @@ Model {
 	      Name		      "Pressure.map_estimate"
 	      SID		      "107::4"
 	      Ports		      [2, 1, 0, 1]
-	      Position		      [180, 435, 230, 495]
+	      Position		      [180, 680, 230, 740]
+	      ZOrder		      -4
 	      BlockMirror	      on
 	      UndoDeleteFcn	      "Stateflow.SLINSF.SimulinkMan.restorePreDeleteFcn"
 	      PreDeleteFcn	      "Stateflow.SLINSF.SimulinkMan.removePreDeleteFcn"
@@ -3935,7 +4059,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Pressure.map_estimate"
-		Location		[313, 220, 779, 440]
+		Location		[283, 108, 805, 512]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -3953,6 +4077,7 @@ Model {
 		  Name			  "speed"
 		  SID			  "107::5"
 		  Position		  [25, 88, 55, 102]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  IconDisplay		  "Port number"
 		  OutDataTypeStr	  "s16En3"
@@ -3962,6 +4087,7 @@ Model {
 		  Name			  "throttle"
 		  SID			  "107::6"
 		  Position		  [25, 118, 55, 132]
+		  ZOrder		  -2
 		  FontName		  "Arial"
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -3973,7 +4099,8 @@ Model {
 		  SID			  "107::7"
 		  Ports			  []
 		  Position		  [15, 15, 35, 35]
-		  CopyFcn		  "set_param(gcbh,'PreDeleteFcn','')"
+		  ZOrder		  -3
+		  CopyFcn		  "Stateflow.SLINSF.SimulinkMan.removeBlockPreDeleteFcn"
 		  PreDeleteFcn		  "Stateflow.SLINSF.SimulinkMan.unsafePredeleteFcn"
 		  FontName		  "Arial"
 		  TriggerType		  "function-call"
@@ -3985,6 +4112,7 @@ Model {
 		  SID			  "107::8"
 		  Ports			  [2, 1]
 		  Position		  [185, 79, 255, 141]
+		  ZOrder		  -4
 		  FontName		  "Arial"
 		  BreakpointsForDimension1 "SpeedVect"
 		  BreakpointsForDimension2 "ThrotVect"
@@ -4001,6 +4129,7 @@ Model {
 		  Name			  "map"
 		  SID			  "107::9"
 		  Position		  [360, 103, 390, 117]
+		  ZOrder		  -5
 		  FontName		  "Arial"
 		  IconDisplay		  "Port number"
 		}
@@ -4023,8 +4152,10 @@ Model {
 		  DstPort		  1
 		}
 		Annotation {
+		  SID			  "107::40"
 		  Name			  "MAP Estimation"
 		  Position		  [208, 29]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  FontSize		  14
 		  FontWeight		  "bold"
@@ -4036,7 +4167,8 @@ Model {
 	      Name		      "Speed.speed_estimate"
 	      SID		      "107::10"
 	      Ports		      [2, 1, 0, 1]
-	      Position		      [180, 525, 230, 585]
+	      Position		      [180, 770, 230, 830]
+	      ZOrder		      -5
 	      BlockMirror	      on
 	      UndoDeleteFcn	      "Stateflow.SLINSF.SimulinkMan.restorePreDeleteFcn"
 	      PreDeleteFcn	      "Stateflow.SLINSF.SimulinkMan.removePreDeleteFcn"
@@ -4050,7 +4182,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Speed.speed_estimate"
-		Location		[87, 238, 542, 462]
+		Location		[57, 126, 568, 534]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -4068,6 +4200,7 @@ Model {
 		  Name			  "throttle"
 		  SID			  "107::11"
 		  Position		  [45, 113, 75, 127]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  IconDisplay		  "Port number"
 		  OutDataTypeStr	  "s16En3"
@@ -4077,6 +4210,7 @@ Model {
 		  Name			  "map"
 		  SID			  "107::12"
 		  Position		  [45, 143, 75, 157]
+		  ZOrder		  -2
 		  FontName		  "Arial"
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -4088,7 +4222,8 @@ Model {
 		  SID			  "107::13"
 		  Ports			  []
 		  Position		  [15, 15, 35, 35]
-		  CopyFcn		  "set_param(gcbh,'PreDeleteFcn','')"
+		  ZOrder		  -3
+		  CopyFcn		  "Stateflow.SLINSF.SimulinkMan.removeBlockPreDeleteFcn"
 		  PreDeleteFcn		  "Stateflow.SLINSF.SimulinkMan.unsafePredeleteFcn"
 		  FontName		  "Arial"
 		  TriggerType		  "function-call"
@@ -4100,9 +4235,10 @@ Model {
 		  SID			  "107::14"
 		  Ports			  [1, 1]
 		  Position		  [290, 120, 320, 150]
+		  ZOrder		  -4
 		  ShowName		  off
-		  InputPortMap		  "u0"
 		  FontName		  "Arial"
+		  InputPortMap		  "u0"
 		  UpperLimit		  "max_speed"
 		  LowerLimit		  "0"
 		  OutDataTypeStr	  "s16En3"
@@ -4113,6 +4249,7 @@ Model {
 		  SID			  "107::15"
 		  Ports			  [2, 1]
 		  Position		  [155, 104, 225, 166]
+		  ZOrder		  -5
 		  FontName		  "Arial"
 		  BreakpointsForDimension1 "ThrotVect"
 		  BreakpointsForDimension2 "PressVect"
@@ -4129,6 +4266,7 @@ Model {
 		  Name			  "speed"
 		  SID			  "107::16"
 		  Position		  [390, 128, 420, 142]
+		  ZOrder		  -6
 		  FontName		  "Arial"
 		  IconDisplay		  "Port number"
 		}
@@ -4157,8 +4295,10 @@ Model {
 		  DstPort		  1
 		}
 		Annotation {
+		  SID			  "107::41"
 		  Name			  "Speed Estimation"
 		  Position		  [243, 44]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  FontSize		  18
 		  FontWeight		  "bold"
@@ -4170,7 +4310,8 @@ Model {
 	      Name		      "Throttle.throttle_estimate"
 	      SID		      "107::17"
 	      Ports		      [2, 1, 0, 1]
-	      Position		      [180, 615, 230, 675]
+	      Position		      [180, 860, 230, 920]
+	      ZOrder		      -6
 	      BlockMirror	      on
 	      UndoDeleteFcn	      "Stateflow.SLINSF.SimulinkMan.restorePreDeleteFcn"
 	      PreDeleteFcn	      "Stateflow.SLINSF.SimulinkMan.removePreDeleteFcn"
@@ -4184,7 +4325,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"Throttle.throttle_estimate"
-		Location		[291, 197, 722, 415]
+		Location		[261, 85, 748, 487]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -4202,6 +4343,7 @@ Model {
 		  Name			  "speed"
 		  SID			  "107::18"
 		  Position		  [60, 103, 90, 117]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  IconDisplay		  "Port number"
 		  OutDataTypeStr	  "s16En3"
@@ -4211,6 +4353,7 @@ Model {
 		  Name			  "map"
 		  SID			  "107::19"
 		  Position		  [60, 133, 90, 147]
+		  ZOrder		  -2
 		  FontName		  "Arial"
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -4222,7 +4365,8 @@ Model {
 		  SID			  "107::20"
 		  Ports			  []
 		  Position		  [15, 15, 35, 35]
-		  CopyFcn		  "set_param(gcbh,'PreDeleteFcn','')"
+		  ZOrder		  -3
+		  CopyFcn		  "Stateflow.SLINSF.SimulinkMan.removeBlockPreDeleteFcn"
 		  PreDeleteFcn		  "Stateflow.SLINSF.SimulinkMan.unsafePredeleteFcn"
 		  FontName		  "Arial"
 		  TriggerType		  "function-call"
@@ -4234,6 +4378,7 @@ Model {
 		  SID			  "107::21"
 		  Ports			  [2, 1]
 		  Position		  [165, 94, 235, 156]
+		  ZOrder		  -4
 		  FontName		  "Arial"
 		  BreakpointsForDimension1 "SpeedVect"
 		  BreakpointsForDimension2 "PressVect"
@@ -4250,6 +4395,7 @@ Model {
 		  Name			  "throttle"
 		  SID			  "107::22"
 		  Position		  [325, 118, 355, 132]
+		  ZOrder		  -5
 		  FontName		  "Arial"
 		  IconDisplay		  "Port number"
 		}
@@ -4272,8 +4418,10 @@ Model {
 		  DstPort		  1
 		}
 		Annotation {
+		  SID			  "107::42"
 		  Name			  "Throttle Estimation"
 		  Position		  [253, 39]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  FontSize		  14
 		  FontWeight		  "bold"
@@ -4285,6 +4433,7 @@ Model {
 	      Name		      "es_o"
 	      SID		      "107::23"
 	      Position		      [460, 101, 480, 119]
+	      ZOrder		      -7
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -4292,6 +4441,7 @@ Model {
 	      Name		      "O2_normal"
 	      SID		      "107::31"
 	      Position		      [460, 136, 480, 154]
+	      ZOrder		      -8
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
@@ -4300,12 +4450,14 @@ Model {
 	      Name		      "fuel_mode"
 	      SID		      "107::25"
 	      Position		      [460, 171, 480, 189]
+	      ZOrder		      -9
 	      Port		      "3"
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
 	      SrcBlock		      "es_i"
 	      SrcPort		      1
+	      Points		      [120, 0]
 	      DstBlock		      " SFunction "
 	      DstPort		      1
 	    }
@@ -4408,6 +4560,7 @@ Model {
 	    Line {
 	      SrcBlock		      " SFunction "
 	      SrcPort		      1
+	      Points		      [20, 0]
 	      DstBlock		      " Demux "
 	      DstPort		      1
 	    }
@@ -4419,6 +4572,7 @@ Model {
 	  SID			  "108"
 	  Ports			  [3, 1]
 	  Position		  [600, 64, 725, 266]
+	  ZOrder		  -4
 	  FontName		  "Arial"
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -4429,7 +4583,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "fuel_calc"
-	    Location		    [240, 288, 843, 627]
+	    Location		    [210, 176, 869, 699]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -4447,6 +4601,7 @@ Model {
 	      Name		      "est_airflow"
 	      SID		      "109"
 	      Position		      [35, 83, 65, 97]
+	      ZOrder		      -1
 	      FontName		      "Arial"
 	      IconDisplay	      "Port number"
 	    }
@@ -4455,6 +4610,7 @@ Model {
 	      Name		      "fb_correction"
 	      SID		      "110"
 	      Position		      [35, 258, 65, 272]
+	      ZOrder		      -2
 	      FontName		      "Arial"
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -4464,6 +4620,7 @@ Model {
 	      Name		      "fuel_mode"
 	      SID		      "112"
 	      Position		      [35, 183, 65, 197]
+	      ZOrder		      -3
 	      FontName		      "Arial"
 	      Port		      "3"
 	      IconDisplay	      "Port number"
@@ -4474,6 +4631,7 @@ Model {
 	      SID		      "113"
 	      Ports		      [2, 1]
 	      Position		      [190, 66, 295, 164]
+	      ZOrder		      -4
 	      FontName		      "Arial"
 	      MinAlgLoopOccurrences   off
 	      PropExecContextOutsideSubsystem off
@@ -4484,7 +4642,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"feedforward_fuel_rate"
-		Location		[271, 324, 837, 603]
+		Location		[241, 212, 863, 675]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -4502,6 +4660,7 @@ Model {
 		  Name			  "est_airflow"
 		  SID			  "114"
 		  Position		  [305, 78, 335, 92]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  IconDisplay		  "Port number"
 		}
@@ -4510,6 +4669,7 @@ Model {
 		  Name			  "fuel_mode"
 		  SID			  "115"
 		  Position		  [50, 83, 80, 97]
+		  ZOrder		  -2
 		  FontName		  "Arial"
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -4520,11 +4680,11 @@ Model {
 		  SID			  "118"
 		  Ports			  [4, 1]
 		  Position		  [210, 63, 270, 252]
+		  ZOrder		  -3
 		  ShowName		  off
 		  FontName		  "Arial"
 		  DataPortOrder		  "Specify indices"
 		  DataPortIndices	  "{sld_FuelModes.LOW, sld_FuelModes.RICH, sld_FuelModes.DISABLED}"
-		  zeroidx		  off
 		  InputSameDT		  off
 		  OutDataTypeStr	  "s16En7"
 		  RndMeth		  "Simplest"
@@ -4536,6 +4696,7 @@ Model {
 		  SID			  "119"
 		  Ports			  [2, 1]
 		  Position		  [400, 45, 425, 200]
+		  ZOrder		  -4
 		  ShowName		  off
 		  FontName		  "Arial"
 		  InputSameDT		  off
@@ -4548,6 +4709,7 @@ Model {
 		  Name			  "normal"
 		  SID			  "116"
 		  Position		  [25, 124, 100, 146]
+		  ZOrder		  -5
 		  FontName		  "Arial"
 		  Value			  "1/14.6"
 		  OutDataTypeStr	  "s16En7"
@@ -4557,6 +4719,7 @@ Model {
 		  Name			  "rich"
 		  SID			  "117"
 		  Position		  [25, 170, 100, 190]
+		  ZOrder		  -6
 		  FontName		  "Arial"
 		  Value			  "1/(14.6*0.8)"
 		  OutDataTypeStr	  "s16En7"
@@ -4566,6 +4729,7 @@ Model {
 		  Name			  "shutdown"
 		  SID			  "192"
 		  Position		  [25, 214, 100, 236]
+		  ZOrder		  -7
 		  FontName		  "Arial"
 		  Value			  "0"
 		  OutDataTypeStr	  "s16En7"
@@ -4575,6 +4739,7 @@ Model {
 		  Name			  "ff_fuel_rate"
 		  SID			  "121"
 		  Position		  [485, 118, 515, 132]
+		  ZOrder		  -8
 		  FontName		  "Arial"
 		  IconDisplay		  "Port number"
 		}
@@ -4621,8 +4786,10 @@ Model {
 		  DstPort		  4
 		}
 		Annotation {
+		  SID			  "201"
 		  Name			  "Feedforward Fuel Rate"
 		  Position		  [239, 28]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  FontSize		  18
 		  FontWeight		  "bold"
@@ -4635,6 +4802,7 @@ Model {
 	      SID		      "122"
 	      Ports		      [3, 1]
 	      Position		      [385, 79, 485, 301]
+	      ZOrder		      -5
 	      FontName		      "Arial"
 	      MinAlgLoopOccurrences   off
 	      PropExecContextOutsideSubsystem off
@@ -4645,7 +4813,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"switchable_compensation"
-		Location		[254, 323, 1082, 721]
+		Location		[224, 211, 1108, 793]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -4663,6 +4831,7 @@ Model {
 		  Name			  "ff_fuel_rate"
 		  SID			  "161"
 		  Position		  [315, 132, 345, 148]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  IconDisplay		  "Port number"
 		}
@@ -4671,6 +4840,7 @@ Model {
 		  Name			  "fuel_mode"
 		  SID			  "160"
 		  Position		  [15, 212, 45, 228]
+		  ZOrder		  -2
 		  FontName		  "Arial"
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -4680,6 +4850,7 @@ Model {
 		  Name			  "fb_correction"
 		  SID			  "162"
 		  Position		  [315, 97, 345, 113]
+		  ZOrder		  -3
 		  FontName		  "Arial"
 		  Port			  "3"
 		  IconDisplay		  "Port number"
@@ -4689,6 +4860,7 @@ Model {
 		  Name			  "From"
 		  SID			  "163"
 		  Position		  [440, 184, 490, 206]
+		  ZOrder		  -4
 		  ShowName		  off
 		  FontName		  "Arial"
 		  GotoTag		  "RICH"
@@ -4698,10 +4870,10 @@ Model {
 		  Name			  "Goto"
 		  SID			  "164"
 		  Position		  [285, 209, 335, 231]
+		  ZOrder		  -5
 		  ShowName		  off
 		  FontName		  "Arial"
 		  GotoTag		  "RICH"
-		  TagVisibility		  "local"
 		}
 		Block {
 		  BlockType		  Merge
@@ -4709,6 +4881,7 @@ Model {
 		  SID			  "165"
 		  Ports			  [3, 1]
 		  Position		  [670, 195, 710, 355]
+		  ZOrder		  -6
 		  ShowName		  off
 		  FontName		  "Arial"
 		  Inputs		  "3"
@@ -4719,6 +4892,7 @@ Model {
 		  SID			  "166"
 		  Ports			  [1, 3]
 		  Position		  [125, 161, 215, 279]
+		  ZOrder		  -7
 		  ShowName		  off
 		  FontName		  "Arial"
 		  CaseConditions	  "{sld_FuelModes.LOW, sld_FuelModes.RICH}"
@@ -4729,6 +4903,7 @@ Model {
 		  SID			  "167"
 		  Ports			  [0, 1, 0, 0, 0, 0, 0, 1]
 		  Position		  [275, 294, 365, 366]
+		  ZOrder		  -8
 		  LibraryVersion	  "1.760"
 		  FontName		  "Arial"
 		  TreatAsAtomicUnit	  on
@@ -4741,7 +4916,7 @@ Model {
 		  MaskHideContents	  off
 		  System {
 		    Name		    "disabled_mode"
-		    Location		    [330, 444, 768, 583]
+		    Location		    [300, 332, 794, 655]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -4759,6 +4934,7 @@ Model {
 		    Name		    "Action Port"
 		    SID			    "168"
 		    Position		    [30, 15, 89, 43]
+		    ZOrder		    -1
 		    ShowName		    off
 		    FontName		    "Arial"
 		    ActionType		    "default"
@@ -4768,6 +4944,7 @@ Model {
 		    Name		    "shutoff"
 		    SID			    "169"
 		    Position		    [50, 80, 70, 100]
+		    ZOrder		    -2
 		    FontName		    "Arial"
 		    Value		    "0"
 		    OutDataTypeStr	    "Inherit: Inherit via back propagation"
@@ -4777,6 +4954,7 @@ Model {
 		    Name		    "fuel_rate"
 		    SID			    "170"
 		    Position		    [180, 83, 210, 97]
+		    ZOrder		    -3
 		    FontName		    "Arial"
 		    IconDisplay		    "Port number"
 		    InitialOutput	    "0"
@@ -4788,8 +4966,10 @@ Model {
 		    DstPort		    1
 		    }
 		    Annotation {
+		    SID			    "202"
 		    Name		    "Disabled Mode Fuel Mode"
 		    Position		    [239, 31]
+		    ZOrder		    -1
 		    FontName		    "Arial"
 		    FontSize		    18
 		    FontWeight		    "bold"
@@ -4802,6 +4982,7 @@ Model {
 		  SID			  "171"
 		  Ports			  [2, 1, 0, 0, 0, 0, 0, 1]
 		  Position		  [490, 86, 585, 159]
+		  ZOrder		  -9
 		  LibraryVersion	  "1.760"
 		  FontName		  "Arial"
 		  TreatAsAtomicUnit	  on
@@ -4814,7 +4995,7 @@ Model {
 		  MaskHideContents	  off
 		  System {
 		    Name		    "low_mode"
-		    Location		    [407, 366, 904, 580]
+		    Location		    [377, 254, 930, 652]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -4832,6 +5013,7 @@ Model {
 		    Name		    "fb_correction"
 		    SID			    "172"
 		    Position		    [30, 113, 60, 127]
+		    ZOrder		    -1
 		    FontName		    "Arial"
 		    IconDisplay		    "Port number"
 		    }
@@ -4840,6 +5022,7 @@ Model {
 		    Name		    "ff_fuel_rate"
 		    SID			    "173"
 		    Position		    [30, 158, 60, 172]
+		    ZOrder		    -2
 		    FontName		    "Arial"
 		    Port		    "2"
 		    IconDisplay		    "Port number"
@@ -4849,6 +5032,7 @@ Model {
 		    Name		    "Action Port"
 		    SID			    "174"
 		    Position		    [50, 15, 109, 43]
+		    ZOrder		    -3
 		    ShowName		    off
 		    FontName		    "Arial"
 		    ActionType		    "case"
@@ -4857,9 +5041,12 @@ Model {
 		    BlockType		    DiscreteFilter
 		    Name		    "Discrete Filter"
 		    SID			    "175"
+		    Ports		    [1, 1]
 		    Position		    [145, 97, 245, 143]
+		    ZOrder		    -4
 		    ShowName		    off
 		    FontName		    "Arial"
+		    InputPortMap	    "u0"
 		    Numerator		    "[8.7696 -8.5104]"
 		    Denominator		    "[1 -0.7408]"
 		    a0EqualsOne		    on
@@ -4872,6 +5059,7 @@ Model {
 		    SID			    "176"
 		    Ports		    [2, 1]
 		    Position		    [330, 98, 350, 187]
+		    ZOrder		    -5
 		    ShowName		    off
 		    FontName		    "Arial"
 		    InputSameDT		    off
@@ -4884,6 +5072,7 @@ Model {
 		    Name		    "fuel_rate"
 		    SID			    "177"
 		    Position		    [420, 138, 450, 152]
+		    ZOrder		    -6
 		    FontName		    "Arial"
 		    IconDisplay		    "Port number"
 		    InitialOutput	    "0"
@@ -4913,8 +5102,10 @@ Model {
 		    DstPort		    1
 		    }
 		    Annotation {
+		    SID			    "203"
 		    Name		    "Low Mode Fuel Mode"
 		    Position		    [254, 31]
+		    ZOrder		    -1
 		    FontName		    "Arial"
 		    FontSize		    18
 		    FontWeight		    "bold"
@@ -4927,6 +5118,7 @@ Model {
 		  SID			  "178"
 		  Ports			  [2, 1, 0, 0, 0, 0, 0, 1]
 		  Position		  [495, 236, 585, 309]
+		  ZOrder		  -10
 		  LibraryVersion	  "1.760"
 		  FontName		  "Arial"
 		  TreatAsAtomicUnit	  on
@@ -4939,7 +5131,7 @@ Model {
 		  MaskHideContents	  off
 		  System {
 		    Name		    "rich_mode"
-		    Location		    [446, 365, 925, 577]
+		    Location		    [416, 253, 951, 649]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -4957,6 +5149,7 @@ Model {
 		    Name		    "ff_fuel_rate"
 		    SID			    "179"
 		    Position		    [25, 108, 55, 122]
+		    ZOrder		    -1
 		    FontName		    "Arial"
 		    IconDisplay		    "Port number"
 		    }
@@ -4965,6 +5158,7 @@ Model {
 		    Name		    "fb_correction"
 		    SID			    "180"
 		    Position		    [25, 153, 55, 167]
+		    ZOrder		    -2
 		    FontName		    "Arial"
 		    Port		    "2"
 		    IconDisplay		    "Port number"
@@ -4974,6 +5168,7 @@ Model {
 		    Name		    "Action Port"
 		    SID			    "181"
 		    Position		    [40, 15, 99, 43]
+		    ZOrder		    -3
 		    ShowName		    off
 		    FontName		    "Arial"
 		    ActionType		    "case"
@@ -4982,9 +5177,12 @@ Model {
 		    BlockType		    DiscreteFilter
 		    Name		    "Discrete Filter"
 		    SID			    "182"
+		    Ports		    [1, 1]
 		    Position		    [240, 117, 340, 163]
+		    ZOrder		    -4
 		    ShowName		    off
 		    FontName		    "Arial"
+		    InputPortMap	    "u0"
 		    Numerator		    "[0 0.2592]"
 		    Denominator		    "[1 -0.7408]"
 		    a0EqualsOne		    on
@@ -4997,6 +5195,7 @@ Model {
 		    SID			    "183"
 		    Ports		    [2, 1]
 		    Position		    [155, 92, 175, 183]
+		    ZOrder		    -5
 		    ShowName		    off
 		    FontName		    "Arial"
 		    InputSameDT		    off
@@ -5009,6 +5208,7 @@ Model {
 		    Name		    "fuel_rate"
 		    SID			    "184"
 		    Position		    [425, 133, 455, 147]
+		    ZOrder		    -6
 		    FontName		    "Arial"
 		    IconDisplay		    "Port number"
 		    InitialOutput	    "0"
@@ -5038,8 +5238,10 @@ Model {
 		    DstPort		    1
 		    }
 		    Annotation {
+		    SID			    "204"
 		    Name		    "Rich Mode Fuel Mode"
 		    Position		    [249, 31]
+		    ZOrder		    -1
 		    FontName		    "Arial"
 		    FontSize		    18
 		    FontWeight		    "bold"
@@ -5051,6 +5253,7 @@ Model {
 		  Name			  "fuel_rate"
 		  SID			  "152"
 		  Position		  [760, 268, 790, 282]
+		  ZOrder		  -11
 		  FontName		  "Arial"
 		  IconDisplay		  "Port number"
 		}
@@ -5141,8 +5344,10 @@ Model {
 		  DstPort		  1
 		}
 		Annotation {
+		  SID			  "205"
 		  Name			  "Loop Compensation and Filtering"
 		  Position		  [389, 21]
+		  ZOrder		  -1
 		  FontName		  "Arial"
 		  FontSize		  18
 		  FontWeight		  "bold"
@@ -5154,6 +5359,7 @@ Model {
 	      Name		      "fuel_rate"
 	      SID		      "153"
 	      Position		      [535, 183, 565, 197]
+	      ZOrder		      -6
 	      FontName		      "Arial"
 	      IconDisplay	      "Port number"
 	    }
@@ -5196,8 +5402,10 @@ Model {
 	      DstPort		      1
 	    }
 	    Annotation {
+	      SID		      "206"
 	      Name		      "Fuel Rate Calculation"
 	      Position		      [314, 28]
+	      ZOrder		      -1
 	      FontName		      "Arial"
 	      FontSize		      18
 	      FontWeight	      "bold"
@@ -5211,6 +5419,7 @@ Model {
 	  Tag			  "VerificationSubsystem"
 	  Ports			  [1]
 	  Position		  [170, 71, 235, 109]
+	  ZOrder		  -5
 	  DisableCoverage	  on
 	  CopyFcn		  "sldvsubsys('copy');"
 	  LoadFcn		  "sldvsubsys('check')"
@@ -5226,19 +5435,20 @@ Model {
 	  Opaque		  off
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
-	  MaskType		  "VerificationSubsystem"
-	  MaskHelp		  "helpview(fullfile(docroot,'toolbox','sldv','sldv.map'),'verificationsubsystem')"
-	  MaskInitialization	  "sldvsubsys('maskInit');"
-	  MaskSelfModifiable	  on
-	  MaskDisplay		  "image(imread('sldvicon_versubsys.png','BackGroundColor',[1 1 1]),'center');"
-	  MaskIconFrame		  on
-	  MaskIconOpaque	  off
-	  MaskIconRotate	  "none"
-	  MaskPortRotate	  "default"
-	  MaskIconUnits		  "autoscale"
+	  Object {
+	    $PropName		    "MaskObject"
+	    $ObjectID		    22
+	    $ClassName		    "Simulink.Mask"
+	    Type		    "VerificationSubsystem"
+	    Help		    "helpview(fullfile(docroot,'toolbox','sldv','sldv.map'),'verificationsubsystem')"
+	    Initialization	    "sldvsubsys('maskInit');"
+	    SelfModifiable	    "on"
+	    Display		    "image(imread('sldvicon_versubsys.png','BackGroundColor',[1 1 1]),'center');"
+	    IconOpaque		    "off"
+	  }
 	  System {
 	    Name		    "validate_sample_time"
-	    Location		    [105, 211, 825, 533]
+	    Location		    [75, 99, 851, 605]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -5251,12 +5461,13 @@ Model {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "9"
+	    SIDHighWatermark	    "11"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "In1"
 	      SID		      "154:1"
 	      Position		      [15, 48, 45, 62]
+	      ZOrder		      -1
 	      FontName		      "Arial"
 	      IconDisplay	      "Port number"
 	    }
@@ -5266,6 +5477,7 @@ Model {
 	      SID		      "154:2"
 	      Ports		      [1, 1]
 	      Position		      [275, 42, 335, 68]
+	      ZOrder		      -2
 	      FontName		      "Arial"
 	      ProbeWidth	      off
 	      ProbeComplexSignal      off
@@ -5277,6 +5489,7 @@ Model {
 	      SID		      "154:3"
 	      Ports		      [1, 1]
 	      Position		      [90, 31, 95, 79]
+	      ZOrder		      -3
 	      ShowName		      off
 	      FontName		      "Arial"
 	      OutputSignals	      "speed"
@@ -5294,6 +5507,7 @@ Model {
 	      Description	      "-0.0001 < u < 0.0001"
 	      Ports		      [1]
 	      Position		      [620, 22, 680, 68]
+	      ZOrder		      -4
 	      LibraryVersion	      "1.760"
 	      FontName		      "Arial"
 	      SourceBlock	      "simulink/Model\nVerification/Check \nStatic Range"
@@ -5320,6 +5534,7 @@ Model {
 	      Name		      "Data Type Conversion"
 	      SID		      "154:5"
 	      Position		      [165, 44, 205, 66]
+	      ZOrder		      -5
 	      ShowName		      off
 	      FontName		      "Arial"
 	      OutDataTypeStr	      "s16En15"
@@ -5332,6 +5547,7 @@ Model {
 	      SID		      "154:6"
 	      Ports		      [1, 2]
 	      Position		      [405, 36, 410, 74]
+	      ZOrder		      -6
 	      ShowName		      off
 	      FontName		      "Arial"
 	      Outputs		      "2"
@@ -5342,6 +5558,7 @@ Model {
 	      Name		      "Expected\nSample Time"
 	      SID		      "154:7"
 	      Position		      [445, 95, 475, 125]
+	      ZOrder		      -7
 	      FontName		      "Arial"
 	      Value		      "0.01"
 	      OutDataTypeStr	      "s16En15"
@@ -5352,6 +5569,7 @@ Model {
 	      SID		      "154:8"
 	      Ports		      [2, 1]
 	      Position		      [530, 35, 550, 55]
+	      ZOrder		      -8
 	      ShowName		      off
 	      FontName		      "Arial"
 	      IconShape		      "round"
@@ -5364,6 +5582,7 @@ Model {
 	      Name		      "Terminator"
 	      SID		      "154:9"
 	      Position		      [485, 55, 505, 75]
+	      ZOrder		      -9
 	      ShowName		      off
 	      FontName		      "Arial"
 	    }
@@ -5421,17 +5640,21 @@ Model {
 	      DstPort		      1
 	    }
 	    Annotation {
+	      SID		      "154:10"
 	      Name		      "The contents of this subsystem are excluded from the code Simulink Coder generates.  \n\nTo work c"
 	      "orrectly this system must continue to \n* Contain no output ports\n* Enable its 'Treat as Atomic Unit' paramete"
 	      "r\n* Specify its 'Mask type' parameter as \"VerificationSubsystem\""
 	      Position		      [127, 249]
 	      HorizontalAlignment     "left"
+	      ZOrder		      -1
 	      FontName		      "Arial"
 	    }
 	    Annotation {
+	      SID		      "154:11"
 	      Name		      "Verify sample time: aspects of the design\nassume a 0.01 second sample time."
 	      Position		      [74, 142]
 	      HorizontalAlignment     "left"
+	      ZOrder		      -2
 	      FontName		      "Arial"
 	      FontSize		      12
 	      FontWeight	      "bold"
@@ -5443,6 +5666,7 @@ Model {
 	  Name			  "fuel_rate"
 	  SID			  "155"
 	  Position		  [785, 158, 815, 172]
+	  ZOrder		  -6
 	  FontName		  "Arial"
 	  IconDisplay		  "Port number"
 	}
@@ -5507,8 +5731,10 @@ Model {
 	  DstPort		  2
 	}
 	Annotation {
+	  SID			  "207"
 	  Name			  "Fuel Rate Control Subsystem"
 	  Position		  [393, 22]
+	  ZOrder		  -1
 	  FontName		  "Arial"
 	  FontSize		  18
 	  FontWeight		  "bold"
@@ -5667,47 +5893,46 @@ Model {
       DstPort		      1
     }
     Annotation {
+      SID		      "208"
       Name		      "Fault-Tolerant Fuel Control System"
       Position		      [440, 25]
+      ZOrder		      -1
       FontName		      "Arial"
       FontSize		      22
       FontWeight	      "bold"
     }
     Annotation {
+      SID		      "209"
       Name		      "Copyright 1990-2010 The MathWorks, Inc."
       Position		      [741, 391]
+      ZOrder		      -2
     }
     Annotation {
+      SID		      "210"
       Name		      "The sensor switches simulate any combination of sensor failures.\nThe Engine Speed Selector switch "
       "simulates different engine speeds (rad/sec)."
       Position		      [323, 392]
       BackgroundColor	      "[0.894118, 0.894118, 0.894118]"
+      ZOrder		      -3
       FontName		      "Arial"
       FontSize		      14
     }
     Annotation {
+      SID		      "211"
       Name		      "?"
       Tag		      "DemoInfo"
       Position		      [43, 299]
       ForegroundColor	      "[0.000000, 0.000000, 0.500000]"
       DropShadow	      on
-      ClickFcn		      "try\nshowdemo('rtwdemo_fuelsys_publish')\ncatch sld_ME\nerrordlg(['Demo help file not found: ',"
-      " sld_ME.message], sld_ME.identifier)\nclear sld_ME\nend\n"
+      ZOrder		      -4
+      ClickFcn		      "try\nshowdemo('sldemo_fuelsys')\ncatch sld_ME\nerrordlg(['Demo help file not found: ', sld_ME.m"
+      "essage], sld_ME.identifier)\nclear sld_ME\nend\n"
       FontName		      "Arial"
     }
   }
 }
 MatData {
   NumRecords		  2
-  DataRecord {
-    Tag			    DataTag1
-    Data		    "  %)30     .    V $   8    (     @         %    \"     $    !     0         %  0 \"     $    0    =F5R<"
-    "VEO;@!C;VYT96YT  X    X    !@    @    &          4    (     0    $    !          D    (    FIF9F9F9\\3\\.    2 $  "
-    " 8    (    !          %    \"     $    4 0   0         0    % $  $UE87-U<F5M96YT($1E<V-R:7!T:6]N<PH]/3T]/3T]/3T]/3"
-    "T]/3T]/3T]/3T]/3T*\"E1H<F]T=&QE($%N9VQE(\"AD96=R965S*3H*;6EN/3,L(&UA>#TY,\"P@<')E8VES:6]N/3 N,2 @\"@I%;F=I;F4@4W!E"
-    "960@*')A9&EA;G,O<V5C+BDZ\"FUI;CTP+\"!M87@]-C(P+\"!P<F5C:7-I;VX]+C$)\"@I%9V\\@4V5N<V]R(\"AV;VQT<RDZ\"FUI;CTP+\"!M87"
-    "@],3(L('!R96-I<VEO;CTN,#4*\"DUA;FEF;VQD(%!R97-S=7)E(\"AB87(I.@IM:6X],\"XP,#$L(&UA>#TQ+\"!P<F5C:7-I;VX]+C P,0     "
-  }
   DataRecord {
     Tag			    DataTag0
     Data		    "  %)30     .    D#8   8    (     @         %    \"     $    4     0         %  0 !@    $    ,    3F%M90"
@@ -5880,13 +6105,21 @@ MatData {
     "     D    (            24 .    .     8    (    !          %    \"     $    (     0         0    \"    '-T7W)A;F=E#"
     "@   #@    &    \"     8         !0    @    !     0    $         \"0    @    M0QSKXC8:/P"
   }
+  DataRecord {
+    Tag			    DataTag1
+    Data		    "  %)30     .    V $   8    (     @         %    \"     $    !     0         %  0 \"     $    0    =F5R<"
+    "VEO;@!C;VYT96YT  X    X    !@    @    &          4    (     0    $    !          D    (    FIF9F9F9\\3\\.    2 $  "
+    " 8    (    !          %    \"     $    4 0   0         0    % $  $UE87-U<F5M96YT($1E<V-R:7!T:6]N<PH]/3T]/3T]/3T]/3"
+    "T]/3T]/3T]/3T]/3T*\"E1H<F]T=&QE($%N9VQE(\"AD96=R965S*3H*;6EN/3,L(&UA>#TY,\"P@<')E8VES:6]N/3 N,2 @\"@I%;F=I;F4@4W!E"
+    "960@*')A9&EA;G,O<V5C+BDZ\"FUI;CTP+\"!M87@]-C(P+\"!P<F5C:7-I;VX]+C$)\"@I%9V\\@4V5N<V]R(\"AV;VQT<RDZ\"FUI;CTP+\"!M87"
+    "@],3(L('!R96-I<VEO;CTN,#4*\"DUA;FEF;VQD(%!R97-S=7)E(\"AB87(I.@IM:6X],\"XP,#$L(&UA>#TQ+\"!P<F5C:7-I;VX]+C P,0     "
+  }
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.5 (R2010a) dated Mar  5 2011, 00:01:50
+#    Stateflow Version 7.6 (R2013a) dated Jan 19 2013, 14:32:20
 #
 #
-
 
 Stateflow {
   machine {
@@ -5897,16 +6130,16 @@ Stateflow {
     isLibrary		    0
     firstTarget		    129
     document		    "www.stateflow.com"
-    sfVersion		    75014001
+    sfVersion		    76014001.0015
     sfDemoChecksum	    [2869719258 284247485 803939943 3618308469]
   }
   chart {
     id			    2
     name		    "fuel_rate_control/control_logic"
-    windowPosition	    [30.75 265.5 636 411]
+    windowPosition	    [41 73.75 794 680]
     viewLimits		    [0 1077.757 0 682.125]
     zoomFactor		    1.819
-    screen		    [1 1 1920 1200 1.333333333333333]
+    screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 3 0 0]
     viewObj		    2
     machine		    1
@@ -5931,13 +6164,13 @@ Stateflow {
     arrowSize		    12
     chart		    2
     treeNode		    [2 36 0 4]
-    firstTransition	    75
+    firstTransition	    37
     superState		    SUBCHART
     subviewer		    2
     subviewS {
-      x1		      -15
-      y1		      -15
-      pos		      [0 0 538.998 339.625]
+      x1		      20
+      y1		      20
+      pos		      [35 35 538.998 339.625]
       fontSize		      13.54
     }
     ssIdNumber		    1
@@ -5954,13 +6187,13 @@ Stateflow {
     arrowSize		    12
     chart		    2
     treeNode		    [2 7 3 10]
-    firstTransition	    44
+    firstTransition	    38
     superState		    SUBCHART
     subviewer		    2
     subviewS {
-      x1		      -15
-      y1		      -15
-      pos		      [0 0 527.082 334.43]
+      x1		      20
+      y1		      20
+      pos		      [35 35 527.082 334.43]
       fontSize		      13.153
     }
     ssIdNumber		    2
@@ -5972,7 +6205,7 @@ Stateflow {
     id			    5
     description		    "The EGO sensor has failed."
     labelString		    "O2_failure"
-    position		    [412.7336 236.4241 92.5889 57.124]
+    position		    [447.7336 271.4241 92.5889 57.124]
     fontSize		    14
     arrowSize		    12
     chart		    2
@@ -5990,7 +6223,7 @@ Stateflow {
     id			    6
     description		    "The EGO sensor must come up to temperature before its data is reliable."
     labelString		    "O2_warmup"
-    position		    [33.7446 122.2605 92.5889 57.124]
+    position		    [68.7446 157.2605 92.5889 57.124]
     fontSize		    13.54
     arrowSize		    12
     chart		    2
@@ -6008,7 +6241,7 @@ Stateflow {
     id			    7
     description		    "The manifold pressure sensor gives a reliable indication of absolute pressure (MAP)."
     labelString		    "normal\ndu:\nes_o.map = es_i.map;"
-    position		    [195.5697 37.0857 154.8777 61.3679]
+    position		    [230.5697 72.0857 154.8777 61.3679]
     fontSize		    13.511
     arrowSize		    12.088
     chart		    2
@@ -6026,7 +6259,7 @@ Stateflow {
     id			    8
     description		    "The pressure sensor (manifold, or MAP) no longer produces reliable data."
     labelString		    "fail\ndu:\nes_o.map = map_estimate(es_i.speed, es_i.throttle);"
-    position		    [119.62 175.0673 354.7029 71.8147]
+    position		    [154.62 210.0673 354.7029 71.8147]
     fontSize		    14
     arrowSize		    12.088
     chart		    2
@@ -6045,7 +6278,7 @@ Stateflow {
     description		    "Normal EGO sensor operation gives a reliable indication of excess oxygen in the exhaust gas, fro"
     "m which air/fuel mixture can be inferred."
     labelString		    "O2_normal"
-    position		    [34.4009 230.5681 92.5889 57.124]
+    position		    [69.4009 265.5681 92.5889 57.124]
     fontSize		    13.54
     arrowSize		    12
     chart		    2
@@ -6059,6 +6292,9 @@ Stateflow {
     type		    OR_STATE
     decomposition	    CLUSTER_STATE
     outputData		    88
+    activeStateOutput {
+      activityMode	      SELF_ACTIVITY
+    }
   }
   state {
     id			    10
@@ -6069,14 +6305,14 @@ Stateflow {
     arrowSize		    12
     chart		    2
     treeNode		    [2 12 4 11]
-    firstTransition	    49
+    firstTransition	    41
     superState		    SUBCHART
     subviewer		    2
     subviewS {
-      x1		      -13.496
-      y1		      -13.665
+      x1		      20.504
+      y1		      20.335
       zoomFactor	      0.911
-      pos		      [0 0 512.851 307.656]
+      pos		      [34 34 512.851 307.656]
       fontSize		      13.54
     }
     ssIdNumber		    8
@@ -6094,13 +6330,13 @@ Stateflow {
     arrowSize		    12
     chart		    2
     treeNode		    [2 14 10 16]
-    firstTransition	    51
+    firstTransition	    44
     superState		    SUBCHART
     subviewer		    2
     subviewS {
-      x1		      -15
-      y1		      -15
-      pos		      [0 0 523.374 302.875]
+      x1		      20
+      y1		      20
+      pos		      [35 35 523.374 302.875]
       fontSize		      13.54
     }
     ssIdNumber		    9
@@ -6112,7 +6348,7 @@ Stateflow {
     id			    12
     description		    "The throttle sensor gives a reliable indication of the angle of the throttle plate."
     labelString		    "normal\ndu:\nes_o.throttle = es_i.throttle;"
-    position		    [157.7516 39.4093 187.7634 59.1461]
+    position		    [191.7516 73.4093 187.7634 59.1461]
     fontSize		    13.54
     arrowSize		    12
     chart		    2
@@ -6130,7 +6366,7 @@ Stateflow {
     id			    13
     description		    "Signal levels indicate that the throttle sensor data is no longer valid."
     labelString		    "fail\ndu:\nes_o.throttle = throttle_estimate(es_i.speed,es_i.map);"
-    position		    [62.8891 173.4012 391.9574 60.9143]
+    position		    [96.8891 207.4012 391.9574 60.9143]
     fontSize		    13.54
     arrowSize		    12
     chart		    2
@@ -6148,7 +6384,7 @@ Stateflow {
     id			    14
     description		    "The speed sensor data accurately represents the engine speed."
     labelString		    "normal\ndu:\nes_o.speed = es_i.speed;"
-    position		    [153.2844 37.1031 209.042 61.602]
+    position		    [188.2844 72.1031 209.042 61.602]
     fontSize		    13.54
     arrowSize		    12
     chart		    2
@@ -6166,7 +6402,7 @@ Stateflow {
     id			    15
     description		    "The engine speed data is no longer available."
     labelString		    "fail\ndu:\nes_o.speed = speed_estimate(es_i.throttle, es_i.map);"
-    position		    [96.6764 153.4987 363.4137 70.6165]
+    position		    [131.6764 188.4987 363.4137 70.6165]
     fontSize		    13.54
     arrowSize		    12
     chart		    2
@@ -6189,7 +6425,7 @@ Stateflow {
     arrowSize		    12
     chart		    2
     treeNode		    [2 17 11 23]
-    firstTransition	    54
+    firstTransition	    49
     superState		    GROUPED
     subviewer		    2
     subviewS {
@@ -6199,7 +6435,7 @@ Stateflow {
     type		    AND_STATE
     decomposition	    CLUSTER_STATE
     executionOrder	    5
-    firstEvent		    76
+    firstEvent		    47
   }
   state {
     id			    17
@@ -6210,7 +6446,7 @@ Stateflow {
     arrowSize		    14.156
     chart		    2
     treeNode		    [16 18 0 21]
-    firstTransition	    55
+    firstTransition	    54
     isGrouped		    1
     subviewer		    2
     subviewS {
@@ -6319,7 +6555,7 @@ Stateflow {
     arrowSize		    12
     chart		    2
     treeNode		    [2 24 16 0]
-    firstTransition	    74
+    firstTransition	    58
     superState		    GROUPED
     subviewer		    2
     subviewS {
@@ -6340,7 +6576,7 @@ Stateflow {
     chart		    2
     treeNode		    [23 26 0 25]
     firstTransition	    64
-    firstJunction	    39
+    firstJunction	    63
     isGrouped		    1
     subviewer		    2
     subviewS {
@@ -6359,8 +6595,8 @@ Stateflow {
     arrowSize		    12.591
     chart		    2
     treeNode		    [23 27 24 0]
-    firstTransition	    69
-    firstJunction	    37
+    firstTransition	    67
+    firstJunction	    66
     isGrouped		    1
     subviewer		    2
     subviewS {
@@ -6397,7 +6633,7 @@ Stateflow {
     chart		    2
     treeNode		    [25 32 0 28]
     firstTransition	    72
-    firstJunction	    38
+    firstJunction	    70
     isGrouped		    1
     subviewer		    2
     subviewS {
@@ -6501,7 +6737,7 @@ Stateflow {
   state {
     id			    33
     labelString		    "throttle = throttle_estimate(speed, map)"
-    position		    [242.4589 243.1732 223.2888 52.1066]
+    position		    [276.4589 277.1732 223.2888 52.1066]
     fontSize		    12
     chart		    2
     treeNode		    [10 0 13 0]
@@ -6511,7 +6747,7 @@ Stateflow {
     ssIdNumber		    107
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
-    firstData		    78
+    firstData		    74
     simulink {
       isSimulinkFcn	      1
       blockName		      "Throttle.throttle_estimate"
@@ -6520,7 +6756,7 @@ Stateflow {
   state {
     id			    34
     labelString		    "map = map_estimate(speed, throttle)"
-    position		    [221.1902 262.6417 223.75 51]
+    position		    [256.1902 297.6417 223.75 51]
     fontSize		    12
     chart		    2
     treeNode		    [4 0 8 0]
@@ -6530,7 +6766,7 @@ Stateflow {
     ssIdNumber		    112
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
-    firstData		    81
+    firstData		    77
     simulink {
       isSimulinkFcn	      1
       blockName		      "Pressure.map_estimate"
@@ -6539,7 +6775,7 @@ Stateflow {
   state {
     id			    35
     labelString		    "speed = speed_estimate(throttle, map)"
-    position		    [268.8858 234.75 234.9892 44.6046]
+    position		    [303.8858 269.75 234.9892 44.6046]
     fontSize		    12
     chart		    2
     treeNode		    [11 0 15 0]
@@ -6549,7 +6785,7 @@ Stateflow {
     ssIdNumber		    119
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
-    firstData		    84
+    firstData		    80
     simulink {
       isSimulinkFcn	      1
       blockName		      "Speed.speed_estimate"
@@ -6558,377 +6794,304 @@ Stateflow {
   state {
     id			    36
     labelString		    "A\ndu:\nes_o.ego = es_i.ego;"
-    position		    [14.984 29.9278 500.4699 297.9797]
+    position		    [49.984 64.9278 500.4699 297.9797]
     fontSize		    14
     chart		    2
     treeNode		    [3 6 0 0]
-    firstTransition	    45
+    firstTransition	    83
     visible		    0
     subviewer		    3
     ssIdNumber		    171
     type		    OR_STATE
     decomposition	    CLUSTER_STATE
   }
-  junction {
+  transition {
     id			    37
-    labelString		    "H"
-    position		    [354.8406 339.8203 10.7876]
-    arrowSize		    12.946
+    labelPosition	    [135.628 43.623 8.246 14.971]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 150.0279 43.25 0 -133.6565]
+    }
+    dst {
+      id		      36
+      intersection	      [1 0 -1 0.1999 150.0279 64.9278 0 133.6565]
+    }
+    midPoint		    [150.0279 50.2995]
     chart		    2
-    linkNode		    [25 0 0]
-    isGrouped		    1
-    subviewer		    2
-    ssIdNumber		    65
-    type		    HISTORY_JUNCTION
+    linkNode		    [3 0 0]
+    visible		    0
+    dataLimits		    [147.628 152.428 43.25 64.928]
+    subviewer		    3
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    180
   }
-  junction {
+  transition {
     id			    38
-    labelString		    "H"
-    position		    [312.0107 384.5184 10.7876]
-    arrowSize		    12.946
-    chart		    2
-    linkNode		    [27 0 40]
-    isGrouped		    1
-    subviewer		    2
-    ssIdNumber		    66
-    type		    HISTORY_JUNCTION
-  }
-  junction {
-    id			    39
-    position		    [785.4503 483.2001 11.5903]
-    arrowSize		    17.007
-    chart		    2
-    linkNode		    [24 0 0]
-    isGrouped		    1
-    subviewer		    2
-    quantum		    [0 0 0 65]
-    ssIdNumber		    67
-    type		    CONNECTIVE_JUNCTION
-  }
-  junction {
-    id			    40
-    position		    [231.9341 478.8925 11.541]
-    arrowSize		    12.946
-    chart		    2
-    linkNode		    [27 38 0]
-    isGrouped		    1
-    subviewer		    2
-    quantum		    [72 69 0 0]
-    ssIdNumber		    68
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    41
-    labelString		    "[es_i.map > max_press | ...\nes_i.map < min_press] /\nFail.INC"
-    labelPosition	    [30.946 118.303 160.904 51.74]
-    fontSize		    13.511
-    arrowSize		    12.088
-    src {
-      id		      7
-      intersection	      [3 0 1 0.9027 210.6322 98.4536 0 0]
-    }
-    dst {
-      id		      8
-      intersection	      [1 0 -1 0.2566 210.6322 175.0673 0 0]
-    }
-    midPoint		    [210.6322 131.988]
-    chart		    2
-    linkNode		    [4 47 0]
-    visible		    0
-    dataLimits		    [207.006 214.259 98.454 175.067]
-    subviewer		    4
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    31
-  }
-  transition {
-    id			    42
-    labelString		    "[es_i.ego < max_ego] / Fail.DEC"
-    labelPosition	    [178.752 227.833 207.649 17.965]
-    fontSize		    13.54
-    arrowSize		    12
-    src {
-      id		      5
-      intersection	      [4 -1 0 0.7142 412.7336 252.75 0 12.2361]
-    }
-    dst {
-      id		      9
-      intersection	      [2 1 0 0.3883 126.9898 252.75 0 -12.2361]
-    }
-    midPoint		    [270.0409 252.75]
-    chart		    2
-    linkNode		    [36 46 43]
-    visible		    0
-    dataLimits		    [126.99 412.734 249.15 256.35]
-    subviewer		    3
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    32
-  }
-  transition {
-    id			    43
-    description		    "The failure condition is indicated by excessive output voltage."
-    labelString		    "[es_i.ego > max_ego] / Fail.INC"
-    labelPosition	    [177.615 277.766 201.652 17.965]
-    fontSize		    13.54
-    arrowSize		    12
-    src {
-      id		      9
-      intersection	      [2 1 0 0.7172 126.9898 271.5366 0 0]
-    }
-    dst {
-      id		      5
-      intersection	      [4 -1 0 0.3853 412.7336 271.5366 0 0]
-    }
-    midPoint		    [269.6825 271.5366]
-    chart		    2
-    linkNode		    [36 42 0]
-    visible		    0
-    dataLimits		    [126.99 412.734 267.937 275.137]
-    subviewer		    3
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    33
-  }
-  transition {
-    id			    44
-    labelPosition	    [245.138 17.666 9.545 19.062]
+    labelPosition	    [280.138 52.666 9.545 19.062]
     fontSize		    13.124
     arrowSize		    12.088
     src {
-      intersection	      [0 0 1 0 244.6336 10.913 0 0]
+      intersection	      [0 0 1 0 279.6336 45.913 0 0]
     }
     dst {
       id		      7
-      intersection	      [1 0 -1 0.3168 244.6336 37.0857 0 0]
+      intersection	      [1 0 -1 0.3168 279.6336 72.0857 0 0]
     }
-    midPoint		    [244.6336 18.1304]
+    midPoint		    [279.6336 53.1304]
     chart		    2
-    linkNode		    [4 0 47]
+    linkNode		    [4 0 39]
     visible		    0
-    dataLimits		    [241.007 248.26 10.913 37.086]
+    dataLimits		    [276.007 283.26 45.913 72.086]
     subviewer		    4
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    34
   }
   transition {
-    id			    45
-    labelPosition	    [64.271 104.221 9.745 17.965]
-    fontSize		    13.54
-    arrowSize		    12
-    src {
-      intersection	      [0 0 1 0.606 66.0489 99.4281 0 0]
-    }
-    dst {
-      id		      6
-      intersection	      [1 0 -1 0.3489 66.0489 122.2605 0 0]
-    }
-    midPoint		    [66.0489 104.9496]
-    chart		    2
-    linkNode		    [36 0 46]
-    visible		    0
-    dataLimits		    [62.449 69.649 99.428 122.26]
-    subviewer		    3
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    35
-  }
-  transition {
-    id			    46
-    description		    "The value for sufficient warm up to operational temperature (nominally 4.8 seconds)."
-    labelString		    "[after(480,tick)]"
-    labelPosition	    [83.203 187.285 95.954 17.965]
-    fontSize		    13.54
-    arrowSize		    12
-    src {
-      id		      6
-      intersection	      [3 0 1 0.5166 78.5 179.3845 0 1.5391]
-    }
-    dst {
-      id		      9
-      intersection	      [1 0 -1 0.4763 78.5 230.5681 0 -1.5391]
-    }
-    midPoint		    [78.5 199.6979]
-    chart		    2
-    linkNode		    [36 45 42]
-    visible		    0
-    dataLimits		    [74.9 82.1 179.385 230.568]
-    subviewer		    3
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    36
-  }
-  transition {
-    id			    47
+    id			    39
     labelString		    "[es_i.map > min_press & ...\nes_i.map < max_press] /\nFail.DEC"
-    labelPosition	    [295.637 113.32 160.904 51.74]
+    labelPosition	    [330.637 148.32 160.904 51.74]
     fontSize		    13.511
     arrowSize		    12.088
     src {
       id		      8
-      intersection	      [1 0 -1 0.4213 269.0695 175.0673 0 0]
+      intersection	      [1 0 -1 0.4213 304.0695 210.0673 0 0]
     }
     dst {
       id		      7
-      intersection	      [3 0 1 0.5254 269.0695 98.4536 0 0]
+      intersection	      [3 0 1 0.5254 304.0695 133.4536 0 0]
     }
-    midPoint		    [269.0695 141.5328]
+    midPoint		    [304.0695 176.5328]
     chart		    2
-    linkNode		    [4 44 41]
+    linkNode		    [4 38 40]
     visible		    0
-    dataLimits		    [265.443 272.696 98.454 175.067]
+    dataLimits		    [300.443 307.696 133.454 210.067]
     subviewer		    4
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    37
   }
   transition {
-    id			    48
-    description		    "A failure is indicated by data which is outside the expected range, typically due to an open or "
-    "short circuit."
-    labelString		    "[es_i.throttle> max_throt | ...\nes_i.throttle < min_throt] /\nFail.INC"
-    labelPosition	    [28.172 112.317 166.358 51.74]
-    fontSize		    13.54
-    arrowSize		    12
+    id			    40
+    labelString		    "[es_i.map > max_press | ...\nes_i.map < min_press] /\nFail.INC"
+    labelPosition	    [65.946 153.303 160.904 51.74]
+    fontSize		    13.511
+    arrowSize		    12.088
     src {
-      id		      12
-      intersection	      [3 0 1 0.739 206.7578 98.5554 0 44.8833]
+      id		      7
+      intersection	      [3 0 1 0.9027 245.6322 133.4536 0 0]
     }
     dst {
-      id		      13
-      intersection	      [1 0 -1 0.3671 206.7578 173.4012 0 -44.8833]
+      id		      8
+      intersection	      [1 0 -1 0.2566 245.6322 210.0673 0 0]
     }
-    midPoint		    [206.7578 131.2143]
+    midPoint		    [245.6322 166.988]
     chart		    2
-    linkNode		    [10 52 0]
+    linkNode		    [4 39 0]
     visible		    0
-    dataLimits		    [203.158 210.358 98.555 173.401]
-    subviewer		    10
+    dataLimits		    [242.006 249.259 133.454 210.067]
+    subviewer		    4
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
-    ssIdNumber		    38
+    ssIdNumber		    31
   }
   transition {
-    id			    49
-    labelPosition	    [204.886 17.331 9.545 19.062]
+    id			    41
+    labelPosition	    [238.886 51.331 9.545 19.062]
     fontSize		    13.54
     arrowSize		    12
     src {
-      intersection	      [0 0 1 0.691 202.3515 10.5 0 0]
+      intersection	      [0 0 1 0 236.3515 44.5 0 0]
     }
     dst {
       id		      12
-      intersection	      [1 0 -1 0.2375 202.3515 39.4093 0 0]
+      intersection	      [1 0 -1 0.2375 236.3515 73.4093 0 0]
     }
-    midPoint		    [202.3515 19.1921]
+    midPoint		    [236.3515 53.1921]
     chart		    2
-    linkNode		    [10 0 52]
+    linkNode		    [10 0 42]
     visible		    0
-    dataLimits		    [198.751 205.951 10.5 39.409]
+    dataLimits		    [232.751 239.951 44.5 73.409]
     subviewer		    10
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    39
   }
   transition {
-    id			    50
-    description		    "Loss of a reliable speed sensor signal will indicate zero speed.  This is deemed invalid when th"
-    "e manifold vacuum indicates otherwise."
-    labelString		    "[es_i.speed == 0C & ...\nes_i.map < zero_thresh] /\nFail.INC"
-    labelPosition	    [42.58 103 147.268 51.74]
-    fontSize		    13.54
-    arrowSize		    12
-    src {
-      id		      14
-      intersection	      [3 0 1 0.703 215.3673 98.7051 0 0]
-    }
-    dst {
-      id		      15
-      intersection	      [1 0 -1 0.3266 215.3673 153.4987 0 0]
-    }
-    midPoint		    [215.3673 120.902]
-    chart		    2
-    linkNode		    [11 53 0]
-    visible		    0
-    dataLimits		    [211.767 218.967 98.705 153.499]
-    subviewer		    11
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    40
-  }
-  transition {
-    id			    51
-    labelPosition	    [254.068 18.296 9.545 19.062]
-    fontSize		    13.54
-    arrowSize		    12
-    src {
-      intersection	      [0 0 1 0.577 253.7291 12 0 0]
-    }
-    dst {
-      id		      14
-      intersection	      [1 0 -1 0.4805 253.7291 37.1031 0 0]
-    }
-    midPoint		    [253.7291 18.7062]
-    chart		    2
-    linkNode		    [11 0 53]
-    visible		    0
-    dataLimits		    [250.129 257.329 12 37.103]
-    subviewer		    11
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    41
-  }
-  transition {
-    id			    52
+    id			    42
     labelString		    "[es_i.throttle >  min_throt & ...\nes_i.throttle < max_throt] /\nFail.DEC"
-    labelPosition	    [298.239 107.354 174.54 51.74]
+    labelPosition	    [332.239 141.354 174.54 51.74]
     fontSize		    13.54
     arrowSize		    12
     src {
       id		      13
-      intersection	      [1 0 -1 0.5622 283.2527 173.4012 0 31.6167]
+      intersection	      [1 0 -1 0.5622 317.2527 207.4012 0 31.6167]
     }
     dst {
       id		      12
-      intersection	      [3 0 1 0.3316 283.2527 98.5554 0 -31.6167]
+      intersection	      [3 0 1 0.3316 317.2527 132.5554 0 -31.6167]
     }
-    midPoint		    [283.2527 140.7423]
+    midPoint		    [317.2527 174.7423]
     chart		    2
-    linkNode		    [10 49 48]
+    linkNode		    [10 41 43]
     visible		    0
-    dataLimits		    [279.653 286.853 98.555 173.401]
+    dataLimits		    [313.653 320.853 132.555 207.401]
     subviewer		    10
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    42
   }
   transition {
-    id			    53
+    id			    43
+    description		    "A failure is indicated by data which is outside the expected range, typically due to an open or "
+    "short circuit."
+    labelString		    "[es_i.throttle> max_throt | ...\nes_i.throttle < min_throt] /\nFail.INC"
+    labelPosition	    [62.172 146.317 166.358 51.74]
+    fontSize		    13.54
+    arrowSize		    12
+    src {
+      id		      12
+      intersection	      [3 0 1 0.739 240.7578 132.5554 0 44.8833]
+    }
+    dst {
+      id		      13
+      intersection	      [1 0 -1 0.3671 240.7578 207.4012 0 -44.8833]
+    }
+    midPoint		    [240.7578 165.2143]
+    chart		    2
+    linkNode		    [10 42 0]
+    visible		    0
+    dataLimits		    [237.158 244.358 132.555 207.401]
+    subviewer		    10
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    38
+  }
+  transition {
+    id			    44
+    labelPosition	    [289.068 53.296 9.545 19.062]
+    fontSize		    13.54
+    arrowSize		    12
+    src {
+      intersection	      [0 0 1 0 288.7291 47 0 0]
+    }
+    dst {
+      id		      14
+      intersection	      [1 0 -1 0.4805 288.7291 72.1031 0 0]
+    }
+    midPoint		    [288.7291 53.7062]
+    chart		    2
+    linkNode		    [11 0 45]
+    visible		    0
+    dataLimits		    [285.129 292.329 47 72.103]
+    subviewer		    11
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    41
+  }
+  transition {
+    id			    45
     labelString		    "[es_i.speed > 0C] /\nFail.DEC"
-    labelPosition	    [314.967 108.16 111.814 35.401]
+    labelPosition	    [349.967 143.16 111.814 35.401]
     fontSize		    13.54
     arrowSize		    12
     src {
       id		      15
-      intersection	      [1 0 -1 0.5722 304.6217 153.4987 0 46.1946]
+      intersection	      [1 0 -1 0.5722 339.6217 188.4987 0 46.1946]
     }
     dst {
       id		      14
-      intersection	      [3 0 1 0.276 304.6217 98.7051 0 -46.1946]
+      intersection	      [3 0 1 0.276 339.6217 133.7051 0 -46.1946]
     }
-    midPoint		    [304.6217 131.3018]
+    midPoint		    [339.6217 166.3018]
     chart		    2
-    linkNode		    [11 51 50]
+    linkNode		    [11 44 46]
     visible		    0
-    dataLimits		    [301.022 308.222 98.705 153.499]
+    dataLimits		    [336.022 343.222 133.705 188.499]
     subviewer		    11
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    43
   }
   transition {
-    id			    54
+    id			    46
+    description		    "Loss of a reliable speed sensor signal will indicate zero speed.  This is deemed invalid when th"
+    "e manifold vacuum indicates otherwise."
+    labelString		    "[es_i.speed == 0C & ...\nes_i.map < zero_thresh] /\nFail.INC"
+    labelPosition	    [77.58 138 147.268 51.74]
+    fontSize		    13.54
+    arrowSize		    12
+    src {
+      id		      14
+      intersection	      [3 0 1 0.703 250.3673 133.7051 0 0]
+    }
+    dst {
+      id		      15
+      intersection	      [1 0 -1 0.3266 250.3673 188.4987 0 0]
+    }
+    midPoint		    [250.3673 155.902]
+    chart		    2
+    linkNode		    [11 45 0]
+    visible		    0
+    dataLimits		    [246.767 253.967 133.705 188.499]
+    subviewer		    11
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    40
+  }
+  event {
+    id			    47
+    ssIdNumber		    91
+    name		    "DEC"
+    description		    "decrement the sensor failure counter"
+    linkNode		    [16 0 48]
+    scope		    LOCAL_EVENT
+    trigger		    EITHER_EDGE_EVENT
+    machine		    1
+  }
+  event {
+    id			    48
+    ssIdNumber		    92
+    name		    "INC"
+    description		    "increment the failure counter"
+    linkNode		    [16 47 0]
+    scope		    LOCAL_EVENT
+    trigger		    EITHER_EDGE_EVENT
+    machine		    1
+  }
+  transition {
+    id			    49
     labelPosition	    [156.832 130.811 9.545 19.062]
     fontSize		    13.54
     arrowSize		    14.156
@@ -6941,39 +7104,19 @@ Stateflow {
     }
     midPoint		    [166.5247 144.5577]
     chart		    2
-    linkNode		    [16 0 56]
+    linkNode		    [16 0 50]
     isGrouped		    1
     dataLimits		    [162.275 170.769 137.514 165.465]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    44
   }
   transition {
-    id			    55
-    labelString		    "INC"
-    labelPosition	    [804.773 149.003 25.908 19.062]
-    fontSize		    13.54
-    arrowSize		    14.156
-    src {
-      id		      18
-      intersection	      [2 1 0 0.296 762.2418 169.3547 0 0]
-    }
-    dst {
-      id		      19
-      intersection	      [4 -1 0 0.694 852.9428 170.0219 0 0]
-    }
-    midPoint		    [789.8438 169.5588]
-    chart		    2
-    linkNode		    [17 0 57]
-    isGrouped		    1
-    dataLimits		    [762.242 852.943 165.775 174.269]
-    subviewer		    2
-    executionOrder	    1
-    ssIdNumber		    45
-  }
-  transition {
-    id			    56
+    id			    50
     labelString		    "INC"
     labelPosition	    [238.749 153.157 25.908 19.062]
     fontSize		    13.54
@@ -6988,38 +7131,18 @@ Stateflow {
     }
     midPoint		    [239.7868 171.5158]
     chart		    2
-    linkNode		    [16 54 58]
+    linkNode		    [16 49 51]
     isGrouped		    1
     dataLimits		    [204.111 318.025 167.255 175.749]
     subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    46
   }
   transition {
-    id			    57
-    labelString		    "INC"
-    labelPosition	    [657.958 152.089 25.908 19.062]
-    fontSize		    13.54
-    arrowSize		    14.156
-    src {
-      id		      20
-      intersection	      [2 1 0 0.266 610.9718 171.0119 0 0]
-    }
-    dst {
-      id		      18
-      intersection	      [4 -1 0 0.658 705.3938 171.5004 0 0]
-    }
-    midPoint		    [639.8668 171.1528]
-    chart		    2
-    linkNode		    [17 55 59]
-    isGrouped		    1
-    dataLimits		    [610.972 705.394 167.254 175.747]
-    subviewer		    2
-    executionOrder	    2
-    ssIdNumber		    47
-  }
-  transition {
-    id			    58
+    id			    51
     labelString		    "INC"
     labelPosition	    [428.879 155.537 25.908 19.062]
     fontSize		    13.54
@@ -7034,61 +7157,18 @@ Stateflow {
     }
     midPoint		    [429.0948 173.9668]
     chart		    2
-    linkNode		    [16 56 61]
+    linkNode		    [16 50 52]
     isGrouped		    1
     dataLimits		    [371.87 546.716 168.993 177.486]
     subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    48
   }
   transition {
-    id			    59
-    labelString		    "DEC"
-    labelPosition	    [803.197 196.051 29.999 19.062]
-    fontSize		    13.54
-    arrowSize		    14.156
-    src {
-      id		      19
-      intersection	      [4 -1 0 0.227 852.9428 190.4191 0 0]
-    }
-    dst {
-      id		      18
-      intersection	      [2 1 0 0.756 762.2418 190.8114 0 0]
-    }
-    midPoint		    [825.3408 190.5158]
-    chart		    2
-    linkNode		    [17 57 60]
-    isGrouped		    1
-    dataLimits		    [762.242 852.943 186.565 195.058]
-    subviewer		    2
-    executionOrder	    1
-    ssIdNumber		    49
-  }
-  transition {
-    id			    60
-    labelString		    "DEC"
-    labelPosition	    [642.007 196.855 29.999 19.062]
-    fontSize		    13.54
-    arrowSize		    14.156
-    src {
-      id		      18
-      intersection	      [4 -1 0 0.212 705.3938 192.304 0 0]
-    }
-    dst {
-      id		      20
-      intersection	      [2 1 0 0.729 610.9718 191.2343 0 0]
-    }
-    midPoint		    [676.4968 191.9998]
-    chart		    2
-    linkNode		    [17 59 0]
-    isGrouped		    1
-    dataLimits		    [610.972 705.394 186.987 195.481]
-    subviewer		    2
-    executionOrder	    2
-    ssIdNumber		    50
-  }
-  transition {
-    id			    61
+    id			    52
     labelString		    "DEC"
     labelPosition	    [499.249 198.053 29.999 19.062]
     fontSize		    13.54
@@ -7103,15 +7183,18 @@ Stateflow {
     }
     midPoint		    [489.8458 193.4638]
     chart		    2
-    linkNode		    [16 58 62]
+    linkNode		    [16 51 53]
     isGrouped		    1
     dataLimits		    [371.87 546.716 188.388 196.882]
     subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    51
   }
   transition {
-    id			    62
+    id			    53
     labelString		    "DEC"
     labelPosition	    [247.575 203.785 29.999 19.062]
     fontSize		    13.54
@@ -7126,15 +7209,150 @@ Stateflow {
     }
     midPoint		    [282.3488 195.2608]
     chart		    2
-    linkNode		    [16 61 0]
+    linkNode		    [16 52 0]
     isGrouped		    1
     dataLimits		    [204.111 318.025 191.018 199.512]
     subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    2
     ssIdNumber		    52
   }
   transition {
-    id			    63
+    id			    54
+    labelString		    "INC"
+    labelPosition	    [804.773 149.003 25.908 19.062]
+    fontSize		    13.54
+    arrowSize		    14.156
+    src {
+      id		      18
+      intersection	      [2 1 0 0.296 762.2418 169.3547 0 0]
+    }
+    dst {
+      id		      19
+      intersection	      [4 -1 0 0.694 852.9428 170.0219 0 0]
+    }
+    midPoint		    [789.8438 169.5588]
+    chart		    2
+    linkNode		    [17 0 55]
+    isGrouped		    1
+    dataLimits		    [762.242 852.943 165.775 174.269]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    45
+  }
+  transition {
+    id			    55
+    labelString		    "INC"
+    labelPosition	    [657.958 152.089 25.908 19.062]
+    fontSize		    13.54
+    arrowSize		    14.156
+    src {
+      id		      20
+      intersection	      [2 1 0 0.266 610.9718 171.0119 0 0]
+    }
+    dst {
+      id		      18
+      intersection	      [4 -1 0 0.658 705.3938 171.5004 0 0]
+    }
+    midPoint		    [639.8668 171.1528]
+    chart		    2
+    linkNode		    [17 54 56]
+    isGrouped		    1
+    dataLimits		    [610.972 705.394 167.254 175.747]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    47
+  }
+  transition {
+    id			    56
+    labelString		    "DEC"
+    labelPosition	    [803.197 196.051 29.999 19.062]
+    fontSize		    13.54
+    arrowSize		    14.156
+    src {
+      id		      19
+      intersection	      [4 -1 0 0.227 852.9428 190.4191 0 0]
+    }
+    dst {
+      id		      18
+      intersection	      [2 1 0 0.756 762.2418 190.8114 0 0]
+    }
+    midPoint		    [825.3408 190.5158]
+    chart		    2
+    linkNode		    [17 55 57]
+    isGrouped		    1
+    dataLimits		    [762.242 852.943 186.565 195.058]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    49
+  }
+  transition {
+    id			    57
+    labelString		    "DEC"
+    labelPosition	    [642.007 196.855 29.999 19.062]
+    fontSize		    13.54
+    arrowSize		    14.156
+    src {
+      id		      18
+      intersection	      [4 -1 0 0.212 705.3938 192.304 0 0]
+    }
+    dst {
+      id		      20
+      intersection	      [2 1 0 0.729 610.9718 191.2343 0 0]
+    }
+    midPoint		    [676.4968 191.9998]
+    chart		    2
+    linkNode		    [17 56 0]
+    isGrouped		    1
+    dataLimits		    [610.972 705.394 186.987 195.481]
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    50
+  }
+  transition {
+    id			    58
+    description		    "Need to copy the sensors to the output on entry since the individual elements of the bus signal "
+    "are only updated in the during function."
+    labelString		    "{es_o = es_i;}"
+    labelPosition	    [236.015 293.314 80.452 19.062]
+    fontSize		    13.54
+    arrowSize		    12.946
+    src {
+      intersection	      [0 0 1 0 230.1035 281.0355 0 0]
+    }
+    dst {
+      id		      32
+      intersection	      [1 0 -1 0.4489 230.1035 378.153 0 0]
+    }
+    midPoint		    [230.1035 324.8106]
+    chart		    2
+    linkNode		    [23 0 59]
+    isGrouped		    1
+    dataLimits		    [226.22 233.987 281.036 378.153]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    64
+  }
+  transition {
+    id			    59
     labelString		    "[es_i.speed > max_speed]"
     labelPosition	    [586.642 335.471 152.722 19.062]
     fontSize		    13.54
@@ -7149,47 +7367,26 @@ Stateflow {
     }
     midPoint		    [701.0097 361.4622]
     chart		    2
-    linkNode		    [23 74 65]
+    linkNode		    [23 58 60]
     isGrouped		    1
     dataLimits		    [582.135 823.009 357.632 365.292]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    2
     ssIdNumber		    53
   }
   transition {
-    id			    64
-    labelString		    "[in(Speed.normal) & ...\nes_i.speed < (max_speed - hys)]"
-    labelPosition	    [793.266 419.706 190.903 35.401]
-    fontSize		    13.54
-    arrowSize		    17.007
-    src {
-      id		      26
-      intersection	      [4 -1 0 0.2868 823.0093 377.2418 0 0]
-    }
-    dst {
-      id		      39
-      intersection	      [0 0 -1 -1 785.4503 471.6098 0 0]
-    }
-    midPoint		    [791.9421 404.6975]
-    chart		    2
-    linkNode		    [24 0 70]
-    isGrouped		    1
-    dataLimits		    [780.348 823.009 377.242 471.61]
-    stampAngle		    0.3787
-    subviewer		    2
-    executionOrder	    1
-    ssIdNumber		    54
-  }
-  transition {
-    id			    65
+    id			    60
     labelString		    "  [!in(Fail.Multi)]"
     labelPosition	    [613.868 459.011 91.361 19.062]
     fontSize		    13.54
     arrowSize		    12.591
     src {
-      id		      39
-      intersection	      [0 -1 0 -1 773.86 483.2001 0 0]
+      id		      63
+      intersection	      [4 -1 0 0 773.86 483.2001 0 0]
     }
     dst {
       id		      25
@@ -7197,7 +7394,7 @@ Stateflow {
     }
     midPoint		    [680.5356 483.2001]
     chart		    2
-    linkNode		    [23 63 71]
+    linkNode		    [23 59 61]
     isGrouped		    1
     dataLimits		    [582.135 773.86 479.423 486.977]
     subviewer		    2
@@ -7209,130 +7406,7 @@ Stateflow {
     ssIdNumber		    55
   }
   transition {
-    id			    66
-    labelString		    "[in(Fail.One)]"
-    labelPosition	    [235.149 510.936 76.361 19.062]
-    fontSize		    13.54
-    arrowSize		    12.946
-    src {
-      id		      30
-      intersection	      [2 1 0 0.2851 185.769 534.3247 0 -17.9962]
-    }
-    dst {
-      id		      29
-      intersection	      [4 -1 0 0.3658 395.131 534.3247 0 17.9962]
-    }
-    midPoint		    [288.1065 534.3247]
-    chart		    2
-    linkNode		    [25 69 67]
-    isGrouped		    1
-    dataLimits		    [185.769 395.131 530.441 538.208]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    56
-  }
-  transition {
-    id			    67
-    labelString		    "[in(Fail.None)]"
-    labelPosition	    [227.374 573.917 83.179 19.062]
-    fontSize		    13.54
-    arrowSize		    12.946
-    src {
-      id		      29
-      intersection	      [4 -1 0 0.114 395.131 568.2469 0 -15.9204]
-    }
-    dst {
-      id		      30
-      intersection	      [2 1 0 0.6901 185.769 568.2469 0 15.9204]
-    }
-    midPoint		    [292.7935 568.2469]
-    chart		    2
-    linkNode		    [25 66 0]
-    isGrouped		    1
-    dataLimits		    [185.769 395.131 564.363 572.131]
-    subviewer		    2
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    57
-  }
-  transition {
-    id			    68
-    labelPosition	    [166.515 478.897 9.545 19.062]
-    fontSize		    13.54
-    arrowSize		    12.946
-    src {
-      id		      40
-      intersection	      [0 -0.9983 -0.0586 -1 220.4129 478.2163 0 0]
-    }
-    dst {
-      id		      30
-      intersection	      [1 0 -1 0.7174 159.5 510.4451 0 0]
-    }
-    midPoint		    [179.7615 479.0325]
-    chart		    2
-    linkNode		    [27 72 0]
-    isGrouped		    1
-    dataLimits		    [155.616 220.413 476.163 510.445]
-    stampAngle		    -0.6582
-    subviewer		    2
-    executionOrder	    2
-    ssIdNumber		    58
-  }
-  transition {
-    id			    69
-    labelString		    "[in(Fail.One)]"
-    labelPosition	    [263.916 454.488 76.361 19.062]
-    fontSize		    13.54
-    arrowSize		    12.946
-    src {
-      id		      40
-      intersection	      [0 1 0 -1 243.4751 478.8925 0 0]
-    }
-    dst {
-      id		      29
-      intersection	      [4 -1 0 0.7774 395.131 478.8925 0 0]
-    }
-    midPoint		    [315.705 478.8925]
-    chart		    2
-    linkNode		    [25 0 66]
-    isGrouped		    1
-    dataLimits		    [243.475 395.131 475.009 482.776]
-    subviewer		    2
-    drawStyle		    SMART
-    slide {
-      sticky		      SRC_STICK
-      midPointSticky	      1
-    }
-    executionOrder	    1
-    ssIdNumber		    59
-  }
-  transition {
-    id			    70
-    labelString		    "[in(Fail.Multi)]"
-    labelPosition	    [799.646 506.865 79.088 19.062]
-    fontSize		    13.54
-    arrowSize		    12.766
-    src {
-      id		      39
-      intersection	      [0 0.9897 -0.1429 -1 796.9212 481.5438 0 0]
-    }
-    dst {
-      id		      31
-      intersection	      [1 0 -1 0.6847 892.7195 543.5237 0 0]
-    }
-    midPoint		    [864.2738 493.3149]
-    chart		    2
-    linkNode		    [24 64 0]
-    isGrouped		    1
-    dataLimits		    [796.921 896.549 480.03 543.524]
-    stampAngle		    1.1351
-    subviewer		    2
-    executionOrder	    2
-    ssIdNumber		    60
-  }
-  transition {
-    id			    71
+    id			    61
     labelString		    "enter(Fail.Multi)"
     labelPosition	    [624.659 539.796 89.997 19.062]
     fontSize		    13.54
@@ -7347,43 +7421,19 @@ Stateflow {
     }
     midPoint		    [701.9938 558.9405]
     chart		    2
-    linkNode		    [23 65 73]
+    linkNode		    [23 60 62]
     isGrouped		    1
     dataLimits		    [582.135 824.895 555.111 562.77]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    61
   }
   transition {
-    id			    72
-    labelString		    "[in(O2.A.O2_normal)]"
-    labelPosition	    [103.348 433.572 122.723 19.062]
-    fontSize		    13.54
-    arrowSize		    12.946
-    src {
-      id		      32
-      intersection	      [3 0 1 0.522 231.9341 417.8327 0 0]
-    }
-    dst {
-      id		      40
-      intersection	      [0 0 -1 -1 231.9341 467.3515 0 0]
-    }
-    midPoint		    [231.9341 436.7737]
-    chart		    2
-    linkNode		    [27 0 68]
-    isGrouped		    1
-    dataLimits		    [228.05 235.818 417.833 467.351]
-    subviewer		    2
-    drawStyle		    SMART
-    slide {
-      sticky		      DST_STICK
-    }
-    executionOrder	    1
-    ssIdNumber		    62
-  }
-  transition {
-    id			    73
+    id			    62
     labelString		    "exit(Fail.Multi)"
     labelPosition	    [644.168 583.252 81.815 19.062]
     fontSize		    13.54
@@ -7398,85 +7448,351 @@ Stateflow {
     }
     midPoint		    [684.886 578.9367]
     chart		    2
-    linkNode		    [23 71 0]
+    linkNode		    [23 61 0]
     isGrouped		    1
     dataLimits		    [543.329 824.895 575.053 582.82]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
     ssIdNumber		    63
   }
+  junction {
+    id			    63
+    position		    [785.4503 483.2001 11.5903]
+    arrowSize		    17.007
+    chart		    2
+    linkNode		    [24 0 0]
+    isGrouped		    1
+    subviewer		    2
+    quantum		    [0 0 0 60]
+    ssIdNumber		    67
+    type		    CONNECTIVE_JUNCTION
+  }
   transition {
-    id			    74
-    description		    "Need to copy the sensors to the output on entry since the individual elements of the bus signal "
-    "are only updated in the during function."
-    labelString		    "{es_o = es_i;}"
-    labelPosition	    [236.015 293.314 80.452 19.062]
+    id			    64
+    labelString		    "[in(Speed.normal) & ...\nes_i.speed < (max_speed - hys)]"
+    labelPosition	    [793.266 419.706 190.903 35.401]
+    fontSize		    13.54
+    arrowSize		    17.007
+    src {
+      id		      26
+      intersection	      [4 -1 0 0.2868 823.0093 377.2418 0 0]
+    }
+    dst {
+      id		      63
+      intersection	      [1 0 -1 0 785.4503 471.6098 0 0]
+    }
+    midPoint		    [791.9421 404.6975]
+    chart		    2
+    linkNode		    [24 0 65]
+    isGrouped		    1
+    dataLimits		    [780.348 823.009 377.242 471.61]
+    stampAngle		    0.3787
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    54
+  }
+  transition {
+    id			    65
+    labelString		    "[in(Fail.Multi)]"
+    labelPosition	    [799.646 506.865 79.088 19.062]
+    fontSize		    13.54
+    arrowSize		    12.766
+    src {
+      id		      63
+      intersection	      [2 0.9897 -0.1429 0 796.9212 481.5438 0 0]
+    }
+    dst {
+      id		      31
+      intersection	      [1 0 -1 0.6847 892.7195 543.5237 0 0]
+    }
+    midPoint		    [864.2738 493.3149]
+    chart		    2
+    linkNode		    [24 64 0]
+    isGrouped		    1
+    dataLimits		    [796.921 896.549 480.03 543.524]
+    stampAngle		    1.1351
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    60
+  }
+  junction {
+    id			    66
+    labelString		    "H"
+    position		    [354.8406 339.8203 10.7876]
+    arrowSize		    12.946
+    chart		    2
+    linkNode		    [25 0 0]
+    isGrouped		    1
+    subviewer		    2
+    ssIdNumber		    65
+    type		    HISTORY_JUNCTION
+  }
+  transition {
+    id			    67
+    labelString		    "[in(Fail.One)]"
+    labelPosition	    [263.916 454.488 76.361 19.062]
     fontSize		    13.54
     arrowSize		    12.946
     src {
-      intersection	      [0 0 1 -1 230.1035 281.0355 0 0]
+      id		      71
+      intersection	      [2 1 0 0 243.4751 478.8925 0 0]
     }
     dst {
-      id		      32
-      intersection	      [1 0 -1 0.4489 230.1035 378.153 0 0]
+      id		      29
+      intersection	      [4 -1 0 0.7774 395.131 478.8925 0 0]
     }
-    midPoint		    [230.1035 324.8106]
+    midPoint		    [315.705 478.8925]
     chart		    2
-    linkNode		    [23 0 63]
+    linkNode		    [25 0 68]
     isGrouped		    1
-    dataLimits		    [226.22 233.987 281.036 378.153]
+    dataLimits		    [243.475 395.131 475.009 482.776]
     subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+      midPointSticky	      1
+    }
     executionOrder	    1
-    ssIdNumber		    64
+    ssIdNumber		    59
   }
   transition {
-    id			    75
-    labelPosition	    [100.628 8.623 8.246 14.971]
-    fontSize		    12
+    id			    68
+    labelString		    "[in(Fail.One)]"
+    labelPosition	    [235.149 510.936 76.361 19.062]
+    fontSize		    13.54
+    arrowSize		    12.946
     src {
-      intersection	      [0 0 1 0.2169 115.0279 8.25 0 -133.6565]
+      id		      30
+      intersection	      [2 1 0 0.2851 185.769 534.3247 0 -17.9962]
     }
     dst {
-      id		      36
-      intersection	      [1 0 -1 0.1999 115.0279 29.9278 0 133.6565]
+      id		      29
+      intersection	      [4 -1 0 0.3658 395.131 534.3247 0 17.9962]
     }
-    midPoint		    [115.0279 15.2995]
+    midPoint		    [288.1065 534.3247]
     chart		    2
-    linkNode		    [3 0 0]
-    visible		    0
-    dataLimits		    [112.628 117.428 8.25 29.928]
-    subviewer		    3
+    linkNode		    [25 67 69]
+    isGrouped		    1
+    dataLimits		    [185.769 395.131 530.441 538.208]
+    subviewer		    2
     drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
     executionOrder	    1
-    ssIdNumber		    180
+    ssIdNumber		    56
   }
-  event {
+  transition {
+    id			    69
+    labelString		    "[in(Fail.None)]"
+    labelPosition	    [227.374 573.917 83.179 19.062]
+    fontSize		    13.54
+    arrowSize		    12.946
+    src {
+      id		      29
+      intersection	      [4 -1 0 0.114 395.131 568.2469 0 -15.9204]
+    }
+    dst {
+      id		      30
+      intersection	      [2 1 0 0.6901 185.769 568.2469 0 15.9204]
+    }
+    midPoint		    [292.7935 568.2469]
+    chart		    2
+    linkNode		    [25 68 0]
+    isGrouped		    1
+    dataLimits		    [185.769 395.131 564.363 572.131]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    57
+  }
+  junction {
+    id			    70
+    labelString		    "H"
+    position		    [312.0107 384.5184 10.7876]
+    arrowSize		    12.946
+    chart		    2
+    linkNode		    [27 0 71]
+    isGrouped		    1
+    subviewer		    2
+    ssIdNumber		    66
+    type		    HISTORY_JUNCTION
+  }
+  junction {
+    id			    71
+    position		    [231.9341 478.8925 11.541]
+    arrowSize		    12.946
+    chart		    2
+    linkNode		    [27 70 0]
+    isGrouped		    1
+    subviewer		    2
+    quantum		    [72 67 0 0]
+    ssIdNumber		    68
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    72
+    labelString		    "[in(O2.A.O2_normal)]"
+    labelPosition	    [103.348 433.572 122.723 19.062]
+    fontSize		    13.54
+    arrowSize		    12.946
+    src {
+      id		      32
+      intersection	      [3 0 1 0.522 231.9341 417.8327 0 0]
+    }
+    dst {
+      id		      71
+      intersection	      [1 0 -1 0 231.9341 467.3515 0 0]
+    }
+    midPoint		    [231.9341 436.7737]
+    chart		    2
+    linkNode		    [27 0 73]
+    isGrouped		    1
+    dataLimits		    [228.05 235.818 417.833 467.351]
+    subviewer		    2
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    62
+  }
+  transition {
+    id			    73
+    labelPosition	    [166.515 478.897 9.545 19.062]
+    fontSize		    13.54
+    arrowSize		    12.946
+    src {
+      id		      71
+      intersection	      [4 -0.9983 -0.0586 0 220.4129 478.2163 0 0]
+    }
+    dst {
+      id		      30
+      intersection	      [1 0 -1 0.7174 159.5 510.4451 0 0]
+    }
+    midPoint		    [179.7615 479.0325]
+    chart		    2
+    linkNode		    [27 72 0]
+    isGrouped		    1
+    dataLimits		    [155.616 220.413 476.163 510.445]
+    stampAngle		    -0.6582
+    subviewer		    2
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    2
+    ssIdNumber		    58
+  }
+  data {
+    id			    74
+    ssIdNumber		    108
+    name		    "speed"
+    linkNode		    [33 0 75]
+    scope		    FUNCTION_INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_PARAMETERIZED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	expression		"s16En3"
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "s16En3"
+  }
+  data {
+    id			    75
+    ssIdNumber		    109
+    name		    "map"
+    linkNode		    [33 74 76]
+    scope		    FUNCTION_INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_PARAMETERIZED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	expression		"u8En7"
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "u8En7"
+  }
+  data {
     id			    76
-    ssIdNumber		    91
-    name		    "DEC"
-    description		    "decrement the sensor failure counter"
-    linkNode		    [16 0 77]
-    scope		    LOCAL_EVENT
-    trigger		    EITHER_EDGE_EVENT
+    ssIdNumber		    110
+    name		    "throttle"
+    linkNode		    [33 75 0]
+    scope		    FUNCTION_OUTPUT_DATA
     machine		    1
+    props {
+      array {
+	size			"-1"
+	isDynamic		1
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
   }
-  event {
+  data {
     id			    77
-    ssIdNumber		    92
-    name		    "INC"
-    description		    "increment the failure counter"
-    linkNode		    [16 76 0]
-    scope		    LOCAL_EVENT
-    trigger		    EITHER_EDGE_EVENT
+    ssIdNumber		    113
+    name		    "speed"
+    linkNode		    [34 0 78]
+    scope		    FUNCTION_INPUT_DATA
     machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_PARAMETERIZED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	expression		"s16En3"
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "s16En3"
   }
   data {
     id			    78
-    ssIdNumber		    108
-    name		    "speed"
-    linkNode		    [33 0 79]
+    ssIdNumber		    114
+    name		    "throttle"
+    linkNode		    [34 77 79]
     scope		    FUNCTION_INPUT_DATA
     machine		    1
     props {
@@ -7497,147 +7813,55 @@ Stateflow {
   }
   data {
     id			    79
-    ssIdNumber		    109
+    ssIdNumber		    115
     name		    "map"
-    linkNode		    [33 78 80]
-    scope		    FUNCTION_INPUT_DATA
+    linkNode		    [34 78 0]
+    scope		    FUNCTION_OUTPUT_DATA
     machine		    1
     props {
       array {
 	size			"-1"
+	isDynamic		1
       }
       type {
-	method			SF_PARAMETERIZED_TYPE
+	method			SF_INHERITED_TYPE
 	primitive		SF_DOUBLE_TYPE
-	expression		"u8En7"
 	isSigned		1
 	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
       frame		      SF_FRAME_INHERITED
     }
-    dataType		    "u8En7"
+    dataType		    "Inherit: Same as Simulink"
   }
   data {
     id			    80
-    ssIdNumber		    110
+    ssIdNumber		    120
     name		    "throttle"
-    linkNode		    [33 79 0]
-    scope		    FUNCTION_OUTPUT_DATA
+    linkNode		    [35 0 81]
+    scope		    FUNCTION_INPUT_DATA
     machine		    1
     props {
       array {
 	size			"-1"
-	isDynamic		1
       }
       type {
-	method			SF_INHERITED_TYPE
+	method			SF_PARAMETERIZED_TYPE
 	primitive		SF_DOUBLE_TYPE
+	expression		"s16En3"
 	isSigned		1
 	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
       frame		      SF_FRAME_INHERITED
     }
-    dataType		    "Inherit: Same as Simulink"
+    dataType		    "s16En3"
   }
   data {
     id			    81
-    ssIdNumber		    113
-    name		    "speed"
-    linkNode		    [34 0 82]
-    scope		    FUNCTION_INPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_PARAMETERIZED_TYPE
-	primitive		SF_DOUBLE_TYPE
-	expression		"s16En3"
-	isSigned		1
-	wordLength		"16"
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_INHERITED
-    }
-    dataType		    "s16En3"
-  }
-  data {
-    id			    82
-    ssIdNumber		    114
-    name		    "throttle"
-    linkNode		    [34 81 83]
-    scope		    FUNCTION_INPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_PARAMETERIZED_TYPE
-	primitive		SF_DOUBLE_TYPE
-	expression		"s16En3"
-	isSigned		1
-	wordLength		"16"
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_INHERITED
-    }
-    dataType		    "s16En3"
-  }
-  data {
-    id			    83
-    ssIdNumber		    115
-    name		    "map"
-    linkNode		    [34 82 0]
-    scope		    FUNCTION_OUTPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-	isDynamic		1
-      }
-      type {
-	method			SF_INHERITED_TYPE
-	primitive		SF_DOUBLE_TYPE
-	isSigned		1
-	wordLength		"16"
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_INHERITED
-    }
-    dataType		    "Inherit: Same as Simulink"
-  }
-  data {
-    id			    84
-    ssIdNumber		    120
-    name		    "throttle"
-    linkNode		    [35 0 85]
-    scope		    FUNCTION_INPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_PARAMETERIZED_TYPE
-	primitive		SF_DOUBLE_TYPE
-	expression		"s16En3"
-	isSigned		1
-	wordLength		"16"
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_INHERITED
-    }
-    dataType		    "s16En3"
-  }
-  data {
-    id			    85
     ssIdNumber		    121
     name		    "map"
-    linkNode		    [35 84 86]
+    linkNode		    [35 80 82]
     scope		    FUNCTION_INPUT_DATA
     machine		    1
     props {
@@ -7657,10 +7881,10 @@ Stateflow {
     dataType		    "u8En7"
   }
   data {
-    id			    86
+    id			    82
     ssIdNumber		    122
     name		    "speed"
-    linkNode		    [35 85 0]
+    linkNode		    [35 81 0]
     scope		    FUNCTION_OUTPUT_DATA
     machine		    1
     props {
@@ -7678,6 +7902,114 @@ Stateflow {
       frame		      SF_FRAME_INHERITED
     }
     dataType		    "Inherit: Same as Simulink"
+  }
+  transition {
+    id			    83
+    labelPosition	    [99.271 139.221 9.745 17.965]
+    fontSize		    13.54
+    arrowSize		    12
+    src {
+      intersection	      [0 0 1 0 101.0489 134.4281 0 0]
+    }
+    dst {
+      id		      6
+      intersection	      [1 0 -1 0.3489 101.0489 157.2605 0 0]
+    }
+    midPoint		    [101.0489 139.9496]
+    chart		    2
+    linkNode		    [36 0 84]
+    visible		    0
+    dataLimits		    [97.449 104.649 134.428 157.26]
+    subviewer		    3
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    35
+  }
+  transition {
+    id			    84
+    description		    "The value for sufficient warm up to operational temperature (nominally 4.8 seconds)."
+    labelString		    "[after(480,tick)]"
+    labelPosition	    [118.203 222.285 95.954 17.965]
+    fontSize		    13.54
+    arrowSize		    12
+    src {
+      id		      6
+      intersection	      [3 0 1 0.5166 113.5 214.3845 0 1.5391]
+    }
+    dst {
+      id		      9
+      intersection	      [1 0 -1 0.4763 113.5 265.5681 0 -1.5391]
+    }
+    midPoint		    [113.5 234.6979]
+    chart		    2
+    linkNode		    [36 83 85]
+    visible		    0
+    dataLimits		    [109.9 117.1 214.385 265.568]
+    subviewer		    3
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    36
+  }
+  transition {
+    id			    85
+    labelString		    "[es_i.ego < max_ego] / Fail.DEC"
+    labelPosition	    [213.752 262.833 207.649 17.965]
+    fontSize		    13.54
+    arrowSize		    12
+    src {
+      id		      5
+      intersection	      [4 -1 0 0.7142 447.7336 287.75 0 12.2361]
+    }
+    dst {
+      id		      9
+      intersection	      [2 1 0 0.3883 161.9898 287.75 0 -12.2361]
+    }
+    midPoint		    [305.0409 287.75]
+    chart		    2
+    linkNode		    [36 84 86]
+    visible		    0
+    dataLimits		    [161.99 447.734 284.15 291.35]
+    subviewer		    3
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    32
+  }
+  transition {
+    id			    86
+    description		    "The failure condition is indicated by excessive output voltage."
+    labelString		    "[es_i.ego > max_ego] / Fail.INC"
+    labelPosition	    [212.615 312.766 201.652 17.965]
+    fontSize		    13.54
+    arrowSize		    12
+    src {
+      id		      9
+      intersection	      [2 1 0 0.7172 161.9898 306.5366 0 0]
+    }
+    dst {
+      id		      5
+      intersection	      [4 -1 0 0.3853 447.7336 306.5366 0 0]
+    }
+    midPoint		    [304.6825 306.5366]
+    chart		    2
+    linkNode		    [36 85 0]
+    visible		    0
+    dataLimits		    [161.99 447.734 302.937 310.137]
+    subviewer		    3
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    33
   }
   data {
     id			    87
@@ -8027,18 +8359,18 @@ Stateflow {
   chart {
     id			    100
     name		    "Engine Gas Dynamics/Throttle & Manifold/Throttle/f(theta)"
-    windowPosition	    [281.813 329.45 200.25 189.75]
+    windowPosition	    [376 293 213 385]
     viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 1280 1024 1.333333333333333]
+    screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 101 0 0]
-    firstTransition	    103
-    firstJunction	    102
+    firstTransition	    105
+    firstJunction	    104
     viewObj		    100
     machine		    1
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    104
+    firstData		    102
     chartFileNumber	    2
     disableImplicitCasting  1
     eml {
@@ -8067,41 +8399,11 @@ Stateflow {
       emlDefaultFimath	      FimathUserSpecified
     }
   }
-  junction {
-    id			    102
-    position		    [23.5747 49.5747 7]
-    chart		    100
-    linkNode		    [100 0 0]
-    subviewer		    100
-    ssIdNumber		    3
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    103
-    labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [32.125 19.875 102.544 14.964]
-    fontSize		    12
-    src {
-      intersection	      [0 0 1 0 23.5747 14.625 0 0]
-    }
-    dst {
-      id		      102
-      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
-    }
-    midPoint		    [23.5747 24.9468]
-    chart		    100
-    linkNode		    [100 0 0]
-    dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    100
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    2
-  }
   data {
-    id			    104
+    id			    102
     ssIdNumber		    4
     name		    "u"
-    linkNode		    [100 0 105]
+    linkNode		    [100 0 103]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -8117,10 +8419,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    105
+    id			    103
     ssIdNumber		    5
     name		    "y"
-    linkNode		    [100 104 0]
+    linkNode		    [100 102 0]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -8136,6 +8438,39 @@ Stateflow {
     }
     dataType		    "Inherit: Same as Simulink"
   }
+  junction {
+    id			    104
+    position		    [23.5747 49.5747 7]
+    chart		    100
+    linkNode		    [100 0 0]
+    subviewer		    100
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    105
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      104
+      intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    100
+    linkNode		    [100 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    100
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    2
+  }
   instance {
     id			    106
     name		    "Engine Gas Dynamics/Throttle & Manifold/Throttle/f(theta)"
@@ -8145,18 +8480,18 @@ Stateflow {
   chart {
     id			    107
     name		    "Engine Gas Dynamics/Throttle & Manifold/Throttle/g(pratio)"
-    windowPosition	    [296.813 314.45 200.25 189.75]
+    windowPosition	    [396 313 213 385]
     viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 1280 1024 1.333333333333333]
+    screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 108 0 0]
-    firstTransition	    110
-    firstJunction	    109
+    firstTransition	    112
+    firstJunction	    111
     viewObj		    107
     machine		    1
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    111
+    firstData		    109
     chartFileNumber	    3
     disableImplicitCasting  1
     eml {
@@ -8185,41 +8520,11 @@ Stateflow {
       emlDefaultFimath	      FimathUserSpecified
     }
   }
-  junction {
-    id			    109
-    position		    [23.5747 49.5747 7]
-    chart		    107
-    linkNode		    [107 0 0]
-    subviewer		    107
-    ssIdNumber		    3
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    110
-    labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [32.125 19.875 102.544 14.964]
-    fontSize		    12
-    src {
-      intersection	      [0 0 1 0 23.5747 14.625 0 0]
-    }
-    dst {
-      id		      109
-      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
-    }
-    midPoint		    [23.5747 24.9468]
-    chart		    107
-    linkNode		    [107 0 0]
-    dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    107
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    2
-  }
   data {
-    id			    111
+    id			    109
     ssIdNumber		    4
     name		    "u"
-    linkNode		    [107 0 112]
+    linkNode		    [107 0 110]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -8235,10 +8540,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    112
+    id			    110
     ssIdNumber		    5
     name		    "y"
-    linkNode		    [107 111 0]
+    linkNode		    [107 109 0]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -8254,6 +8559,39 @@ Stateflow {
     }
     dataType		    "Inherit: Same as Simulink"
   }
+  junction {
+    id			    111
+    position		    [23.5747 49.5747 7]
+    chart		    107
+    linkNode		    [107 0 0]
+    subviewer		    107
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    112
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      111
+      intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    107
+    linkNode		    [107 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    107
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    2
+  }
   instance {
     id			    113
     name		    "Engine Gas Dynamics/Throttle & Manifold/Throttle/g(pratio)"
@@ -8263,18 +8601,18 @@ Stateflow {
   chart {
     id			    114
     name		    "Engine Gas Dynamics/Throttle & Manifold/Intake Manifold/MATLAB Function"
-    windowPosition	    [281.813 329.45 200.25 189.75]
+    windowPosition	    [376 293 213 385]
     viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 1280 1024 1.333333333333333]
+    screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 115 0 0]
-    firstTransition	    117
-    firstJunction	    116
+    firstTransition	    120
+    firstJunction	    119
     viewObj		    114
     machine		    1
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    118
+    firstData		    116
     chartFileNumber	    4
     disableImplicitCasting  1
     eml {
@@ -8304,41 +8642,11 @@ Stateflow {
       emlDefaultFimath	      FimathUserSpecified
     }
   }
-  junction {
-    id			    116
-    position		    [23.5747 49.5747 7]
-    chart		    114
-    linkNode		    [114 0 0]
-    subviewer		    114
-    ssIdNumber		    3
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    117
-    labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [32.125 19.875 102.544 14.964]
-    fontSize		    12
-    src {
-      intersection	      [0 0 1 0 23.5747 14.625 0 0]
-    }
-    dst {
-      id		      116
-      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
-    }
-    midPoint		    [23.5747 24.9468]
-    chart		    114
-    linkNode		    [114 0 0]
-    dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    114
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    2
-  }
   data {
-    id			    118
+    id			    116
     ssIdNumber		    4
     name		    "u1"
-    linkNode		    [114 0 119]
+    linkNode		    [114 0 117]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -8354,10 +8662,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    119
+    id			    117
     ssIdNumber		    5
     name		    "y"
-    linkNode		    [114 118 120]
+    linkNode		    [114 116 118]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -8374,10 +8682,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    120
+    id			    118
     ssIdNumber		    6
     name		    "u2"
-    linkNode		    [114 119 0]
+    linkNode		    [114 117 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -8395,6 +8703,39 @@ Stateflow {
     }
     dataType		    "Inherit: Same as Simulink"
   }
+  junction {
+    id			    119
+    position		    [23.5747 49.5747 7]
+    chart		    114
+    linkNode		    [114 0 0]
+    subviewer		    114
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    120
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      119
+      intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    114
+    linkNode		    [114 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    114
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    2
+  }
   instance {
     id			    121
     name		    "Engine Gas Dynamics/Throttle & Manifold/Intake Manifold/MATLAB Function"
@@ -8404,18 +8745,18 @@ Stateflow {
   chart {
     id			    122
     name		    "Engine Gas Dynamics/Mixing & Combustion/EGO Sensor"
-    windowPosition	    [281.813 329.45 200.25 189.75]
+    windowPosition	    [376 293 213 385]
     viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 1280 1024 1.333333333333333]
+    screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 123 0 0]
-    firstTransition	    125
-    firstJunction	    124
+    firstTransition	    127
+    firstJunction	    126
     viewObj		    122
     machine		    1
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    126
+    firstData		    124
     chartFileNumber	    5
     disableImplicitCasting  1
     eml {
@@ -8444,41 +8785,11 @@ Stateflow {
       emlDefaultFimath	      FimathUserSpecified
     }
   }
-  junction {
-    id			    124
-    position		    [23.5747 49.5747 7]
-    chart		    122
-    linkNode		    [122 0 0]
-    subviewer		    122
-    ssIdNumber		    3
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    125
-    labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [32.125 19.875 102.544 14.964]
-    fontSize		    12
-    src {
-      intersection	      [0 0 1 0 23.5747 14.625 0 0]
-    }
-    dst {
-      id		      124
-      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
-    }
-    midPoint		    [23.5747 24.9468]
-    chart		    122
-    linkNode		    [122 0 0]
-    dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    122
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    2
-  }
   data {
-    id			    126
+    id			    124
     ssIdNumber		    4
     name		    "u"
-    linkNode		    [122 0 127]
+    linkNode		    [122 0 125]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -8494,10 +8805,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    127
+    id			    125
     ssIdNumber		    5
     name		    "y"
-    linkNode		    [122 126 0]
+    linkNode		    [122 124 0]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -8512,6 +8823,39 @@ Stateflow {
       frame		      SF_FRAME_NO
     }
     dataType		    "Inherit: Same as Simulink"
+  }
+  junction {
+    id			    126
+    position		    [23.5747 49.5747 7]
+    chart		    122
+    linkNode		    [122 0 0]
+    subviewer		    122
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    127
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      126
+      intersection	      [1 0 -1 0 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    122
+    linkNode		    [122 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    122
+    drawStyle		    SMART
+    slide {
+      sticky		      BOTH_STICK
+    }
+    executionOrder	    1
+    ssIdNumber		    2
   }
   instance {
     id			    128
