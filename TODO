@@ -1,9 +1,6 @@
 - Support Model Referencing.
-- Add a proper setup script.
 - Support Linux hosts.
 - Support PIL mode.
-- Support automatic binary upload to the target and start of execution.
 - Support some IO.
-- Clean up the target in general. Not all files are necessary.
 - Update documentation.
 - Use deterministic QNX timers.
