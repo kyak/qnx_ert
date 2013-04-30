@@ -9,14 +9,18 @@ Simulink (http://www.mathworks.com/products/simulink) is a leading environment f
 
 Embedded Coder (http://www.mathworks.com/products/embedded-coder) allows you to generate C code and deploy your algorithms to target hardware.
 
+This Embedded Coder Target Support Package was tested on Beagleboard xM running QNX 6.5.1.
+It should also work with other QNX targets, provided they have a BSP. Minimal changes to Template Makefile are required in this case to reflect other compiler flags.
+
 **Installation:**
 
-TODO
+Run qnx_setup.m.
 
 **What this package already has:**
 
-TODO
+    Standalong execution driven by POSIX timers (multirate/multitasking)
+    External Mode support
 
 **What this package would like to have:**
 
-TODO
+    See TODO.
