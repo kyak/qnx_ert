@@ -4,8 +4,8 @@
 # Abstract:
 #	Setup LCC tools for gmake.
 
-CC     = qcc
-LD     = qcc
+CC     = $(QNX_HOST)/usr/bin/qcc
+LD     = $(QNX_HOST)/usr/bin/qcc
 LIBPATH    = $(QNX_TARGET)\armle-v7\lib
 LIBCMD = ntoarmv7-ar
 #BUILDLIB = $(LCC)\bin\buildlib
