@@ -38,12 +38,11 @@
 #  BUILD           - Invoke make from the build procedure (yes/no)?
 #  SYS_TARGET_FILE - Name of system target file.
 
-MAKECMD         = "|>MATLAB_BIN<|/|>ARCH<|\gmake"
-SHELL           = cmd
-HOST            = PC
+MAKECMD         = "|>MATLAB_BIN<|/|>ARCH<|/gmake"
+HOST            = ANY
 BUILD           = yes
 SYS_TARGET_FILE = any
-COMPILER_TOOL_CHAIN = qcc
+COMPILER_TOOL_CHAIN = default
 
 MAKEFILE_FILESEP = /
 
