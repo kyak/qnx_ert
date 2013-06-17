@@ -2,6 +2,9 @@ function qnx_download(modelName,makertwObj)
 
 disp(['### Downloading ', modelName, ' to QNX Target Board...']);
 
+if isunix
+    disp('Download not implemented');
+else
 % Temporary file with commands for ftp
 filename = [tempname,'.ftp'];
 fid = fopen(filename, 'w');
@@ -54,3 +57,4 @@ command = sprintf('%s -telnet %s < %s',plink,getpref('qnx_ert','TargetIP'),filen
 [status, out] = system(command);
 disp(out);
 delete(filename);
+end
