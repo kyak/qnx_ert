@@ -112,7 +112,6 @@ SHARED_SRC           = |>SHARED_SRC<|
 SHARED_SRC_DIR       = |>SHARED_SRC_DIR<|
 SHARED_BIN_DIR       = |>SHARED_BIN_DIR<|
 SHARED_LIB           = |>SHARED_LIB<|
-MEX_OPT_FILE         = |>MEX_OPT_FILE<|
 PORTABLE_WORDSIZES   = |>PORTABLE_WORDSIZES<|
 SHRLIBTARGET         = |>SHRLIBTARGET<|
 MAKEFILEBUILDER_TGT  = |>MAKEFILEBUILDER_TGT<|
@@ -370,7 +369,7 @@ else
   PRODUCT            = $(RELATIVE_PATH_TO_ANCHOR)/$(MODEL)_sf.$(MEXEXT)
   RTW_SFUN_SRC       = $(MODEL)_sf.c
   SRCS               = $(MODULES) $(ADD_SRCS) $(S_FUNCTIONS)
-  BIN_SETTING        = $(MATLAB_BIN)\mex.bat $(MEX_OPT_OPTS) -win32 $(MEX_LDFLAGS) $(RTW_SFUN_SRC) $(MEX_OPT_FILE) $(INCLUDES) -outdir $(RELATIVE_PATH_TO_ANCHOR) 
+  BIN_SETTING        = $(MATLAB_BIN)\mex.bat $(MEX_OPT_OPTS) -win32 $(MEX_LDFLAGS) $(RTW_SFUN_SRC) $(INCLUDES) -outdir $(RELATIVE_PATH_TO_ANCHOR) 
   endif  
   BUILD_PRODUCT_TYPE = mex file
   ifeq ($(B_ERTSFCN),1)
@@ -399,21 +398,21 @@ ifeq ($(MODELREF_TARGET_TYPE),NONE)
 	$(BIN_SETTING) $(LINK_OBJS) @$(MODELREF_LINK_RSPFILE) $(SHARED_LIB) $(LIBS)  $(MODEL).def
 #--- Comment out the next line to retain .lib and .exp files ---
 	@del $(RELATIVE_PATH_TO_ANCHOR)\$(MODEL)_win32.lib $(RELATIVE_PATH_TO_ANCHOR)\$(MODEL)_win32.exp
-	@cmd /C "echo ### Created $(BUILD_PRODUCT_TYPE): $@"
+	@echo "### Created $(BUILD_PRODUCT_TYPE): $@"
   else
     ifeq ($(MAKEFILEBUILDER_TGT),1)
       $(PRODUCT) : $(PREBUILT_OBJS) $(OBJS) $(MODELLIB) $(SHARED_LIB) $(LIBS) $(SRC_DEP) $(MODELREF_LINK_LIBS)
 	$(BIN_SETTING) $(PREBUILT_OBJS) $(LINK_OBJS) $(MODELLIB) @$(MODELREF_LINK_RSPFILE) $(SHARED_LIB) $(LIBS)
-	@cmd /C "echo ### Created $(BUILD_PRODUCT_TYPE): $@"
+	@echo "### Created $(BUILD_PRODUCT_TYPE): $@"
     else
       ifeq ($(STANDALONE_SUPPRESS_EXE), 1)
         .PHONY: $(PRODUCT)
         $(PRODUCT) : $(OBJS) $(SHARED_LIB) $(LIBS) $(SRC_DEP) $(MODELREF_LINK_LIBS)
-	@cmd /C "echo ### Created $(BUILD_PRODUCT_TYPE): $@"
+	@echo "### Created $(BUILD_PRODUCT_TYPE): $@"
       else
         $(PRODUCT) : $(OBJS) $(SHARED_LIB) $(LIBS) $(SRC_DEP) $(MODELREF_LINK_LIBS)
 	$(BIN_SETTING) $(LINK_OBJS) @$(MODELREF_LINK_RSPFILE) $(SHARED_LIB) $(LIBS) -lm -lsocket -lc
-	@cmd /C "echo ### Created $(BUILD_PRODUCT_TYPE): $@"
+	@echo "### Created $(BUILD_PRODUCT_TYPE): $@"
       endif
     endif
   endif
@@ -422,16 +421,16 @@ else
   $(PRODUCT) : $(OBJS) $(SHARED_LIB) $(LIBS) $(SRC_DEP)
 	@if exist $(MODELLIB) del $(MODELLIB)
 	$(LIBCMD) -r $(MODELLIB) $(LINK_OBJS)
-	@cmd /C "echo ### Created $(MODELLIB)"
-	$(MATLAB_BIN)\mex.bat -win32 $(MEX_LDFLAGS) -c $(RTW_SFUN_SRC) $(MEX_OPT_FILE) $(INCLUDES) 
-	$(MATLAB_BIN)\mex.bat -win32 $(MEX_OPT_FILE) $(MEX_LDFLAGS) -outdir $(RELATIVE_PATH_TO_ANCHOR) $(MODEL)$(MODELREF_SFCN_SUFFIX).obj $(MODELLIB) @$(MODELREF_LINK_RSPFILE) $(SHARED_LIB) $(LIBS) 
-	@cmd /C "echo ### Created $(BUILD_PRODUCT_TYPE): $@"
+	@echo "### Created $(MODELLIB)"
+	$(MATLAB_BIN)\mex.bat -win32 $(MEX_LDFLAGS) -c $(RTW_SFUN_SRC) $(INCLUDES) 
+	$(MATLAB_BIN)\mex.bat -win32 $(MEX_LDFLAGS) -outdir $(RELATIVE_PATH_TO_ANCHOR) $(MODEL)$(MODELREF_SFCN_SUFFIX).obj $(MODELLIB) @$(MODELREF_LINK_RSPFILE) $(SHARED_LIB) $(LIBS) 
+	@echo "### Created $(BUILD_PRODUCT_TYPE): $@"
  else
   $(PRODUCT) : $(OBJS) $(SHARED_LIB) $(SRC_DEP)
 	@if exist $(MODELLIB) del $(MODELLIB)
 	$(LIBCMD) -r $(MODELLIB) $(LINK_OBJS)
-	@cmd /C "echo ### Created $(MODELLIB)"
-	@cmd /C "echo ### Created $(BUILD_PRODUCT_TYPE): $@"
+	@echo "### Created $(MODELLIB)"
+	@echo "### Created $(BUILD_PRODUCT_TYPE): $@"
  endif
 endif
 
@@ -509,10 +508,10 @@ endif
 |>END_EXPAND_MODULES<|
 
 |>EXPAND_LIBRARY_NAME<|.a : $(MAKEFILE) rtw_proj.tmw $(MODULES_|>EXPAND_LIBRARY_NAME<|)
-	@cmd /C "echo ### Creating $@"
+	@echo "### Creating $@"
 	@if exist $@ del $@
 	$(LIBCMD) -r $@ $(MODULES_|>EXPAND_LIBRARY_NAME<|)
-	@cmd /C "echo ### $@ Created "
+	@echo "### $@ Created "
 
 |>END_EXPAND_LIBRARIES<|
 
@@ -521,10 +520,10 @@ endif
 |>END_EXPAND_MODULES<|
 
 |>EXPAND_LIBRARY_NAME<|.a : $(MAKEFILE) rtw_proj.tmw $(MODULES_|>EXPAND_LIBRARY_NAME<|)
-	@cmd /C "echo ### Creating $@"
+	@echo "### Creating $@"
 	@if exist $@ del $@
 	$(LIBCMD) -r $@ $(MODULES_|>EXPAND_LIBRARY_NAME<|)
-	@cmd /C "echo ### $@ Created"
+	@echo "### $@ Created"
 
 |>END_PRECOMP_LIBRARIES<|
 
@@ -536,20 +535,20 @@ $(SHARED_OBJS) : $(SHARED_BIN_DIR)/%.o : $(SHARED_SRC_DIR)/%.c
 	$(CC) -c -o $@ $(CFLAGS) $<
 
 $(SHARED_LIB) : $(SHARED_OBJS)
-	@cmd /C "echo ### Creating $@"
+	@echo "### Creating $@"
 	@if exist $@ del $@
 	$(LIBCMD) -r $@ $(FMT_SHARED_OBJS)
-	@cmd /C "echo ### $@ Created"
+	@echo "### $@ Created"
 
 #--------- Miscellaneous rules to purge, clean and lint (sol2 only) ------------
 
 purge : clean
-	@cmd /C "echo ### Deleting the generated source code for $(MODEL)"
+	@echo "### Deleting the generated source code for $(MODEL)"
 	@del $(MODEL).c $(MODEL).h $(MODEL)_types.h $(MODEL)_data.c $(MODEL).rtw \
 	        $(MODEL)_private.h $(MODULES) rtw_proj.tmw $(MAKEFILE)
 
 clean :
-	@cmd /C "echo ### Deleting the objects and $(PROGRAM)"
+	@echo "### Deleting the objects and $(PROGRAM)"
 	@del $(LINK_OBJS) ..\$(MODEL)
 
 # EOF: ert_qnx.tmf
