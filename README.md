@@ -20,6 +20,7 @@ Run qnx_setup.m.
 
     Standalong execution driven by POSIX timers (multirate/multitasking)
     External Mode support
+    Automatic download to target using FTP and start via TELNET
 
 **What this package would like to have:**
 
