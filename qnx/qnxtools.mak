@@ -6,11 +6,8 @@
 
 CC     = $(QNX_HOST)/usr/bin/qcc
 LD     = $(QNX_HOST)/usr/bin/qcc
-LIBPATH    = $(QNX_TARGET)\armle-v7\lib
-LIBCMD = ntoarmv7-ar
-#BUILDLIB = $(LCC)\bin\buildlib
-
-PERL   = $(MATLAB_ROOT)\sys\perl\$(ARCH)\bin\perl
+LIBPATH    = $(QNX_TARGET)/armle-v7/lib
+LIBCMD = $(QNX_HOST)/usr/bin/ntoarmv7-ar
 
 DEFAULT_OPT_OPTS = 
 
@@ -19,27 +16,27 @@ DEFAULT_OPT_OPTS =
 #------------------------------------#
 
 MATLAB_INCLUDES = \
-	-I$(MATLAB_ROOT)\simulink\include \
-	-I$(MATLAB_ROOT)\extern\include \
-	-I$(MATLAB_ROOT)\rtw\c\src \
-	-I$(MATLAB_ROOT)\rtw\c\libsrc \
-	-I$(MATLAB_ROOT)\rtw\c\src\ext_mode\common \
-	-I$(MATLAB_ROOT)\rtw\c\src\ext_mode\tcpip \
-	-I$(MATLAB_ROOT)\rtw\c\src\ext_mode\serial \
-	-I$(MATLAB_ROOT)\rtw\c\src\ext_mode\custom
+	-I$(MATLAB_ROOT)/simulink/include \
+	-I$(MATLAB_ROOT)/extern/include \
+	-I$(MATLAB_ROOT)/rtw/c/src \
+	-I$(MATLAB_ROOT)/rtw/c/libsrc \
+	-I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common \
+	-I$(MATLAB_ROOT)/rtw/c/src/ext_mode/tcpip \
+	-I$(MATLAB_ROOT)/rtw/c/src/ext_mode/serial \
+	-I$(MATLAB_ROOT)/rtw/c/src/ext_mode/custom
 
 # DSP Blockset non-TLC S-fcn source path
 # and additional file include paths
-DSP_MEX      = $(MATLAB_ROOT)\toolbox\dspblks\dspmex
-DSP_SIM      = $(MATLAB_ROOT)\toolbox\dspblks\src\sim
-DSP_RT       = $(MATLAB_ROOT)\toolbox\dspblks\src\rt
+DSP_MEX      = $(MATLAB_ROOT)/toolbox/dspblks/dspmex
+DSP_SIM      = $(MATLAB_ROOT)/toolbox/dspblks/src/sim
+DSP_RT       = $(MATLAB_ROOT)/toolbox/dspblks/src/rt
 DSP_INCLUDES = \
 	-I$(DSP_SIM) \
 	-I$(DSP_RT)
 
 QNX_TGT_INCLUDES = -I$(QNX_MW_ROOT) -I$(QNX_MW_ROOT)/ext_mode -I$(QNX_MW_ROOT)/qnx
 BLOCKSET_INCLUDES = $(DSP_INCLUDES) \
-                   -I$(MATLAB_ROOT)\toolbox\commblks\commmex
+                   -I$(MATLAB_ROOT)/toolbox/commblks/commmex
 
 COMPILER_INCLUDES = -I$(QNX_TARGET)/usr/include
 
