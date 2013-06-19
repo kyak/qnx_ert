@@ -14,7 +14,10 @@ It should also work with other QNX targets, provided they have a BSP. Minimal ch
 
 **Installation:**
 
-Run qnx_setup.m.
+1) Run qnx_setup.m.
+
+2) For Windows hosts, you need to download plink.exe from http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html and put it into "qnx" directory.
+This utility is used to start the binary automatically on target.
 
 **What this package already has:**
 
