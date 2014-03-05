@@ -60,6 +60,10 @@
 
 /*Real Time Workshop headers*/
 #include "rtwtypes.h"
+/* Stupid way to detect < R2013b */
+#ifndef _CINT8_T
+#include "multiword_types.h"
+#endif
 #include "rtw_extmode.h"
 
 #include "ext_types.h"

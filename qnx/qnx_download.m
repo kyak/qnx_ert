@@ -10,6 +10,11 @@ filename = [tempname,'.ftp'];
 fid = fopen(filename, 'w');
 [~, upname, ~] = fileparts(filename);
 upname = [modelName,'_',upname];
+if verLessThan('matlab', '8.1')
+    bdir = makertwObj.BuildDirectory;
+else
+    bdir = rtwprivate('get_makertwsettings',gcs,'BuildDirectory');
+end
 ftpcmd = {
 'verbose'
 ['open ',getpref('qnx_ert','TargetIP')]
@@ -17,7 +22,7 @@ ftpcmd = {
 'password'
 'binary'
 % Construct unique destination file name
-['put ',fullfile(makertwObj.BuildDirectory,'..',modelName),' ',upname]
+['put ',fullfile(bdir,'..',modelName),' ',upname]
 'bye'
 };
 for i=1:length(ftpcmd)
@@ -30,7 +35,11 @@ disp(out);
 delete(filename);
 
 % Execute the uploaded file
-tokens = makertwObj.BuildInfo.Tokens;
+if verLessThan('matlab', '8.1')
+    tokens = makertwObj.BuildInfo.Tokens;
+else
+    tokens = makertwObj.Tokens;
+end
 
 for i=1:length(tokens)
     if strcmp(tokens(i).DisplayLabel,'|>QNX_MW_ROOT<|')
