@@ -8,8 +8,8 @@
  *      implementation.
  */
 
-#ifndef __EXT_SVR__
-#define __EXT_SVR__
+#ifndef __EXT_QNX_SVR__
+#define __EXT_QNX_SVR__
 
 #include "ext_share.h"
 
@@ -44,11 +44,9 @@ extern void      rt_UploadBufAddTimePoint(int_T tid,
 extern void      rt_ExtModeSleep(long sec,   /* number of seconds to wait      */
                                  long usec); /* number of micro seconds to wait*/
 #else
-extern void      rt_UploadServer(int_T numSampTimes);
+extern void*      rt_UploadServer(void *arg);
 
-extern void      rt_PktServer(RTWExtModeInfo *ei,
-                              int_T          numSampTimes,
-                              boolean_T      *stopReq);
+extern void*      rt_PktServer(void *thPtr);
 
 extern void      rt_SetPortInExtUD(const int_T port);
 #endif

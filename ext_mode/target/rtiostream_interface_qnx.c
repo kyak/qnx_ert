@@ -83,7 +83,7 @@ PUBLIC const char_T *ExtProcessArgs(
      * this point. This is required because the main program throws an error if
      * the entries of argv are not NULLed out. */
     printf("Calling rtIOStreamOpen from ExtProcessArgs\n");
-    UD->streamID = rtIOStreamOpen(argc, (void *)argv);
+    UD->streamID = rtIOStreamOpen(argc, (void **)argv);
 
     return(error);
 } /* end ExtProcessArgs */
@@ -218,9 +218,9 @@ PUBLIC void ExtUserDataDestroy(ExtUserData *UD)
 #ifdef QNX_OS
 PUBLIC void ExtUserDataSetPort(ExtUserData *UD, const int_T port)
 {
-#define PORT_NUM_STR_DEFAULT "00255\0"
+#define PORT_NUM_STR_DEFAULT "00255"
 #define PORT_NUM_STR_LEN 6
-#define PORT_ARG_STR "-port\0"
+#define PORT_ARG_STR "-port"
 #define PORT_ARG_STR_LEN 6
     int_T argc = 3;
     char_T portArgStr[PORT_ARG_STR_LEN] = PORT_ARG_STR;
@@ -239,7 +239,7 @@ PUBLIC void ExtUserDataSetPort(ExtUserData *UD, const int_T port)
      * the entries of argv are not NULLed out. */
 
     printf("Calling rtIOStreamOpen\n");
-    UD->streamID = rtIOStreamOpen(argc, (void *)argv);
+    UD->streamID = rtIOStreamOpen(argc, (void **)argv);
     printf("successful return from rtIOStreamOpen\n");
     
 } /* end ExtUserDataSetPort */

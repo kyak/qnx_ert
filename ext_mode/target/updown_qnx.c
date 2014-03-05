@@ -55,6 +55,11 @@ extern SEM_ID fSem;
 extern sem_t *uploadSem;
 
 #endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /******************************************************************************
  * Parameter Download                                                         *
  ******************************************************************************/
@@ -142,7 +147,7 @@ PUBLIC void SetParam(RTWExtModeInfo  *ei, const char *pbuf)
     const int  tmpBufSize = sizeof(int32_T) * 4;
     int32_T    tmpBuf[4];
 
-    const DataTypeTransInfo *dtInfo = rteiGetModelMappingInfo(ei);
+    const DataTypeTransInfo *dtInfo = (DataTypeTransInfo *) rteiGetModelMappingInfo(ei);
     const DataTypeTransitionTable *dtTable = dtGetParamDataTypeTrans(dtInfo);
     const uint_T *dtSizes = dtGetDataTypeSizes(dtInfo);
 
@@ -673,7 +678,7 @@ PRIVATE void InitUploadSection(
     char_T                        *tranAddress;
     int_T                         tranIsComplex;
     
-    const DataTypeTransInfo       *dtInfo  = rteiGetModelMappingInfo(ei);
+    const DataTypeTransInfo       *dtInfo  = (DataTypeTransInfo *) rteiGetModelMappingInfo(ei);
     const DataTypeTransitionTable *dtTable = dtGetBIODataTypeTrans(dtInfo);
     const uint_T *dtSizes = dtGetDataTypeSizes(dtInfo);
 
@@ -1510,7 +1515,7 @@ PRIVATE boolean_T UploadCheckTriggerSignals(int32_T upInfoIdx)
         (void)memcpy(oldSigPtr, section->start, section->nBytes);
         oldSigPtr += nEls;
     }
-    assert(((unsigned char *)oldTrigSigVals) + trigInfo->trigSignals.nBytes == oldSigPtr);
+    assert((real_T *)((unsigned char *)oldTrigSigVals) + trigInfo->trigSignals.nBytes == oldSigPtr);
     trigInfo->haveOldTrigSigVal = TRUE;
     return(FALSE);
 } /* end UploadCheckTriggerSignals */
@@ -1975,5 +1980,8 @@ PUBLIC void UploadBufGetData(ExtBufMemList *extBufList,
     }
 } /* end UploadBufGetData */
 
+#ifdef __cplusplus
+}
+#endif 
 
 /* [EOF] updown.c */

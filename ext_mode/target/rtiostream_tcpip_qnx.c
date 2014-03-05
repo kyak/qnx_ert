@@ -126,6 +126,9 @@ extern SEM_ID commSem;
 #endif
 #ifdef QNX_OS
 extern sem_t *commSem;
+#include <unistd.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 #endif
 #ifdef WIN32
   /* WINDOWS */
@@ -389,7 +392,7 @@ static int serverStreamOpen(void)
 
     struct sockaddr_in serverAddr;
     int sockStatus;
-#if (!defined(_WIN32)) && (!defined(VXWORKS)) && (!defined(QNX_OS))
+#if (!defined(_WIN32)) && (!defined(VXWORKS)) && (!defined(QNX_OS)) || (defined(__cplusplus) && defined(QNX_OS))
     
     socklen_t sFdAddSize     = (socklen_t) sizeof(struct sockaddr_in);
 #else

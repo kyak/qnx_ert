@@ -7,17 +7,12 @@
  *   
  */
 
-#ifndef __EXT_WORK_OBJECT__
-#define __EXT_WORK_OBJECT__
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#ifndef __EXT_QNX_WORK_OBJECT__
+#define __EXT_QNX_WORK_OBJECT__
 
 #ifdef EXT_MODE
 #include "ext_types.h"
 
-    
 #if defined(VXWORKS)
     /*VxWorks headers*/
     #include <vxWorks.h>
@@ -37,7 +32,7 @@ extern "C" {
     extern void rtExtModeTornadoCleanup(int_T numSampTimes);
 
     extern void rtExtModeTornadoSetPortInExtUD(const int_T port);
-    
+
 #elif defined(QNX_OS)
 
     #include <stdlib.h>
@@ -63,6 +58,10 @@ extern "C" {
     #include <math.h>
     #include <unistd.h>
     #include <semaphore.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
     extern void rtExtModeTornadoStartup(RTWExtModeInfo *ei,
                                         int_T          numSampTimes,
                                         boolean_T      *stopReqPtr,
@@ -73,8 +72,7 @@ extern "C" {
     extern void rtExtModeTornadoCleanup(int_T numSampTimes);
 
     extern void rtExtModeTornadoSetPortInExtUD(const int_T port);
-        
-        
+     
 #elif defined(C6000_EXT_MODE)
     /* C6000 headers*/
     #include <std.h>
@@ -154,9 +152,7 @@ extern void rtERTExtModeParseArgs(int_T        argc,
 #define rtERTExtModeParseArgs(argc, argv); /* do nothing */
 
 #endif  /* #ifdef EXTMODE */
-
 #ifdef __cplusplus
 }
-#endif
-
+#endif 
 #endif /* __EXT_WORK_OBJECT__ */

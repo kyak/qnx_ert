@@ -879,8 +879,8 @@ real-time model and returns from rt_OneStep.
     %assign tid = i + 1 + tid01Eq
     %assign rootSystem.CurrentTID = tid
     %assign fcnName = "tSubRate_%<tid>"
-    %assign fcnReturns = "static int_T"
-    %assign fcnParams = "threadStructT  *thPtr"
+    %assign fcnReturns = "static void*"
+    %assign fcnParams = "void *thPtrVoid"
     %assign fcnAbstract = ""
     %assign fcnCategory = "main"
     %createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
@@ -890,6 +890,7 @@ real-time model and returns from rt_OneStep.
     %<fcnReturns> %<fcnName>(%<fcnParams>)
     {
       %<SLibDeclareFcnProtoCtlVariables()>\
+      threadStructT *thPtr = (threadStructT *) thPtrVoid;
       int_T                   rcvid;
       my_message_t            msg;
       printf(" %<fcnName> started; priority is %d\n", getprio(0));
@@ -912,13 +913,13 @@ real-time model and returns from rt_OneStep.
 
         /* Write model outputs associated to subrate here */
       }
-      return(1);
+      return((int *)1);
     }
   %endforeach
   %<LibERTMainDeclareVariables(TLC_TRUE,TLC_FALSE)>
   %assign fcnName = "tBaseRate"
-  %assign fcnReturns = "static int_T"
-  %assign fcnParams = "threadStructT  *thPtr"
+  %assign fcnReturns = "static void*"
+  %assign fcnParams = "void *thPtrVoid"
   %assign fcnAbstract = ""
   %assign fcnCategory = "main"
   %createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
@@ -928,6 +929,7 @@ real-time model and returns from rt_OneStep.
   %<fcnReturns> %<fcnName>(%<fcnParams>)
   {
     %<LibERTMainDeclareVariables(TLC_FALSE,TLC_FALSE)>
+    threadStructT *thPtr = (threadStructT *) thPtrVoid;
     struct                  sigevent         event;
     struct                  itimerspec       itime;
     timer_t                 timer_id;
@@ -972,7 +974,7 @@ real-time model and returns from rt_OneStep.
 #ifdef EXT_MODE
 	      sem_post(startStopSem);
 #endif
-	     return(1);
+	     return((int *)1);
        }
         
        //printf("tBaseRate waiting for timer\n");
@@ -1035,8 +1037,8 @@ real-time model and returns from rt_OneStep.
 
 %function FcnGenerateSingletaskingOSCode() Output
   %assign fcnName = "tBaseRate"
-  %assign fcnReturns = "static int_T"
-  %assign fcnParams = "threadStructT  *thPtr"
+  %assign fcnReturns = "static void*"
+  %assign fcnParams = "void *thPtrVoid"
   %assign fcnAbstract = ""
   %assign fcnCategory = "main"
   %createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
@@ -1047,6 +1049,7 @@ real-time model and returns from rt_OneStep.
   {
     int_T i;
     %<SLibDeclareFcnProtoCtlVariables()>\
+    threadStructT *thPtr = (threadStructT *) thPtrVoid;
     struct                  sigevent         event;
     struct                  itimerspec       itime;
     timer_t                 timer_id;
@@ -1094,7 +1097,7 @@ real-time model and returns from rt_OneStep.
       if (%<ERTStopCheck()>) {
         %<PrintERTStopCheckStatus()>
 	sem_post(startStopSem);
-	return(1);
+	return((int *)1);
       }
       
       rcvid = MsgReceive(thPtr->channelId, &msg, sizeof(msg), NULL);
@@ -1121,7 +1124,7 @@ real-time model and returns from rt_OneStep.
 
     }
 
-    return(1);
+    return((int *)1);
   }
 %endfunction
 
@@ -1641,8 +1644,10 @@ application code, specifying its O/S priority
   %endif
   #include "%<FcnGetPublicModelHeaderFile()>" /* Model's header file */
   #include "rtwtypes.h" /* MathWorks types */
+  #include "ert_qnx_utils.h"
   %if ExtMode
     #include "ext_work.h" /* External mode header file */
+    #include "ext_qnx_work.h"
   %endif
   %if MatFileLogging
     #include "rt_logging.h"

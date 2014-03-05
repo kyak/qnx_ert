@@ -86,6 +86,9 @@
 #define UNUSED_PARAM(p) /* nothing */
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**********************
  * External Variables *
@@ -346,7 +349,7 @@ PRIVATE boolean_T ProcessConnectPkt(RTWExtModeInfo *ei)
     uint32_T                *tmpBuf = NULL;
     boolean_T               error   = EXT_NO_ERROR;
     
-    const DataTypeTransInfo *dtInfo    = rteiGetModelMappingInfo(ei);
+    const DataTypeTransInfo *dtInfo    = (DataTypeTransInfo *) rteiGetModelMappingInfo(ei);
     uint_T                  *dtSizes   = dtGetDataTypeSizes(dtInfo);
     int_T                   nDataTypes = dtGetNumDataTypes(dtInfo);
 
@@ -606,7 +609,7 @@ PRIVATE boolean_T ProcessGetParamsPkt(RTWExtModeInfo *ei)
     int_T                         i;
     int_T                         nBytesTotal;
     boolean_T                     error    = EXT_NO_ERROR;
-    const DataTypeTransInfo       *dtInfo  = rteiGetModelMappingInfo(ei);
+    const DataTypeTransInfo       *dtInfo  = (DataTypeTransInfo *) rteiGetModelMappingInfo(ei);
     const DataTypeTransitionTable *dtTable = dtGetParamDataTypeTrans(dtInfo);
 
     if (dtTable != NULL) {
@@ -1284,7 +1287,7 @@ EXIT_POINT:
  *  when running as a low priority task.
  */
 #ifdef QNX_OS
-PUBLIC void rt_PktServer(void *thPtr)
+PUBLIC void* rt_PktServer(void *thPtr)
 
 {
    pktServerArgT   *pktServerArg;
@@ -1304,7 +1307,7 @@ PUBLIC void rt_PktServer(void *thPtr)
  *  Tornado/VxWorks when running as a low priority task.
  */
 #ifdef QNX_OS
-PUBLIC void rt_UploadServer(void *arg )
+PUBLIC void* rt_UploadServer(void *arg )
 {
     int_T numSampTimes;
     numSampTimes = *((int_T *)arg);
@@ -1425,4 +1428,7 @@ PUBLIC void rt_UploadBufAddTimePoint(int_T tid, real_T taskTime)
     }
 } /* end rt_UploadBufAddTimePoint */
 
+#ifdef __cplusplus
+}
+#endif 
 /* [EOF] ext_svr.c */

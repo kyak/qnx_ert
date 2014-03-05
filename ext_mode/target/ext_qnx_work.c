@@ -38,6 +38,9 @@ int_T             extern_upload_tid;
     
 static pktServerArgT  pktServerArg;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 void rtExtModeTornadoStartup(RTWExtModeInfo *ei,
                              int_T          numSampTimes,
                              boolean_T      *stopReqPtr,
@@ -372,7 +375,9 @@ void rtERTExtModeParseArgs(int_T        argc,
                 "to external mode with '-tf inf' argument.\n");
     }
 }
-
+#ifdef __cplusplus
+}
+#endif  
 /* End of ERT specific functions and data */
 
 /* [EOF] ext_work.c */

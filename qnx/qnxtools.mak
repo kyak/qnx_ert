@@ -34,7 +34,7 @@ DSP_INCLUDES = \
 	-I$(DSP_SIM) \
 	-I$(DSP_RT)
 
-QNX_TGT_INCLUDES = -I$(QNX_MW_ROOT) -I$(QNX_MW_ROOT)/ext_mode -I$(QNX_MW_ROOT)/qnx
+QNX_TGT_INCLUDES = -I$(QNX_MW_ROOT) -I$(QNX_MW_ROOT)/ext_mode/target -I$(QNX_MW_ROOT)/qnx
 BLOCKSET_INCLUDES = $(DSP_INCLUDES) \
                    -I$(MATLAB_ROOT)/toolbox/commblks/commmex
 
