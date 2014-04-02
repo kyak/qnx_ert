@@ -4,11 +4,11 @@ if (strcmp(get_param(modelName,'SystemTargetFile')  ,'ert_qnx.tlc') && ...
   
     % Check if user chose to Download to QNX in Settings
     if verLessThan('matlab', '8.1')
-        makertwObj = get_param(gcs, 'MakeRTWSettingsObject');
+        makertwObj = get_param(modelName, 'MakeRTWSettingsObject');
         makertwArgs = makertwObj.BuildInfo.BuildArgs;
     else
         % See R2013a Simulink Coder release notes.
-        makertwObj = rtwprivate('get_makertwsettings',gcs,'BuildInfo');
+        makertwObj = rtwprivate('get_makertwsettings',modelName,'BuildInfo');
         makertwArgs = makertwObj.BuildArgs;
     end
 
