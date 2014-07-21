@@ -118,6 +118,7 @@ MAKEFILEBUILDER_TGT  = |>MAKEFILEBUILDER_TGT<|
 STANDALONE_SUPPRESS_EXE = |>STANDALONE_SUPPRESS_EXE<|
 OPTIMIZATION_FLAGS      = |>OPTIMIZATION_FLAGS<|
 ADDITIONAL_LDFLAGS      = |>ADDITIONAL_LDFLAGS<|
+TARGET_LANG_EXT      = |>TARGET_LANG_EXT<|
 
 #--------------------------- Model and reference models -----------------------
 MODELREFS                 = |>MODELREFS<|
@@ -222,7 +223,12 @@ endif
 #           $(SHARED_INCLUDES)
 
 # Optimization Options
-OPT_OPTS = $(DEFAULT_OPT_OPTS) -g  -V4.4.2,gcc_ntoarmv7le -Bstatic -static
+ifeq ($(TARGET_LANG_EXT),cpp)
+OPT_OPTS = -lang-c++
+else
+OPT_OPTS =
+endif
+OPT_OPTS += $(DEFAULT_OPT_OPTS) -g  -V4.4.2,gcc_ntoarmv7le -Bstatic -static
 
 # General User Options
 OPTS = -V4.4.2,gcc_ntoarmv7le -Bstatic -static
@@ -253,6 +259,7 @@ CPP_REQ_DEFINES += -DPORTABLE_WORDSIZES
 endif
 
 CFLAGS = $(CC_OPTS) $(CPP_REQ_DEFINES) $(INCLUDES) 
+CPPFLAGS = $(CFLAGS)
 
 ifeq ($(OPT_OPTS),$(DEFAULT_OPT_OPTS))
 #LDFLAGS = $(LIB)
@@ -260,6 +267,10 @@ LDFLAGS = -V4.4.2,gcc_ntoarmv7le -Bstatic -static
 else
 #LDFLAGS = $(LIB)
 LDFLAGS = -V4.4.2,gcc_ntoarmv7le -Bstatic -static 
+endif
+
+ifeq ($(TARGET_LANG_EXT),cpp)
+LDFLAGS += -lstdc++
 endif
 
 ifneq ($(ADDITIONAL_LDFLAGS),)
@@ -350,7 +361,7 @@ ifeq ($(SFCN),0)
           PRODUCT            = $(RELATIVE_PATH_TO_ANCHOR)/$(MODEL)
           BIN_SETTING        = $(LD) $(LDFLAGS) $(ADDITIONAL_LDFLAGS) -o $(PRODUCT) $(SYSLIBS)
           BUILD_PRODUCT_TYPE = executable
-          SRCS               += $(MODULES) $(MODEL).c ert_main.c $(EXT_SRC)
+          SRCS               += $(MODULES) $(MODEL).$(TARGET_LANG_EXT) ert_main.$(TARGET_LANG_EXT) $(EXT_SRC)
         endif
       endif
     endif
@@ -385,8 +396,10 @@ LOCAL_USER_OBJS = $(notdir $(USER_OBJS))
 #ERT_MAIN = ert_main.o
 EXT_OBJS = $(EXT_SRC:.c=.o)
 
-OBJS      = $(SRCS:.c=.o) $(USER_OBJS) $(ERT_MAIN) $(EXT_OBJS) rtiostream
-LINK_OBJS = $(SRCS:.c=.o) $(LOCAL_USER_OBJS)
+OBJS_ = $(SRCS:.c=.o) $(USER_OBJS) $(ERT_MAIN) $(EXT_OBJS) rtiostream
+OBJS  = $(OBJS_:.cpp=.o)
+LINK_OBJS_ = $(SRCS:.c=.o) $(LOCAL_USER_OBJS)
+LINK_OBJS = $(LINK_OBJS_:.cpp=.o)
 
 SHARED_OBJS := $(addsuffix .o, $(basename $(wildcard $(SHARED_SRC))))
 FMT_SHARED_OBJS = $(subst /,\,$(SHARED_OBJS))
@@ -439,12 +452,18 @@ endif
 
 %.o : %.C
 	$(CC) -c -o $@ $(CFLAGS) $<
+	
+%.o : %.cpp
+	$(CC) -c -o $@ $(CPPFLAGS) $<
 
 %.o : $(RELATIVE_PATH_TO_ANCHOR)/%.c
 	$(CC) -c -o $@ $(CFLAGS) $<
 
 %.o : $(RELATIVE_PATH_TO_ANCHOR)/%.C
 	$(CC) -c -o $@ $(CFLAGS) $<
+	
+%.o : $(RELATIVE_PATH_TO_ANCHOR)/%.cpp
+	$(CC) -c -o $@ $(CPPFLAGS) $<
 
 %.o : $(MATLAB_ROOT)/rtw/c/ert/%.c
 	$(CC) -c -o $@ $(CFLAGS) $<
@@ -493,6 +512,10 @@ endif
 |>START_EXPAND_RULES<|%.o : |>EXPAND_DIR_NAME<|/%.C
 	$(CC) -c -o $@ $(CFLAGS) $<
 
+|>END_EXPAND_RULES<|
+
+|>START_EXPAND_RULES<|%.o : |>EXPAND_DIR_NAME<|/%.cpp
+	$(CC) -c -o $@ $(CPPFLAGS) $<
 |>END_EXPAND_RULES<|
 
 %.o : $(MATLAB_ROOT)/simulink/src/%.c
